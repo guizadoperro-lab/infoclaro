@@ -15,14 +15,13 @@
   font-family:'Poppins', sans-serif;
 }
 
-/* ===== FUNDO ESCURO COM NEON ===== */
+/* ===== FUNDO DARK NEON ===== */
 body{
   background:#0b0f1a;
   overflow-x:hidden;
   position:relative;
 }
 
-/* GLOW AZUL */
 body::before{
   content:"";
   position:fixed;
@@ -33,7 +32,6 @@ body::before{
   opacity:0.25;
   top:10%;
   left:10%;
-  z-index:0;
 }
 
 body::after{
@@ -46,7 +44,6 @@ body::after{
   opacity:0.2;
   bottom:10%;
   right:10%;
-  z-index:0;
 }
 
 /* ===== HEADER ===== */
@@ -69,89 +66,73 @@ header{
   font-size:20px;
 }
 
-.icons span{
-  font-size:22px;
-  margin-left:15px;
-  cursor:pointer;
-}
-
-/* ===== PESQUISA ===== */
-.search-box{
-  position:fixed;
-  top:70px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(10px);
-  padding:12px 20px;
-  border-radius:30px;
-  width:80%;
-  max-width:400px;
-  display:none;
-  box-shadow:0 0 20px rgba(0,140,255,0.3);
-  z-index:1500;
-}
-
-.search-box input{
-  width:100%;
-  border:none;
-  outline:none;
-  background:transparent;
-  color:white;
-}
-
-/* ===== MENU ===== */
-.menu{
-  position:fixed;
-  top:0;
-  right:-260px;
-  width:260px;
-  height:100%;
-  background:#0f1428;
-  padding:25px;
-  transition:0.3s;
-  z-index:2000;
-  color:white;
-}
-
-.menu a{
-  display:block;
-  margin:20px 0;
-  text-decoration:none;
-  color:#ccc;
-}
-
-.menu.active{
-  right:0;
-}
-
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:1500;
-}
-
-.overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
 /* ===== HERO ===== */
 .hero{
-  margin-top:100px;
+  margin-top:120px;
   padding:20px;
   text-align:center;
   position:relative;
   z-index:2;
 }
 
-/* ANIMAÇÃO */
+/* ===== TITULO PREMIUM ===== */
+.hero h1{
+  font-size:2.6rem;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:-0.5px;
+  margin-bottom:20px;
+  color:#ffffff;
+}
+
+/* SUBTEXTO */
+.hero p{
+  font-size:1.15rem;
+  line-height:1.8;
+  color:#cfd8ff;
+  max-width:700px;
+  margin:0 auto 30px;
+}
+
+/* DESTAQUE */
+strong{
+  color:#00bfff;
+  font-weight:600;
+}
+
+/* CARD */
+.container{
+  max-width:800px;
+  margin:auto;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:30px;
+  border-radius:20px;
+  border:1px solid rgba(0,140,255,0.2);
+  box-shadow:0 0 30px rgba(0,140,255,0.2);
+}
+
+/* BOTÃO PREMIUM */
+.btn{
+  display:inline-block;
+  padding:10px 24px;
+  background:#007BFF;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  box-shadow:0 0 15px rgba(0,140,255,0.5);
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 0 25px rgba(0,140,255,0.8);
+}
+
+/* ANIMAÇÃO SUAVE */
 .fade{
   opacity:0;
   transform:translateY(20px);
@@ -165,58 +146,14 @@ header{
   }
 }
 
-/* TITULO */
-.hero h1{
-  font-size:1.8rem;
-  margin-bottom:25px;
-  color:white;
-}
-
-/* CARD NEON */
-.container{
-  max-width:750px;
-  margin:auto;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(12px);
-  padding:25px;
-  border-radius:20px;
-  border:1px solid rgba(0,140,255,0.2);
-  box-shadow:0 0 30px rgba(0,140,255,0.2);
-}
-
-/* TEXTO */
-p{
-  color:#cfd8ff;
-  line-height:1.6;
-  margin-bottom:20px;
-}
-
-strong{
-  color:#00bfff;
-}
-
-/* BOTÃO */
-.btn{
-  padding:8px 18px;
-  background:#007BFF;
-  color:white;
-  border-radius:20px;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:600;
-  box-shadow:0 0 15px rgba(0,140,255,0.5);
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px rgba(0,140,255,0.8);
-}
-
 /* RESPONSIVO */
 @media(max-width:768px){
   .hero h1{
-    font-size:1.4rem;
+    font-size:1.8rem;
+  }
+
+  .hero p{
+    font-size:1rem;
   }
 }
 </style>
@@ -227,41 +164,23 @@ strong{
 
 <header>
   <div class="logo">Info Claro</div>
-
-  <div class="icons">
-    <span onclick="toggleSearch()">🔍</span>
-    <span onclick="openMenu()">☰</span>
-  </div>
 </header>
-
-<!-- PESQUISA -->
-<div class="search-box" id="searchBox">
-  <input type="text" placeholder="Pesquisar...">
-</div>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-  <a href="#">Início</a>
-  <a href="quem-somos.html">Quem somos</a>
-  <a href="#">Contato</a>
-</div>
-
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <section class="hero">
 
   <h1 class="fade">
-    Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong> 
-    ao seu redor com facilidade, <strong>ouvindo tudo</strong> o que antes era difícil de ler.
+    Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong><br>
+    ao seu redor com facilidade, <strong>ouvindo tudo</strong><br>
+    o que antes era difícil de ler.
   </h1>
 
   <div class="container fade" style="animation-delay:0.3s;">
 
     <p>
-      Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana.
+      Somos a <strong>Info Claro</strong>, uma empresa que torna a informação mais simples, acessível e humana.
       Criamos soluções que transformam conteúdos complexos em algo fácil de entender,
-      ajudando principalmente o público idoso a ter mais autonomia, segurança e inclusão.
+      ajudando principalmente o público idoso a ter mais <strong>autonomia</strong>,
+      <strong>segurança</strong> e <strong>inclusão</strong>.
     </p>
 
     <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
@@ -269,23 +188,6 @@ strong{
   </div>
 
 </section>
-
-<script>
-function toggleSearch(){
-  const box = document.getElementById("searchBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-}
-
-function openMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
-}
-
-function closeMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
-}
-</script>
 
 </body>
 </html>
