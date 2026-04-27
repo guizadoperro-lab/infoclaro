@@ -17,7 +17,7 @@
 
 /* FUNDO CLARO */
 body{
-  background:#f5f5f5;
+  background:#f7f7f7;
 }
 
 /* HEADER BRANCO */
@@ -30,17 +30,16 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:15px 20px;
-  z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  z-index:999;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .logo{
-  font-weight:600;
   font-size:20px;
+  font-weight:600;
   color:#000;
 }
 
-/* ICONES */
 .icons span{
   font-size:22px;
   margin-left:15px;
@@ -52,91 +51,63 @@ header{
   position:fixed;
   top:70px;
   left:20px;
-  background:white;
-  padding:10px 15px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  background:#fff;
+  padding:8px 12px;
+  border-radius:8px;
   display:none;
-  z-index:2000;
-}
-
-.search-box input{
-  border:none;
-  outline:none;
-}
-
-/* MENU LATERAL */
-.menu{
-  position:fixed;
-  top:0;
-  right:-250px;
-  width:250px;
-  height:100%;
-  background:white;
-  padding:20px;
-  box-shadow:-5px 0 15px rgba(0,0,0,0.2);
-  transition:0.3s;
-  z-index:2000;
-}
-
-.menu.active{
-  right:0;
-}
-
-.menu a{
-  display:block;
-  margin:15px 0;
-  text-decoration:none;
-  color:#333;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  z-index:1000;
 }
 
 /* HERO */
 .hero{
-  margin-top:80px;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  margin-top:100px;
   padding:20px;
-}
-
-/* CARD */
-.container{
-  max-width:800px;
-  background:rgba(255,255,255,0.9);
-  padding:30px;
-  border-radius:20px;
   text-align:center;
 }
 
-/* TEXTO */
-h1{
-  font-size:1.6rem;
-  margin-bottom:20px;
+/* TITULO FORA DO QUADRO */
+.hero h1{
+  font-size:1.7rem;
+  margin-bottom:25px;
+  color:#222;
 }
 
+/* CARD (APENAS TEXTO SECUNDÁRIO) */
+.container{
+  max-width:750px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.8);
+  padding:25px;
+  border-radius:18px;
+}
+
+/* TEXTO */
 p{
   color:#444;
+  line-height:1.6;
   margin-bottom:20px;
 }
 
+/* DESTAQUE */
 strong{
   color:#007BFF;
 }
 
-/* BOTÃO */
+/* BOTÃO MENOR */
 .btn{
-  padding:10px 20px;
+  padding:8px 16px;
   background:#007BFF;
   color:white;
-  border-radius:20px;
+  border-radius:18px;
   text-decoration:none;
-  font-size:14px;
+  font-size:12px;
+  font-weight:600;
 }
 
 /* RESPONSIVO */
 @media(max-width:768px){
-  h1{
+  .hero h1{
     font-size:1.3rem;
   }
 }
@@ -155,29 +126,25 @@ strong{
   </div>
 </header>
 
-<!-- PESQUISA -->
 <div class="search-box" id="searchBox">
-  <input type="text" placeholder="Pesquisar...">
-</div>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-  <a href="#">Início</a>
-  <a href="quem-somos.html">Quem somos</a>
-  <a href="#">Contato</a>
+  <input type="text" placeholder="Pesquisar..." style="border:none; outline:none;">
 </div>
 
 <section class="hero">
 
-  <div class="container">
+  <!-- TITULO FORA -->
+  <h1>
+    Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong> 
+    ao seu redor com facilidade, <strong>ouvindo tudo</strong> o que antes era difícil de ler.
+  </h1>
 
-    <h1>
-      Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong> 
-      ao seu redor com facilidade, <strong>ouvindo tudo</strong> o que antes era difícil de ler.
-    </h1>
+  <!-- QUADRO -->
+  <div class="container">
 
     <p>
       Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana.
+      Criamos soluções que transformam conteúdos complexos em algo fácil de entender,
+      ajudando principalmente o público idoso a ter mais autonomia, segurança e inclusão.
     </p>
 
     <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
@@ -188,12 +155,13 @@ strong{
 
 <script>
 function toggleSearch(){
-  var box = document.getElementById("searchBox");
+  const box = document.getElementById("searchBox");
   box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
+/* menu ainda simples (se quiser melhoro depois) */
 function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
+  alert("Menu em desenvolvimento");
 }
 </script>
 
