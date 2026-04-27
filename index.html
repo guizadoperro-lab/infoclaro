@@ -51,23 +51,21 @@ header{
 
 /* MENU */
 .menu{
+.menu{
   position:fixed;
-  right:-250px;
+  right:-260px;
   top:0;
-  width:250px;
+  width:260px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:0.3s;
+  transition:0.3s ease;
+  z-index:10000; /* ESSENCIAL */
+  box-shadow:-5px 0 20px rgba(0,0,0,0.5);
 }
 
-.menu.active{right:0;}
-
-.menu a{
-  display:block;
-  margin:15px 0;
-  color:#ccc;
-  text-decoration:none;
+.menu.active{
+  right:0;
 }
 
 /* HERO */
