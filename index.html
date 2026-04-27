@@ -8,12 +8,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
 
-/* FUNDO */
+/* FUNDO DARK + NEON */
 body{
   background:#0b0f1a;
   color:white;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* GLOW */
+body::before{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  background:#00bfff;
+  filter:blur(180px);
+  opacity:0.25;
+  top:10%;
+  left:10%;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:#007BFF;
+  filter:blur(150px);
+  opacity:0.2;
+  bottom:10%;
+  right:10%;
 }
 
 /* HEADER */
@@ -26,12 +58,23 @@ header{
   padding:15px 20px;
   background:rgba(15,20,40,0.7);
   backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{
+  font-weight:600;
 }
 
 /* ICONES */
 .icons span{
   margin-left:15px;
   cursor:pointer;
+  transition:0.3s;
+}
+
+.icons span:hover{
+  color:#00bfff;
+  transform:scale(1.2);
 }
 
 /* BUSCA */
@@ -40,7 +83,7 @@ header{
   top:70px;
   left:50%;
   transform:translateX(-50%);
-  background:white;
+  background:rgba(255,255,255,0.1);
   padding:10px 20px;
   border-radius:20px;
   display:none;
@@ -49,6 +92,8 @@ header{
 .search-box input{
   border:none;
   outline:none;
+  background:transparent;
+  color:white;
 }
 
 /* MENU */
@@ -63,7 +108,9 @@ header{
   transition:0.3s;
 }
 
-.menu.active{right:0;}
+.menu.active{
+  right:0;
+}
 
 .menu a{
   display:block;
@@ -79,29 +126,42 @@ header{
   padding:20px;
 }
 
-h1{font-size:2rem;margin-bottom:20px;}
+/* TITULO */
+h1{
+  font-size:2.2rem;
+  margin-bottom:20px;
+}
 
+/* CARD */
 .container{
+  max-width:700px;
+  margin:auto;
   background:rgba(255,255,255,0.05);
-  padding:20px;
+  padding:25px;
   border-radius:15px;
+  box-shadow:0 0 25px rgba(0,140,255,0.2);
+}
+
+/* TEXTO */
+p{
+  color:#cfd8ff;
+  margin-bottom:20px;
 }
 
 /* BOTÃO */
 .btn{
   display:inline-block;
-  margin-top:15px;
-  padding:10px 20px;
+  padding:10px 22px;
   background:#007BFF;
   border-radius:20px;
   color:white;
   text-decoration:none;
+  transition:0.3s;
 }
 
-/* HIGHLIGHT */
-.highlight{
-  background:yellow;
-  color:black;
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(0,140,255,0.6);
 }
 </style>
 </head>
@@ -109,7 +169,8 @@ h1{font-size:2rem;margin-bottom:20px;}
 <body>
 
 <header>
-  <div>Info Claro</div>
+  <div class="logo">Info Claro</div>
+
   <div class="icons">
     <span onclick="toggleSearch()">🔍</span>
     <span onclick="toggleMenu()">☰</span>
@@ -118,7 +179,7 @@ h1{font-size:2rem;margin-bottom:20px;}
 
 <!-- BUSCA -->
 <div class="search-box" id="searchBox">
-  <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchContent()">
+  <input type="text" placeholder="Pesquisar...">
 </div>
 
 <!-- MENU -->
@@ -128,18 +189,18 @@ h1{font-size:2rem;margin-bottom:20px;}
   <a href="faq.html">Perguntas</a>
 </div>
 
-<!-- CONTEÚDO -->
+<!-- HERO -->
 <section class="hero">
 
-  <h1 id="titulo">
-    Com a <strong>Info Claro</strong>, você volta a entender o mundo com facilidade
+  <h1>
+    Com a <strong style="color:#00bfff;">Info Claro</strong>, você volta a entender o mundo com facilidade
   </h1>
 
-  <div class="container" id="conteudo">
+  <div class="container">
 
     <p>
-      Somos a Info Claro, uma empresa que transforma conteúdos complexos em algo simples,
-      ajudando pessoas a terem mais autonomia e inclusão digital.
+      Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana.
+      Criamos soluções que ajudam principalmente o público idoso a ter mais autonomia e inclusão.
     </p>
 
     <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
@@ -156,24 +217,6 @@ function toggleSearch(){
 
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
-}
-
-/* BUSCA */
-function searchContent(){
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let content = document.getElementById("conteudo");
-
-  content.innerHTML = content.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
-
-  if(input.length > 1){
-    let regex = new RegExp(`(${input})`, "gi");
-    content.innerHTML = content.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
-
-    let first = document.querySelector(".highlight");
-    if(first){
-      first.scrollIntoView({behavior:"smooth", block:"center"});
-    }
-  }
 }
 </script>
 
