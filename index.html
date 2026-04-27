@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Info Claro</title>
 
-<!-- Fonte moderna -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,107 +15,136 @@
   font-family:'Poppins', sans-serif;
 }
 
-/* FUNDO ESCURO COM NEON */
-body{
+/* ===== HEADER ===== */
+header{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#eaeaea;
+  position:fixed;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:600;
+  font-size:20px;
+}
+
+/* ICONES */
+.icons{
+  display:flex;
+  gap:15px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ===== PESQUISA ===== */
+.search-box{
+  position:absolute;
+  top:70px;
+  right:20px;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  display:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.search-box input{
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+/* ===== MENU LATERAL ===== */
+.menu-lateral{
+  position:fixed;
+  top:0;
+  right:-250px;
+  width:250px;
+  height:100%;
+  background:white;
+  box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+  padding:20px;
+  transition:0.3s;
+  z-index:2000;
+}
+
+.menu-lateral.active{
+  right:0;
+}
+
+.menu-lateral h2{
+  margin-bottom:20px;
+}
+
+.menu-lateral a{
+  display:block;
+  margin:15px 0;
+  text-decoration:none;
+  color:#333;
+}
+
+/* BOTÃO FECHAR */
+.fechar{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* ===== HERO ===== */
+.hero{
   height:100vh;
+  background:#dcdcdc;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:#0a0a0a;
-  overflow:hidden;
-}
-
-/* efeito neon */
-body::before{
-  content:"";
-  position:absolute;
-  width:400px;
-  height:400px;
-  background:#00f0ff;
-  filter:blur(150px);
-  opacity:0.4;
-  top:20%;
-  left:10%;
-}
-
-body::after{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  background:#008cff;
-  filter:blur(120px);
-  opacity:0.3;
-  bottom:10%;
-  right:10%;
-}
-
-/* CONTAINER CENTRAL */
-.container{
-  position:relative;
-  z-index:2;
-  max-width:800px;
-  padding:30px;
   text-align:center;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 40px rgba(0,140,255,0.2);
+  padding:20px;
 }
 
-/* TÍTULO */
+/* CAIXA */
+.container{
+  max-width:800px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:20px;
+}
+
 h1{
-  color:white;
   font-size:2rem;
   margin-bottom:20px;
 }
 
-/* TEXTO */
 p{
-  color:#ccc;
-  line-height:1.6;
   margin-bottom:20px;
+  color:#444;
 }
 
-/* NEGRITO DESTACADO */
 strong{
-  color:#00e0ff;
-  font-weight:600;
+  color:#007BFF;
 }
 
 /* BOTÃO */
 .btn{
-  display:inline-block;
-  margin-top:10px;
   padding:12px 28px;
-  background:#008cff;
+  background:#007BFF;
   color:white;
-  border-radius:10px;
+  border-radius:30px;
   text-decoration:none;
-  transition:0.3s;
-  box-shadow:0 0 15px rgba(0,140,255,0.5);
-}
-
-.btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px rgba(0,140,255,0.8);
+  font-weight:600;
 }
 
 /* RESPONSIVO */
 @media(max-width:768px){
-  .container{
-    margin:20px;
-    padding:20px;
-  }
-
   h1{
     font-size:1.4rem;
-  }
-
-  p{
-    font-size:0.9rem;
   }
 }
 </style>
@@ -125,27 +153,62 @@ strong{
 
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">Info Claro</div>
 
-  <h1>
-    Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong> ao seu redor com facilidade, 
-    <strong>ouvindo tudo</strong> o que antes era difícil de ler.
-  </h1>
+  <div class="icons">
+    <span onclick="toggleSearch()">🔍</span>
+    <span onclick="openMenu()">☰</span>
+  </div>
 
-  <p>
-    Somos a <strong>Info Claro</strong>, uma empresa que torna a informação mais simples, acessível e humana. 
-    Criamos soluções que transformam conteúdos complexos em algo fácil de entender, ajudando principalmente 
-    o público idoso a ter mais <strong>autonomia</strong>, <strong>segurança</strong> e <strong>inclusão</strong> 
-    no dia a dia digital.
-  </p>
+  <!-- Pesquisa -->
+  <div class="search-box" id="searchBox">
+    <input type="text" placeholder="Pesquisar...">
+  </div>
+</header>
 
-  <p>
-    <strong>Info Claro — Clareza que conecta, tecnologia que inclui.</strong>
-  </p>
+<!-- MENU LATERAL -->
+<div class="menu-lateral" id="menu">
+  <span class="fechar" onclick="closeMenu()">✖</span>
 
-  <a href="#" class="btn">Continuar</a>
-
+  <h2>Menu</h2>
+  <a href="#">Início</a>
+  <a href="quem-somos.html">Quem somos</a>
+  <a href="#">Contato</a>
 </div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+
+    <h1>
+      Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong> 
+      ao seu redor com facilidade, <strong>ouvindo tudo</strong> o que antes era difícil de ler.
+    </h1>
+
+    <p>
+      Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana.Criamos soluções que transformam conteúdos complexos em algo fácil de entender, ajudando principalmente o público idoso a ter mais autonomia, segurança e inclusão no dia a dia digital.
+    </p>
+
+    <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
+
+  </div>
+</section>
+
+<script>
+function toggleSearch(){
+  const box = document.getElementById("searchBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function openMenu(){
+  document.getElementById("menu").classList.add("active");
+}
+
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+}
+</script>
 
 </body>
 </html>
