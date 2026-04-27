@@ -15,17 +15,17 @@
   font-family:'Poppins', sans-serif;
 }
 
-/* ===== HEADER ===== */
+/* FUNDO */
+body{
+  background:#f2f2f2;
+}
+
+/* HEADER */
 header{
-  width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:15px 20px;
-  background:#eaeaea;
-  position:fixed;
-  top:0;
-  z-index:1000;
 }
 
 .logo{
@@ -41,110 +41,84 @@ header{
   cursor:pointer;
 }
 
-/* ===== PESQUISA ===== */
+/* BARRA DE PESQUISA */
 .search-box{
+  display:none;
   position:absolute;
   top:70px;
-  right:20px;
+  left:20px;
   background:white;
-  padding:10px;
+  padding:10px 15px;
   border-radius:10px;
-  display:none;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .search-box input{
   border:none;
   outline:none;
-  font-size:14px;
 }
 
-/* ===== MENU LATERAL ===== */
-.menu-lateral{
-  position:fixed;
-  top:0;
-  right:-250px;
-  width:250px;
-  height:100%;
-  background:white;
-  box-shadow:-5px 0 15px rgba(0,0,0,0.2);
-  padding:20px;
-  transition:0.3s;
-  z-index:2000;
-}
-
-.menu-lateral.active{
-  right:0;
-}
-
-.menu-lateral h2{
-  margin-bottom:20px;
-}
-
-.menu-lateral a{
-  display:block;
-  margin:15px 0;
-  text-decoration:none;
-  color:#333;
-}
-
-/* BOTÃO FECHAR */
-.fechar{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:20px;
-  cursor:pointer;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{
-  height:100vh;
-  background:#dcdcdc;
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
   padding:20px;
 }
 
 /* CAIXA */
 .container{
   max-width:800px;
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(8px);
   padding:30px;
   border-radius:20px;
+  text-align:center;
 }
 
+/* TÍTULO */
 h1{
-  font-size:2rem;
+  font-size:1.8rem;
   margin-bottom:20px;
 }
 
+/* TEXTO */
 p{
-  margin-bottom:20px;
   color:#444;
+  line-height:1.6;
+  margin-bottom:20px;
 }
 
+/* DESTAQUE */
 strong{
   color:#007BFF;
 }
 
-/* BOTÃO */
+/* BOTÃO MENOR */
 .btn{
-  padding:12px 28px;
+  padding:10px 20px;
   background:#007BFF;
   color:white;
-  border-radius:30px;
+  border-radius:20px;
   text-decoration:none;
   font-weight:600;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#005edb;
 }
 
 /* RESPONSIVO */
 @media(max-width:768px){
   h1{
-    font-size:1.4rem;
+    font-size:1.3rem;
+  }
+
+  .container{
+    padding:20px;
   }
 }
 </style>
@@ -158,27 +132,17 @@ strong{
 
   <div class="icons">
     <span onclick="toggleSearch()">🔍</span>
-    <span onclick="openMenu()">☰</span>
-  </div>
-
-  <!-- Pesquisa -->
-  <div class="search-box" id="searchBox">
-    <input type="text" placeholder="Pesquisar...">
+    <span>☰</span>
   </div>
 </header>
 
-<!-- MENU LATERAL -->
-<div class="menu-lateral" id="menu">
-  <span class="fechar" onclick="closeMenu()">✖</span>
-
-  <h2>Menu</h2>
-  <a href="#">Início</a>
-  <a href="quem-somos.html">Quem somos</a>
-  <a href="#">Contato</a>
+<!-- PESQUISA -->
+<div class="search-box" id="searchBox">
+  <input type="text" placeholder="Pesquisar...">
 </div>
 
-<!-- HERO -->
 <section class="hero">
+
   <div class="container">
 
     <h1>
@@ -193,20 +157,13 @@ strong{
     <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
 
   </div>
+
 </section>
 
 <script>
 function toggleSearch(){
   const box = document.getElementById("searchBox");
   box.style.display = box.style.display === "block" ? "none" : "block";
-}
-
-function openMenu(){
-  document.getElementById("menu").classList.add("active");
-}
-
-function closeMenu(){
-  document.getElementById("menu").classList.remove("active");
 }
 </script>
 
