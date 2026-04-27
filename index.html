@@ -13,25 +13,26 @@
       font-family: Arial, sans-serif;
     }
 
-    /* FUNDO COM A LOGO */
-    .inicio {
+    body {
       height: 100vh;
-      background: url('logo.jpg') center/cover no-repeat;
+      background: #ffffff; /* fundo branco */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
 
-    /* ESCURECER A IMAGEM */
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
+    /* IMAGEM CENTRAL (não distorce) */
+    .logo {
+      max-width: 90%;
+      max-height: 60vh;
+      object-fit: contain;
     }
 
     /* BOTÃO CENTRAL */
     .btn-central {
       position: absolute;
-      top: 50%;
+      top: 65%;
       left: 50%;
       transform: translate(-50%, -50%);
       
@@ -42,7 +43,6 @@
       border-radius: 10px;
       font-size: 18px;
       transition: 0.3s;
-      z-index: 2;
     }
 
     .btn-central:hover {
@@ -52,9 +52,15 @@
 
     /* RESPONSIVO */
     @media (max-width: 768px) {
+      .logo {
+        max-width: 95%;
+        max-height: 50vh;
+      }
+
       .btn-central {
         font-size: 16px;
         padding: 12px 25px;
+        top: 70%;
       }
     }
   </style>
@@ -62,11 +68,9 @@
 
 <body>
 
-  <section class="inicio">
-    <div class="overlay"></div>
+  <img src="logo.jpg" class="logo" alt="Logo">
 
-    <a href="pagina2.html" class="btn-central">Continuar</a>
-  </section>
+  <a href="pagina2.html" class="btn-central">Continuar</a>
 
 </body>
 </html>
