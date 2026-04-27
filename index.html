@@ -38,34 +38,34 @@ header{
 /* BUSCA */
 .search-box{
   position:fixed;
-  top:120px; /* MAIS BAIXO */
+  top:70px;
   left:50%;
   transform:translateX(-50%);
   background:white;
-  padding:12px 20px;
-  border-radius:25px;
+  padding:10px 20px;
+  border-radius:20px;
   display:none;
-  z-index:9999;
-  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 /* MENU */
 .menu{
-.menu{
   position:fixed;
-  right:-260px;
+  right:-250px;
   top:0;
-  width:260px;
+  width:250px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:0.3s ease;
-  z-index:10000; /* ESSENCIAL */
-  box-shadow:-5px 0 20px rgba(0,0,0,0.5);
+  transition:0.3s;
 }
 
-.menu.active{
-  right:0;
+.menu.active{right:0;}
+
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#ccc;
+  text-decoration:none;
 }
 
 /* HERO */
@@ -154,9 +154,9 @@ h1{
 
 <!-- MENU -->
 <div class="menu" id="menu">
-<a href="index.html">Quem somos</a>
-<a href="#">Nosso produto</a>
-<a href="faq.html">Perguntas</a>
+  <a href="index.html">Início</a>
+  <a href="#">Nosso produto</a>
+  <a href="faq.html">Perguntas</a>
 </div>
 
 <!-- HERO -->
