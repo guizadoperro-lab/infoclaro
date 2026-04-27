@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dúvidas Frequentes - Info Claro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+/* FUNDO */
+body{
+  background:#0b0f1a;
+  color:white;
+  padding:30px 20px;
+}
+
+/* TÍTULO */
+h1{
+  text-align:center;
+  margin-bottom:40px;
+  font-size:2rem;
+}
+
+/* CONTAINER */
+.faq-container{
+  max-width:800px;
+  margin:auto;
+}
+
+/* ITEM */
+.faq{
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
+  margin-bottom:15px;
+  padding:18px 20px;
+  cursor:pointer;
+  transition:0.3s;
+  border:1px solid rgba(0,140,255,0.2);
+}
+
+/* HOVER */
+.faq:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(0,140,255,0.3);
+}
+
+/* PERGUNTA */
+.pergunta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:600;
+}
+
+/* SETA */
+.seta{
+  transition:0.3s;
+}
+
+/* RESPOSTA */
+.resposta{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.4s ease;
+  color:#cfd8ff;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+/* ATIVO */
+.faq.active .resposta{
+  max-height:200px;
+}
+
+.faq.active .seta{
+  transform:rotate(180deg);
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>❓ Dúvidas Frequentes</h1>
+
+<div class="faq-container">
+
+  <div class="faq">
+    <div class="pergunta">
+      Quando o dispositivo estará disponível?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Qual será o valor do dispositivo?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Precisa de internet para funcionar?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Como funciona o dispositivo?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      O dispositivo é fácil de usar?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Quem pode usar o dispositivo?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Como posso apoiar o projeto?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">
+      Posso testar o produto antes do lançamento?
+      <span class="seta">⌄</span>
+    </div>
+    <div class="resposta">
+      Em breve abriremos oportunidades para testes com usuários interessados.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const faqs = document.querySelectorAll(".faq");
+
+faqs.forEach(faq => {
+  faq.addEventListener("click", () => {
+    faq.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
