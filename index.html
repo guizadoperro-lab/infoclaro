@@ -8,314 +8,138 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-/* ===== FUNDO DARK NEON ===== */
+/* FUNDO */
 body{
   background:#0b0f1a;
-  overflow-x:hidden;
-  position:relative;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  width:400px;
-  height:400px;
-  background:#00bfff;
-  filter:blur(180px);
-  opacity:0.25;
-  top:10%;
-  left:10%;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  width:300px;
-  height:300px;
-  background:#007BFF;
-  filter:blur(150px);
-  opacity:0.2;
-  bottom:10%;
-  right:10%;
-}
-
-/* ===== HEADER ===== */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(15,20,40,0.7);
-  backdrop-filter:blur(10px);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-  z-index:1000;
   color:white;
 }
 
-.logo{
-  font-weight:600;
-  font-size:20px;
+/* HEADER */
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:rgba(15,20,40,0.7);
+  backdrop-filter:blur(10px);
 }
 
 /* ICONES */
 .icons span{
-  font-size:22px;
   margin-left:15px;
   cursor:pointer;
-  transition:0.3s;
 }
 
-.icons span:hover{
-  transform:scale(1.2);
-  color:#00bfff;
-}
-
-/* ===== PESQUISA ===== */
+/* BUSCA */
 .search-box{
   position:fixed;
   top:70px;
   left:50%;
   transform:translateX(-50%);
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(10px);
-  padding:12px 20px;
-  border-radius:30px;
-  width:80%;
-  max-width:400px;
+  background:white;
+  padding:10px 20px;
+  border-radius:20px;
   display:none;
-  box-shadow:0 0 20px rgba(0,140,255,0.3);
-  z-index:1500;
 }
 
 .search-box input{
-  width:100%;
   border:none;
   outline:none;
-  background:transparent;
-  color:white;
 }
 
-/* ===== MENU ===== */
+/* MENU */
 .menu{
   position:fixed;
+  right:-250px;
   top:0;
-  right:-260px;
-  width:260px;
+  width:250px;
   height:100%;
-  background:#0f1428;
-  padding:25px;
+  background:#111;
+  padding:20px;
   transition:0.3s;
-  z-index:2000;
 }
 
-.menu.active{
-  right:0;
-}
+.menu.active{right:0;}
 
 .menu a{
   display:block;
-  margin:20px 0;
-  text-decoration:none;
+  margin:15px 0;
   color:#ccc;
-  position:relative;
-  transition:0.3s;
+  text-decoration:none;
 }
 
-.menu a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-5px;
-  width:0%;
-  height:2px;
-  background:#00bfff;
-  transition:0.3s;
-}
-
-.menu a:hover{
-  color:#fff;
-}
-
-.menu a:hover::after{
-  width:100%;
-}
-
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:1500;
-}
-
-.overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{
   margin-top:120px;
-  padding:20px;
   text-align:center;
-  position:relative;
-  z-index:2;
+  padding:20px;
 }
 
-/* ANIMAÇÃO */
-.fade{
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp 1s forwards;
-}
+h1{font-size:2rem;margin-bottom:20px;}
 
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* TITULO */
-.hero h1{
-  font-size:2.6rem;
-  font-weight:700;
-  line-height:1.25;
-  letter-spacing:-0.5px;
-  margin-bottom:20px;
-  color:#ffffff;
-}
-
-/* TEXTO */
-p{
-  font-size:1.15rem;
-  line-height:1.8;
-  color:#cfd8ff;
-  max-width:700px;
-  margin:0 auto 30px;
-}
-
-/* DESTAQUE */
-strong{
-  color:#00bfff;
-  transition:0.3s;
-}
-
-strong:hover{
-  color:#66d9ff;
-}
-
-/* CARD */
 .container{
-  max-width:800px;
-  margin:auto;
   background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(12px);
-  padding:30px;
-  border-radius:20px;
-  border:1px solid rgba(0,140,255,0.2);
-  box-shadow:0 0 30px rgba(0,140,255,0.2);
-  transition:0.4s;
-}
-
-.container:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 40px rgba(0,140,255,0.35);
+  padding:20px;
+  border-radius:15px;
 }
 
 /* BOTÃO */
 .btn{
   display:inline-block;
-  padding:10px 24px;
+  margin-top:15px;
+  padding:10px 20px;
   background:#007BFF;
+  border-radius:20px;
   color:white;
-  border-radius:25px;
   text-decoration:none;
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:0.5px;
-  transition:0.3s;
-  box-shadow:0 0 15px rgba(0,140,255,0.4);
 }
 
-.btn:hover{
-  transform:translateY(-3px) scale(1.03);
-  box-shadow:0 10px 30px rgba(0,140,255,0.6);
-  background:#0a84ff;
-}
-
-.btn:active{
-  transform:scale(0.97);
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-  .hero h1{
-    font-size:1.8rem;
-  }
-
-  p{
-    font-size:1rem;
-  }
+/* HIGHLIGHT */
+.highlight{
+  background:yellow;
+  color:black;
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-  <div class="logo">Info Claro</div>
-
+  <div>Info Claro</div>
   <div class="icons">
     <span onclick="toggleSearch()">🔍</span>
-    <span onclick="openMenu()">☰</span>
+    <span onclick="toggleMenu()">☰</span>
   </div>
 </header>
 
-<!-- PESQUISA -->
+<!-- BUSCA -->
 <div class="search-box" id="searchBox">
-  <input type="text" placeholder="Pesquisar...">
+  <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchContent()">
 </div>
 
 <!-- MENU -->
 <div class="menu" id="menu">
-  <a href="#">Início</a>
+  <a href="index.html">Início</a>
   <a href="quem-somos.html">Quem somos</a>
-  <a href="#">Contato</a>
+  <a href="faq.html">Perguntas</a>
 </div>
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
+<!-- CONTEÚDO -->
 <section class="hero">
 
-  <h1 class="fade">
-    Com a <strong>Info Claro</strong>, você volta a <strong>entender o mundo</strong><br>
-    ao seu redor com facilidade, <strong>ouvindo tudo</strong><br>
-    o que antes era difícil de ler.
+  <h1 id="titulo">
+    Com a <strong>Info Claro</strong>, você volta a entender o mundo com facilidade
   </h1>
 
-  <div class="container fade" style="animation-delay:0.3s;">
+  <div class="container" id="conteudo">
 
     <p>
-      Somos a <strong>Info Claro</strong>, uma empresa que torna a informação mais simples, acessível e humana.
-      Criamos soluções que transformam conteúdos complexos em algo fácil de entender,
-      ajudando principalmente o público idoso a ter mais <strong>autonomia</strong>,
-      <strong>segurança</strong> e <strong>inclusão</strong>.
+      Somos a Info Claro, uma empresa que transforma conteúdos complexos em algo simples,
+      ajudando pessoas a terem mais autonomia e inclusão digital.
     </p>
 
     <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
@@ -330,14 +154,26 @@ function toggleSearch(){
   box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
-function openMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
 }
 
-function closeMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+/* BUSCA */
+function searchContent(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let content = document.getElementById("conteudo");
+
+  content.innerHTML = content.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
+
+  if(input.length > 1){
+    let regex = new RegExp(`(${input})`, "gi");
+    content.innerHTML = content.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
+
+    let first = document.querySelector(".highlight");
+    if(first){
+      first.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+  }
 }
 </script>
 
