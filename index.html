@@ -4,18 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Início</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* FUNDO COM A LOGO */
+    .inicio {
+      height: 100vh;
+      background: url('logo.jpg') center/cover no-repeat;
+      position: relative;
+    }
+
+    /* ESCURECER A IMAGEM */
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    /* BOTÃO CENTRAL */
+    .btn-central {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      padding: 14px 30px;
+      background: red;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: 0.3s;
+      z-index: 2;
+    }
+
+    .btn-central:hover {
+      background: darkred;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .btn-central {
+        font-size: 16px;
+        padding: 12px 25px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<section class="inicio">
-  <div class="overlay"></div>
+  <section class="inicio">
+    <div class="overlay"></div>
 
-  <div class="conteudo">
-    <h1>Bem-vindo</h1>
-    <a href="pagina2.html" class="btn">Continuar</a>
-  </div>
-</section>
+    <a href="pagina2.html" class="btn-central">Continuar</a>
+  </section>
 
 </body>
 </html>
