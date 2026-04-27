@@ -8,51 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-/* FUNDO DARK + NEON */
 body{
   background:#0b0f1a;
   color:white;
-  overflow-x:hidden;
-  position:relative;
-}
-
-/* GLOW */
-body::before{
-  content:"";
-  position:fixed;
-  width:400px;
-  height:400px;
-  background:#00bfff;
-  filter:blur(180px);
-  opacity:0.25;
-  top:10%;
-  left:10%;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  width:300px;
-  height:300px;
-  background:#007BFF;
-  filter:blur(150px);
-  opacity:0.2;
-  bottom:10%;
-  right:10%;
 }
 
 /* HEADER */
 header{
   position:fixed;
-  width:100%;
   top:0;
+  width:100%;
   display:flex;
   justify-content:space-between;
   padding:15px 20px;
@@ -61,20 +28,11 @@ header{
   z-index:1000;
 }
 
-.logo{
-  font-weight:600;
-}
+.logo{font-weight:600;}
 
-/* ICONES */
 .icons span{
   margin-left:15px;
   cursor:pointer;
-  transition:0.3s;
-}
-
-.icons span:hover{
-  color:#00bfff;
-  transform:scale(1.2);
 }
 
 /* BUSCA */
@@ -83,17 +41,10 @@ header{
   top:70px;
   left:50%;
   transform:translateX(-50%);
-  background:rgba(255,255,255,0.1);
+  background:white;
   padding:10px 20px;
   border-radius:20px;
   display:none;
-}
-
-.search-box input{
-  border:none;
-  outline:none;
-  background:transparent;
-  color:white;
 }
 
 /* MENU */
@@ -108,9 +59,7 @@ header{
   transition:0.3s;
 }
 
-.menu.active{
-  right:0;
-}
+.menu.active{right:0;}
 
 .menu a{
   display:block;
@@ -126,42 +75,64 @@ header{
   padding:20px;
 }
 
-/* TITULO */
 h1{
-  font-size:2.2rem;
+  font-size:2.3rem;
   margin-bottom:20px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  gap:20px;
+  max-width:900px;
+  margin:40px auto;
 }
 
 /* CARD */
-.container{
-  max-width:700px;
-  margin:auto;
+.card{
   background:rgba(255,255,255,0.05);
   padding:25px;
-  border-radius:15px;
-  box-shadow:0 0 25px rgba(0,140,255,0.2);
+  border-radius:20px;
+  border:1px solid rgba(0,140,255,0.2);
+  box-shadow:0 0 25px rgba(0,140,255,0.15);
+  transition:0.4s;
 }
 
-/* TEXTO */
-p{
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 40px rgba(0,140,255,0.35);
+}
+
+.card h2{
+  color:#00bfff;
+  margin-bottom:15px;
+}
+
+.card p{
   color:#cfd8ff;
-  margin-bottom:20px;
+  line-height:1.7;
+}
+
+.card ul{
+  margin-top:10px;
+  line-height:1.8;
+  color:#cfd8ff;
 }
 
 /* BOTÃO */
 .btn{
   display:inline-block;
-  padding:10px 22px;
+  margin-top:20px;
+  padding:10px 20px;
   background:#007BFF;
   border-radius:20px;
   color:white;
   text-decoration:none;
-  transition:0.3s;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 20px rgba(0,140,255,0.6);
+/* RESPONSIVO */
+@media(max-width:768px){
+  h1{font-size:1.7rem;}
 }
 </style>
 </head>
@@ -170,7 +141,6 @@ p{
 
 <header>
   <div class="logo">Info Claro</div>
-
   <div class="icons">
     <span onclick="toggleSearch()">🔍</span>
     <span onclick="toggleMenu()">☰</span>
@@ -185,29 +155,61 @@ p{
 <!-- MENU -->
 <div class="menu" id="menu">
   <a href="index.html">Início</a>
-  <a href="quem-somos.html">Quem somos</a>
+  <a href="#">Nosso produto</a>
   <a href="faq.html">Perguntas</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-
   <h1>
-    Com a <strong style="color:#00bfff;">Info Claro</strong>, você volta a entender o mundo com facilidade
+    Conheça a <span style="color:#00bfff;">Info Claro</span>
   </h1>
+</section>
 
-  <div class="container">
+<!-- CONTEÚDO -->
+<div class="grid">
 
+  <div class="card">
+    <h2>🔹 O que é a Info Claro</h2>
     <p>
-      Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana.
-      Criamos soluções que ajudam principalmente o público idoso a ter mais autonomia e inclusão.
+      A Info Claro é uma iniciativa que une tecnologia e acessibilidade com o objetivo de simplificar a forma como as pessoas entendem as informações do dia a dia.
     </p>
-
-    <a href="quem-somos.html" class="btn">SAIBA MAIS</a>
-
+    <p>
+      Em vez de apresentar conteúdos complicados, ela busca transformar tudo em algo mais claro, direto e fácil de interpretar.
+    </p>
+    <p>
+      A proposta é humanizar o acesso à informação, tornando a tecnologia uma aliada e não uma barreira.
+    </p>
   </div>
 
-</section>
+  <div class="card">
+    <h2>🔹 O que é o dispositivo</h2>
+    <p>
+      O dispositivo da Info Claro é uma ferramenta inteligente desenvolvida para atuar como intermediário entre a informação e o usuário.
+    </p>
+    <p>
+      Ele traduz conteúdos complexos, como textos digitais, notificações, instruções ou avisos, para uma linguagem mais simples e compreensível.
+    </p>
+    <p>
+      Além disso, apresenta essas informações de forma mais organizada, ajudando o usuário a focar no que realmente importa.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🔹 Para que serve</h2>
+    <p>
+      O principal objetivo do dispositivo é facilitar o entendimento e o uso da informação no cotidiano.
+    </p>
+
+    <ul>
+      <li>✔ Simplificar conteúdos complexos</li>
+      <li>✔ Ajudar na leitura e compreensão</li>
+      <li>✔ Aumentar a autonomia</li>
+      <li>✔ Promover inclusão digital</li>
+    </ul>
+  </div>
+
+</div>
 
 <script>
 function toggleSearch(){
