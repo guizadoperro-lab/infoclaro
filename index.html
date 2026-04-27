@@ -1,76 +1,159 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Início</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info Claro</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
 
-    body {
-      height: 100vh;
-      background: #ffffff; /* fundo branco */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+}
 
-    /* IMAGEM CENTRAL (não distorce) */
-    .logo {
-      max-width: 90%;
-      max-height: 60vh;
-      object-fit: contain;
-    }
+.logo{
+  color:#fff;
+  font-weight:bold;
+  font-size:18px;
+}
 
-    /* BOTÃO CENTRAL */
-    .btn-central {
-      position: absolute;
-      top: 65%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      
-      padding: 14px 30px;
-      background: red;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 18px;
-      transition: 0.3s;
-    }
+.menu{
+  display:flex;
+  gap:20px;
+}
 
-    .btn-central:hover {
-      background: darkred;
-      transform: translate(-50%, -50%) scale(1.05);
-    }
+.menu a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
 
-    /* RESPONSIVO */
-    @media (max-width: 768px) {
-      .logo {
-        max-width: 95%;
-        max-height: 50vh;
-      }
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  background:url('logo.jpg') center/contain no-repeat;
+  background-color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
 
-      .btn-central {
-        font-size: 16px;
-        padding: 12px 25px;
-        top: 70%;
-      }
-    }
-  </style>
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background: transparent;
+  top:0;
+  left:0;
+}
+
+/* ===== TEXTO ===== */
+.conteudo{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+  color:white;
+}
+
+.conteudo h1{
+  font-size:2.3rem;
+  margin-bottom:15px;
+}
+
+.conteudo p{
+  font-size:1rem;
+  margin-bottom:20px;
+  line-height:1.5;
+}
+
+.destaque{
+  font-weight:bold;
+}
+
+/* ===== BOTÃO ===== */
+.btn{
+  padding:12px 25px;
+  background:#e50914;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  display:inline-block;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#b20710;
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:768px){
+
+  .menu{
+    display:none;
+  }
+
+  .conteudo h1{
+    font-size:1.6rem;
+  }
+
+  .conteudo p{
+    font-size:0.9rem;
+  }
+
+}
+</style>
+
 </head>
-
 <body>
 
-  <img src="logo.jpg" class="logo" alt="Logo">
+<header>
+  <div class="logo">Info Claro</div>
+  <nav class="menu">
+    <a href="#">Início</a>
+    <a href="#">Sobre</a>
+    <a href="#">Contato</a>
+  </nav>
+</header>
 
-  <a href="pagina2.html" class="btn-central">Continuar</a>
+<section class="hero">
+
+  <div class="overlay"></div>
+
+  <div class="conteudo">
+    <h1>Somos a Info Claro</h1>
+
+    <p>
+      Somos a Info Claro, uma empresa que torna a informação mais simples, acessível e humana. 
+      Criamos soluções que transformam conteúdos complexos em algo fácil de entender, ajudando 
+      principalmente o público idoso a ter mais autonomia, segurança e inclusão no dia a dia digital.
+    </p>
+
+    <p class="destaque">
+      Info Claro — Clareza que conecta, tecnologia que inclui.
+    </p>
+
+    <a href="#" class="btn">Saiba mais</a>
+  </div>
+
+</section>
 
 </body>
 </html>
