@@ -3,186 +3,249 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dúvidas Frequentes - Info Claro</title>
+<title>Perguntas - Info Claro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-/* FUNDO */
 body{
   background:#0b0f1a;
   color:white;
-  padding:30px 20px;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:rgba(15,20,40,0.7);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{font-weight:600;}
+
+.icons span{
+  margin-left:15px;
+  cursor:pointer;
+}
+
+/* BUSCA */
+.search-box{
+  position:fixed;
+  top:130px;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  padding:12px 20px;
+  border-radius:25px;
+  display:none;
+  z-index:2000;
+}
+
+/* MENU */
+.menu{
+  position:fixed;
+  right:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:0.3s ease;
+  z-index:9999;
+}
+
+.menu.active{
+  right:0;
+}
+
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#ccc;
+  text-decoration:none;
+}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  z-index:9000;
+}
+
+.overlay.active{
+  display:block;
 }
 
 /* TÍTULO */
 h1{
+  margin-top:150px;
   text-align:center;
-  margin-bottom:40px;
-  font-size:2rem;
 }
 
-/* CONTAINER */
+/* FAQ */
 .faq-container{
   max-width:800px;
   margin:auto;
+  padding:10px;
 }
 
-/* ITEM */
 .faq{
   background:rgba(255,255,255,0.05);
+  margin-bottom:12px;
+  padding:18px;
   border-radius:15px;
-  margin-bottom:15px;
-  padding:18px 20px;
   cursor:pointer;
-  transition:0.3s;
-  border:1px solid rgba(0,140,255,0.2);
 }
 
-/* HOVER */
-.faq:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 20px rgba(0,140,255,0.3);
-}
-
-/* PERGUNTA */
 .pergunta{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   font-weight:600;
 }
 
-/* SETA */
 .seta{
   transition:0.3s;
 }
 
-/* RESPOSTA */
 .resposta{
   max-height:0;
   overflow:hidden;
-  transition:max-height 0.4s ease;
+  opacity:0;
+  transition:max-height 0.4s ease, opacity 0.3s ease;
   color:#cfd8ff;
-  margin-top:10px;
-  line-height:1.6;
 }
 
-/* ATIVO */
 .faq.active .resposta{
   max-height:200px;
+  opacity:1;
+  margin-top:10px;
 }
 
 .faq.active .seta{
   transform:rotate(180deg);
 }
-</style>
 
+/* BUSCA HIGHLIGHT */
+.highlight{
+  background:yellow;
+  color:black;
+}
+</style>
 </head>
 
 <body>
+
+<header>
+  <div class="logo">Info Claro</div>
+  <div class="icons">
+    <span onclick="toggleSearch()">🔍</span>
+    <span onclick="toggleMenu()">☰</span>
+  </div>
+</header>
+
+<!-- BUSCA -->
+<div class="search-box" id="searchBox">
+  <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchFAQ()">
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="#">Nosso produto</a>
+  <a href="faq.html">Perguntas</a>
+</div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <h1>❓ Dúvidas Frequentes</h1>
 
 <div class="faq-container">
 
   <div class="faq">
-    <div class="pergunta">
-      Quando o dispositivo estará disponível?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
-    </div>
+    <div class="pergunta">Quando o dispositivo estará disponível? <span class="seta">⌄</span></div>
+    <div class="resposta">O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.</div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">
-      Qual será o valor do dispositivo?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
-    </div>
+    <div class="pergunta">Qual será o valor do dispositivo? <span class="seta">⌄</span></div>
+    <div class="resposta">O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais.</div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">
-      Precisa de internet para funcionar?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
-    </div>
+    <div class="pergunta">Precisa de internet para funcionar? <span class="seta">⌄</span></div>
+    <div class="resposta">Não. O dispositivo funciona sem internet.</div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">
-      Como funciona o dispositivo?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
-    </div>
-  </div>
-
-  <div class="faq">
-    <div class="pergunta">
-      O dispositivo é fácil de usar?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
-    </div>
-  </div>
-
-  <div class="faq">
-    <div class="pergunta">
-      Quem pode usar o dispositivo?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
-    </div>
-  </div>
-
-  <div class="faq">
-    <div class="pergunta">
-      Como posso apoiar o projeto?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
-    </div>
-  </div>
-
-  <div class="faq">
-    <div class="pergunta">
-      Posso testar o produto antes do lançamento?
-      <span class="seta">⌄</span>
-    </div>
-    <div class="resposta">
-      Em breve abriremos oportunidades para testes com usuários interessados.
-    </div>
+    <div class="pergunta">Como funciona o dispositivo? <span class="seta">⌄</span></div>
+    <div class="resposta">Ele escaneia o documento e transforma em áudio ao apertar um botão.</div>
   </div>
 
 </div>
 
 <script>
-const faqs = document.querySelectorAll(".faq");
+function toggleSearch(){
+  const box = document.getElementById("searchBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
 
-faqs.forEach(faq => {
-  faq.addEventListener("click", () => {
+function toggleMenu(){
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+/* SOM */
+const clickSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7c7f.mp3");
+clickSound.volume = 0.2;
+
+/* FAQ */
+document.querySelectorAll(".faq").forEach(faq=>{
+  faq.addEventListener("click", ()=>{
+    clickSound.currentTime = 0;
+    clickSound.play();
     faq.classList.toggle("active");
   });
 });
+
+/* BUSCA */
+function searchFAQ(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let faqs = document.querySelectorAll(".faq");
+
+  faqs.forEach(faq=>{
+    let text = faq.innerText.toLowerCase();
+
+    faq.innerHTML = faq.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
+
+    if(text.includes(input) && input.length > 1){
+      let regex = new RegExp(`(${input})`, "gi");
+      faq.innerHTML = faq.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
+      faq.style.display = "block";
+    } else if(input.length > 1){
+      faq.style.display = "none";
+    } else {
+      faq.style.display = "block";
+    }
+  });
+}
 </script>
 
 </body>
