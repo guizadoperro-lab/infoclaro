@@ -13,6 +13,39 @@
 body{
   background:#0b0f1a;
   color:white;
+  overflow-x:hidden;
+
+  /* TRANSIÇÃO */
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+
+body.loaded{
+  opacity:1;
+}
+
+/* LOADING */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0b0f1a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+.loader-circle{
+  width:50px;height:50px;
+  border:4px solid rgba(0,140,255,0.2);
+  border-top:4px solid #00bfff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 
 /* HEADER */
@@ -25,7 +58,7 @@ header{
   padding:15px 20px;
   background:rgba(15,20,40,0.7);
   backdrop-filter:blur(10px);
-  z-index:1000;
+  z-index:500; /* CORRIGIDO */
 }
 
 .logo{font-weight:600;}
@@ -33,51 +66,87 @@ header{
 .icons span{
   margin-left:15px;
   cursor:pointer;
+  transition:0.3s;
+}
+
+.icons span:hover{
+  color:#00bfff;
 }
 
 /* BUSCA */
 .search-box{
   position:fixed;
-  top:70px;
+  top:120px;
   left:50%;
   transform:translateX(-50%);
   background:white;
-  padding:10px 20px;
-  border-radius:20px;
+  padding:12px 20px;
+  border-radius:25px;
   display:none;
+  z-index:2000;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+.search-box input{
+  border:none;
+  outline:none;
 }
 
 /* MENU */
 .menu{
   position:fixed;
-  right:-250px;
+  right:-260px;
   top:0;
-  width:250px;
+  width:260px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:0.3s;
+  transition:0.3s ease;
+  z-index:9999;
 }
 
-.menu.active{right:0;}
+.menu.active{
+  right:0;
+}
 
 .menu a{
   display:block;
   margin:15px 0;
   color:#ccc;
   text-decoration:none;
+  transition:0.3s;
+}
+
+.menu a:hover{
+  color:#00bfff;
+}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  z-index:9000;
+}
+
+.overlay.active{
+  display:block;
 }
 
 /* HERO */
 .hero{
-  margin-top:120px;
+  margin-top:140px;
   text-align:center;
   padding:20px;
 }
 
-h1{
-  font-size:2.3rem;
-  margin-bottom:20px;
+.hero h1{
+  font-size:2.2rem;
+  margin-bottom:15px;
 }
 
 /* GRID */
@@ -105,39 +174,31 @@ h1{
 
 .card h2{
   color:#00bfff;
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 
-.card p{
+.card p, .card ul{
   color:#cfd8ff;
   line-height:1.7;
 }
 
 .card ul{
   margin-top:10px;
-  line-height:1.8;
-  color:#cfd8ff;
-}
-
-/* BOTÃO */
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:10px 20px;
-  background:#007BFF;
-  border-radius:20px;
-  color:white;
-  text-decoration:none;
 }
 
 /* RESPONSIVO */
 @media(max-width:768px){
-  h1{font-size:1.7rem;}
+  .hero h1{font-size:1.6rem;}
 }
 </style>
 </head>
 
 <body>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-circle"></div>
+</div>
 
 <header>
   <div class="logo">Info Claro</div>
@@ -154,15 +215,18 @@ h1{
 
 <!-- MENU -->
 <div class="menu" id="menu">
-  <a href="index.html">Início</a>
-  <a href="#">Nosso produto</a>
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">Nosso produto</a>
   <a href="faq.html">Perguntas</a>
 </div>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <!-- HERO -->
 <section class="hero">
   <h1>
-    Conheça a <span style="color:#00bfff;">Info Claro</span>
+    Com a <span style="color:#00bfff;">Info Claro</span>, você volta a entender o mundo ao seu redor com facilidade, ouvindo tudo o que antes era difícil de ler.
   </h1>
 </section>
 
@@ -175,50 +239,79 @@ h1{
       A Info Claro é uma iniciativa que une tecnologia e acessibilidade com o objetivo de simplificar a forma como as pessoas entendem as informações do dia a dia.
     </p>
     <p>
-      Em vez de apresentar conteúdos complicados, ela busca transformar tudo em algo mais claro, direto e fácil de interpretar.
+      Em vez de apresentar conteúdos complicados, ela transforma tudo em algo mais claro, direto e fácil de interpretar.
     </p>
     <p>
-      A proposta é humanizar o acesso à informação, tornando a tecnologia uma aliada e não uma barreira.
+      A proposta é humanizar o acesso à informação.
     </p>
   </div>
 
   <div class="card">
     <h2>🔹 O que é o dispositivo</h2>
     <p>
-      O dispositivo da Info Claro é uma ferramenta inteligente desenvolvida para atuar como intermediário entre a informação e o usuário.
+      O dispositivo atua como intermediário entre a informação e o usuário.
     </p>
     <p>
-      Ele traduz conteúdos complexos, como textos digitais, notificações, instruções ou avisos, para uma linguagem mais simples e compreensível.
-    </p>
-    <p>
-      Além disso, apresenta essas informações de forma mais organizada, ajudando o usuário a focar no que realmente importa.
+      Ele traduz conteúdos complexos para uma linguagem simples.
     </p>
   </div>
 
   <div class="card">
     <h2>🔹 Para que serve</h2>
-    <p>
-      O principal objetivo do dispositivo é facilitar o entendimento e o uso da informação no cotidiano.
-    </p>
-
     <ul>
-      <li>✔ Simplificar conteúdos complexos</li>
-      <li>✔ Ajudar na leitura e compreensão</li>
-      <li>✔ Aumentar a autonomia</li>
-      <li>✔ Promover inclusão digital</li>
+      <li>✔ Simplificar conteúdos</li>
+      <li>✔ Ajudar na leitura</li>
+      <li>✔ Aumentar autonomia</li>
+      <li>✔ Promover inclusão</li>
     </ul>
   </div>
 
 </div>
 
 <script>
+/* LOADING */
+window.onload = () =>{
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },800);
+}
+
+/* FADE IN */
+window.addEventListener("load", ()=>{
+  document.body.classList.add("loaded");
+});
+
+/* FADE OUT */
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    if(this.href && !this.href.includes("#")){
+      e.preventDefault();
+      let url = this.href;
+
+      document.body.classList.remove("loaded");
+
+      setTimeout(()=>{
+        window.location.href = url;
+      },400);
+    }
+  });
+});
+
+/* BUSCA */
 function toggleSearch(){
   const box = document.getElementById("searchBox");
   box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
+/* MENU */
 function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
 }
 </script>
 
