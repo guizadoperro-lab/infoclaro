@@ -65,6 +65,12 @@ header{
   z-index:2000;
 }
 
+.search-box input{
+  border:none;
+  outline:none;
+}
+
+/* TÍTULO */
 h1{
   margin-top:150px;
   text-align:center;
@@ -94,13 +100,15 @@ h1{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transition:0.4s;
+  transform:translateY(-10px);
+  transition:all 0.4s ease;
   color:#cfd8ff;
 }
 
 .faq.active .resposta{
   max-height:300px;
   opacity:1;
+  transform:translateY(0);
   margin-top:10px;
 }
 
@@ -150,18 +158,6 @@ h1{
   padding:10px;
   outline:none;
 }
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:#25D366;
-  padding:12px 20px;
-  border-radius:30px;
-  color:white;
-  text-decoration:none;
-}
 </style>
 </head>
 
@@ -175,14 +171,16 @@ h1{
   </div>
 </header>
 
+<!-- MENU -->
 <div class="menu" id="menu">
-  <a href="index.html">Quem somos</a>
+  <a href="index.html">🏠 Quem somos</a>
   <a href="produto.html">Nosso produto</a>
   <a href="faq.html">Perguntas</a>
 </div>
 
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
+<!-- BUSCA -->
 <div class="search-box" id="searchBox">
   <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchFAQ()">
 </div>
@@ -190,79 +188,94 @@ h1{
 <h1>❓ Dúvidas Frequentes</h1>
 
 <div class="faq-container">
-<div class="faq">
+
+  <<div class="faq">
 
   <div class="faq">
     <div class="pergunta">Quando o dispositivo estará disponível?</div>
     <div class="resposta">
-      O dispositivo ainda está em fase de desenvolvimento e aprimoramento. Nossa equipe está trabalhando para garantir a melhor experiência possível, com foco em acessibilidade e simplicidade. Em breve divulgaremos informações sobre testes e previsão de lançamento oficial.
+      O dispositivo ainda está em fase de desenvolvimento e aprimoramento. Nossa equipe está trabalhando para garantir uma solução eficiente, acessível e fácil de usar. Em breve serão divulgadas informações sobre testes com usuários e previsão oficial de lançamento.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Qual será o valor do dispositivo?</div>
     <div class="resposta">
-      O valor estimado do dispositivo é de <strong>R$ 355,99</strong>. Para empresas, instituições e parceiros, poderão ser oferecidas condições especiais, de acordo com a quantidade e o modelo de parceria estabelecido.
+      O valor estimado do dispositivo é de <strong>R$ 355,99</strong>. Para empresas, instituições e parceiros, poderão ser oferecidas condições especiais, de acordo com o volume de aquisição e o modelo de parceria estabelecido.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Precisa de internet para funcionar?</div>
     <div class="resposta">
-      Não. O dispositivo foi desenvolvido para funcionar de forma totalmente independente, sem necessidade de conexão com a internet. Isso garante mais praticidade e acessibilidade, especialmente para usuários que não têm familiaridade com tecnologia.
+      Não. O dispositivo foi projetado para funcionar de forma independente, sem necessidade de conexão com a internet. Isso garante maior praticidade, especialmente para usuários que não possuem acesso constante à rede ou têm dificuldade com tecnologia.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Como funciona o dispositivo?</div>
     <div class="resposta">
-      O dispositivo utiliza uma câmera para escanear documentos físicos ou digitais. Ao pressionar um botão, o conteúdo é convertido em áudio de forma clara e objetiva, facilitando a compreensão das informações e tornando o processo mais acessível.
+      O dispositivo utiliza uma câmera para escanear documentos físicos ou digitais. Ao pressionar um botão, o conteúdo capturado é processado e convertido em áudio claro e objetivo, permitindo que o usuário compreenda facilmente as informações apresentadas.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">O dispositivo é fácil de usar?</div>
     <div class="resposta">
-      Sim. Ele foi projetado especialmente para pessoas com pouca familiaridade com tecnologia. Seu funcionamento é simples, intuitivo e pensado para oferecer autonomia ao usuário no dia a dia.
+      Sim. Ele foi desenvolvido com foco na simplicidade e acessibilidade, especialmente para pessoas com pouca familiaridade com tecnologia. Seu funcionamento é intuitivo e pensado para proporcionar autonomia no dia a dia.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Quem pode utilizar o dispositivo?</div>
     <div class="resposta">
-      Embora o foco principal seja o público idoso, qualquer pessoa que tenha dificuldade com leitura, interpretação de textos ou uso de tecnologia pode se beneficiar do dispositivo.
+      Embora o foco principal seja o público idoso, o dispositivo pode ser utilizado por qualquer pessoa que tenha dificuldade com leitura, interpretação de textos ou uso de tecnologias digitais.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Como posso apoiar o projeto?</div>
     <div class="resposta">
-      Você pode apoiar o projeto se tornando um parceiro, divulgando a ideia ou contribuindo com sugestões. Em breve teremos uma área específica para parcerias e colaboração.
+      Você pode apoiar o projeto se tornando um parceiro, ajudando na divulgação ou contribuindo com sugestões. Em breve, haverá uma área específica no site voltada para parcerias e colaboração.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Posso testar o produto antes do lançamento?</div>
     <div class="resposta">
-      Sim. Em breve abriremos oportunidades para testes com usuários interessados. Isso permitirá coletar feedbacks importantes e melhorar ainda mais a experiência antes do lançamento oficial.
+      Sim. Em breve serão abertas inscrições para testes com usuários interessados. Essa etapa será fundamental para coletar feedbacks e realizar melhorias antes do lançamento oficial.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">Qual é o principal objetivo da Info Claro?</div>
     <div class="resposta">
-      O principal objetivo da Info Claro é tornar a informação mais acessível e compreensível para todos, promovendo inclusão digital, autonomia e qualidade de vida, especialmente para pessoas que enfrentam dificuldades com leitura ou tecnologia.
+      O principal objetivo da Info Claro é tornar a informação mais acessível e compreensível para todos, promovendo inclusão digital, autonomia e qualidade de vida, principalmente para pessoas que enfrentam dificuldades com leitura ou tecnologia.
     </div>
   </div>
 
   <div class="faq">
     <div class="pergunta">O dispositivo substitui a leitura tradicional?</div>
     <div class="resposta">
-      Não necessariamente. Ele funciona como um apoio, oferecendo uma alternativa mais acessível para compreender conteúdos. A ideia é complementar a leitura tradicional, facilitando o entendimento quando necessário.
+      Não. O dispositivo funciona como um apoio à leitura, oferecendo uma alternativa mais acessível para compreender conteúdos. Ele complementa a leitura tradicional, facilitando o entendimento sempre que necessário.
     </div>
   </div>
 
-</div>
+  <div class="faq">
+    <div class="pergunta">O dispositivo é portátil?</div>
+    <div class="resposta">
+      Sim. Ele foi pensado para ser leve e fácil de transportar, permitindo que o usuário utilize em diferentes ambientes, como em casa, no trabalho ou em locais públicos.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">O dispositivo é seguro?</div>
+    <div class="resposta">
+      Sim. O dispositivo foi projetado para garantir segurança e privacidade ao usuário, sem necessidade de envio de dados para a internet durante o uso básico.
+    </div>
+  </div>
+
+  </div>
 
 <!-- CHATBOT -->
 <div class="chat-btn" onclick="toggleChat()">💬</div>
@@ -270,23 +283,21 @@ h1{
 <div class="chatbox" id="chatbox">
   <div class="chat-header">Assistente</div>
   <div class="chat-messages" id="chatMessages">
-    <p>Olá! Como posso ajudar?</p>
+    <p>Olá! Pergunte algo 😊</p>
   </div>
-  <input class="chat-input" id="chatInput" placeholder="Digite aqui...">
+  <input class="chat-input" id="chatInput" placeholder="Digite sua dúvida...">
 </div>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="#">WhatsApp</a>
 
 <script>
 const faqs = document.querySelectorAll(".faq");
 
-/* FAQ */
-faqs.forEach(f=>{
-  f.onclick=()=>{
-    faqs.forEach(x=>x.classList.remove("active"));
-    f.classList.add("active");
-  }
+/* FAQ ANIMADO */
+faqs.forEach(faq=>{
+  faq.addEventListener("click", ()=>{
+    const ativo = faq.classList.contains("active");
+    faqs.forEach(f=>f.classList.remove("active"));
+    if(!ativo) faq.classList.add("active");
+  });
 });
 
 /* BUSCA */
@@ -313,7 +324,7 @@ function toggleSearch(){
   box.style.display = box.style.display==="block"?"none":"block";
 }
 
-/* CHATBOT */
+/* CHATBOT INTELIGENTE */
 function toggleChat(){
   let box = document.getElementById("chatbox");
   box.style.display = box.style.display==="flex"?"none":"flex";
@@ -324,14 +335,17 @@ document.getElementById("chatInput").addEventListener("keypress",function(e){
     let msg = this.value;
     let chat = document.getElementById("chatMessages");
 
-    chat.innerHTML += "<p><strong>Você:</strong> "+msg+"</p>";
+    chat.innerHTML += `<p><strong>Você:</strong> ${msg}</p>`;
 
-    let resposta = "Em breve teremos mais informações!";
-    if(msg.includes("preço")) resposta="O valor é R$ 355,99";
-    if(msg.includes("internet")) resposta="Não precisa de internet";
-    if(msg.includes("quando")) resposta="Em breve lançamento";
+    let texto = msg.toLowerCase();
+    let resposta = "Ótima pergunta! Em breve teremos mais informações 😊";
 
-    chat.innerHTML += "<p><strong>Assistente:</strong> "+resposta+"</p>";
+    if(texto.includes("preço")||texto.includes("valor")) resposta="O valor é R$ 355,99.";
+    else if(texto.includes("internet")) resposta="Não precisa de internet.";
+    else if(texto.includes("funciona")) resposta="Ele transforma texto em áudio usando câmera.";
+    else if(texto.includes("quando")) resposta="Em breve teremos lançamento.";
+
+    chat.innerHTML += `<p><strong>Assistente:</strong> ${resposta}</p>`;
 
     this.value="";
     chat.scrollTop = chat.scrollHeight;
