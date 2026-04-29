@@ -27,106 +27,99 @@ body{
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   z-index:1000;
 }
 
 .logo{font-size:22px;font-weight:bold;}
 
-.icons{
-  display:flex;
-  gap:18px;
-  font-size:22px;
-  cursor:pointer;
-}
+.icons span{cursor:pointer;font-size:22px;}
 
 /* MENU */
+.menu{
+  position:fixed;
+  right:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:0.3s;
+}
+
+.menu.active{right:0;}
+
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#ccc;
+  text-decoration:none;
+}
+
 .overlay{
   position:fixed;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(6px);
   display:none;
-  z-index:998;
 }
 
-.menu-box{
-  position:fixed;
-  top:60px;
-  right:20px;
-  background:#111;
-  border-radius:12px;
-  display:none;
-  flex-direction:column;
-  z-index:999;
-}
-
-.menu-header{
-  display:flex;
-  justify-content:space-between;
-  padding:12px;
-  background:#00bfff;
-}
-
-.fechar{cursor:pointer;}
-
-.menu-box a{
-  padding:14px;
-  text-decoration:none;
-  color:white;
-}
+.overlay.active{display:block;}
 
 /* CONTEÚDO */
 .container{
   margin-top:110px;
   padding:25px;
-  max-width:800px;
+  max-width:600px;
   margin:auto;
 }
 
-h1{
-  font-size:32px;
-  margin-bottom:15px;
-}
+h1{margin-bottom:15px;}
 
-p{
-  color:#cbd5f5;
-  margin-bottom:20px;
-  line-height:1.6;
-}
+p{color:#cbd5f5;margin-bottom:20px;}
 
 /* FORM */
 .form{
   background:rgba(255,255,255,0.05);
   padding:20px;
-  border-radius:14px;
+  border-radius:12px;
 }
 
 input, textarea{
   width:100%;
-  margin-bottom:12px;
   padding:12px;
+  margin-bottom:10px;
   border:none;
-  border-radius:10px;
+  border-radius:8px;
 }
 
 button{
   width:100%;
   padding:12px;
-  border:none;
-  border-radius:10px;
   background:#00bfff;
+  border:none;
   color:white;
-  font-size:16px;
+  border-radius:8px;
   cursor:pointer;
 }
+
+/* ALERTA */
+.alerta{
+  margin-top:15px;
+  padding:12px;
+  border-radius:8px;
+  display:none;
+  text-align:center;
+}
+
+.sucesso{background:#16a34a;}
+.erro{background:#dc2626;}
+
 </style>
 </head>
 
 <body>
 
-<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <div class="topo">
   <div class="logo">Info Claro</div>
@@ -135,12 +128,7 @@ button{
   </div>
 </div>
 
-<div class="menu-box" id="menu">
-  <div class="menu-header">
-    <span>Menu</span>
-    <span class="fechar" onclick="fecharMenu()">✕</span>
-  </div>
-
+<div class="menu" id="menu">
   <a href="index.html">Quem somos</a>
   <a href="produto.html">Nosso produto</a>
   <a href="faq.html">Dúvidas</a>
@@ -152,36 +140,77 @@ button{
 <h1>🤝 Seja um parceiro</h1>
 
 <p>
-A Info Claro está em desenvolvimento e buscamos parceiros para transformar o acesso à informação em algo mais simples, humano e acessível.
-</p>
-
-<p>
-Se você representa uma empresa, instituição ou deseja contribuir com o projeto, preencha o formulário abaixo.
+Preencha os dados abaixo para colaborar com o projeto Info Claro.
 </p>
 
 <div class="form">
-<input placeholder="Seu nome">
-<input placeholder="Empresa (opcional)">
-<input placeholder="Email">
-<textarea rows="4" placeholder="Como deseja contribuir?"></textarea>
+<input id="nome" placeholder="Nome e Sobrenome">
+<input id="email" placeholder="Email (@gmail.com)">
+<textarea id="mensagem" rows="4" placeholder="Como deseja contribuir?"></textarea>
 <button onclick="enviar()">Enviar</button>
+
+<div id="alerta" class="alerta"></div>
 </div>
 
 </div>
 
 <script>
+
+/* MENU */
 function toggleMenu(){
-  document.getElementById("menu").style.display="flex";
-  document.getElementById("overlay").style.display="block";
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
 }
 
-function fecharMenu(){
-  document.getElementById("menu").style.display="none";
-  document.getElementById("overlay").style.display="none";
+function closeMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+/* VALIDAÇÃO */
+function validarNome(nome){
+  return /^[A-Za-zÀ-ÿ]+\\s+[A-Za-zÀ-ÿ]+/.test(nome);
+}
+
+function validarEmail(email){
+  return /^[a-zA-Z0-9._%+-]+@gmail\\.com$/.test(email);
 }
 
 function enviar(){
-  alert("Mensagem enviada! Entraremos em contato em breve.");
+
+  let nome = document.getElementById("nome").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let msg = document.getElementById("mensagem").value.trim();
+  let alerta = document.getElementById("alerta");
+
+  alerta.style.display="block";
+
+  if(!validarNome(nome)){
+    alerta.className="alerta erro";
+    alerta.innerText="Digite nome e sobrenome válidos.";
+    return;
+  }
+
+  if(!validarEmail(email)){
+    alerta.className="alerta erro";
+    alerta.innerText="Use um email válido (@gmail.com).";
+    return;
+  }
+
+  if(msg.length < 5){
+    alerta.className="alerta erro";
+    alerta.innerText="Descreva melhor sua contribuição.";
+    return;
+  }
+
+  /* SIMULA ENVIO */
+  alerta.className="alerta sucesso";
+  alerta.innerText="Email enviado, por favor aguarde...";
+
+  setTimeout(()=>{
+    alerta.innerText="Mensagem enviada com sucesso!";
+  },2000);
+
 }
 </script>
 
