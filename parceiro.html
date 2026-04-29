@@ -14,7 +14,7 @@
 }
 
 body{
-  background:#020617;
+  background:radial-gradient(circle at top,#0b1020,#020617);
   color:white;
 }
 
@@ -23,7 +23,8 @@ body{
   position:fixed;
   top:0;
   width:100%;
-  background:#020617;
+  background:rgba(10,15,30,.7);
+  backdrop-filter:blur(12px);
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
@@ -31,141 +32,188 @@ body{
   z-index:1000;
 }
 
-.logo{font-size:22px;font-weight:bold;}
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
 
-.icons span{cursor:pointer;font-size:22px;}
+.icons span{
+  font-size:22px;
+  cursor:pointer;
+}
 
 /* MENU */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:998;
+}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
 .menu{
   position:fixed;
-  right:-260px;
   top:0;
-  width:260px;
+  right:-280px;
+  width:280px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:0.3s ease;
+  transition:.35s ease;
   z-index:9999;
 }
 
 .menu.active{right:0;}
 
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+  color:white;
+}
+
+.fechar{
+  cursor:pointer;
+  color:#00bfff;
+  font-size:22px;
+}
+
 .menu a{
   display:block;
   margin:15px 0;
-  color:#ccc;
+  color:#cfd8ff;
   text-decoration:none;
 }
 
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  z-index:9000;
+.menu a:hover{
+  color:#00bfff;
 }
 
-.overlay.active{display:block;}
-
-/* CONTEÚDO */
+/* CONTAINER */
 .container{
-  margin-top:160px; /* FIX: não fica escondido */
-  padding:25px;
-  max-width:600px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-h1{
-  margin-bottom:15px;
-}
-
-p{
-  color:#cbd5f5;
-  margin-bottom:20px;
-  line-height:1.6;
-}
-
-/* FORM */
-.form{
-  background:rgba(255,255,255,0.05);
+  margin-top:120px;
+  display:flex;
+  justify-content:center;
   padding:20px;
-  border-radius:12px;
 }
 
+/* CARD */
+.card{
+  width:100%;
+  max-width:500px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(0,191,255,0.2);
+  backdrop-filter:blur(10px);
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 0 30px rgba(0,191,255,0.1);
+}
+
+.card h1{
+  text-align:center;
+  color:#00bfff;
+  margin-bottom:20px;
+}
+
+/* INPUTS */
 input, textarea{
   width:100%;
-  padding:12px;
-  margin-bottom:10px;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:12px;
   border:none;
-  border-radius:8px;
   outline:none;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-size:15px;
 }
 
+textarea{
+  resize:none;
+  height:120px;
+}
+
+/* BOTÃO */
 button{
   width:100%;
-  padding:12px;
-  background:#00bfff;
+  padding:14px;
   border:none;
+  border-radius:12px;
+  background:#00bfff;
   color:white;
-  border-radius:8px;
+  font-size:16px;
   cursor:pointer;
-  font-weight:bold;
+  transition:.3s;
 }
 
-/* ALERTA */
-.alerta{
-  margin-top:15px;
-  padding:12px;
-  border-radius:8px;
+button:hover{
+  background:#0099dd;
+  transform:scale(1.02);
+}
+
+/* SUCESSO */
+.sucesso{
   display:none;
   text-align:center;
+  margin-top:15px;
+  color:#00ff99;
 }
-
-.sucesso{background:#16a34a;}
-.erro{background:#dc2626;}
-
 </style>
 </head>
 
 <body>
 
 <!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
 <!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
-    <span onclick="toggleMenu()">☰</span>
+    <span onclick="abrirMenu()">☰</span>
   </div>
 </div>
 
 <!-- MENU -->
 <div class="menu" id="menu">
-  <a href="index.html">Quem somos</a>
-  <a href="produto.html">Nosso produto</a>
-  <a href="faq.html">Dúvidas</a>
-  <a href="parceiro.html">Seja parceiro</a>
+
+  <div class="menu-header">
+    <span>Menu</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
+  </div>
+
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">📦 Nosso produto</a>
+  <a href="proposito.html">🎯 Nosso propósito</a>
+  <a href="faq.html">❓ Dúvidas</a>
+  <a href="parceiro.html">🤝 Seja parceiro</a>
+
 </div>
 
-<!-- CONTEÚDO -->
+<!-- FORM -->
 <div class="container">
 
-<h1>🤝 Seja um parceiro</h1>
+<div class="card">
 
-<p>
-Preencha os dados abaixo para colaborar com o projeto Info Claro.
-</p>
+<h1>🤝 Seja Parceiro</h1>
 
-<div class="form">
-  <input id="nome" placeholder="Nome e Sobrenome">
-  <input id="email" placeholder="Email (@gmail.com)">
-  <textarea id="mensagem" rows="4" placeholder="Como deseja contribuir?"></textarea>
-  <button onclick="enviar()">Enviar</button>
+<input id="nome" placeholder="Nome completo">
+<input id="email" placeholder="Seu email (@gmail.com)">
+<textarea id="msg" placeholder="Como deseja contribuir?"></textarea>
 
-  <div id="alerta" class="alerta"></div>
+<button onclick="enviar()">Enviar proposta</button>
+
+<div class="sucesso" id="sucesso">
+  Email enviado com sucesso ✔ Aguarde contato.
+</div>
+
 </div>
 
 </div>
@@ -173,60 +221,45 @@ Preencha os dados abaixo para colaborar com o projeto Info Claro.
 <script>
 
 /* MENU */
-function toggleMenu(){
+function abrirMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
 }
 
-function closeMenu(){
+function fecharMenu(){
   document.getElementById("menu").classList.remove("active");
   document.getElementById("overlay").classList.remove("active");
 }
 
-/* VALIDAÇÕES CORRIGIDAS */
-function validarNome(nome){
-  return /^[A-Za-zÀ-ÿ]{2,}(?:\s[A-Za-zÀ-ÿ]{2,})+$/.test(nome.trim());
-}
-
-function validarEmail(email){
-  return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.trim());
-}
-
-/* ENVIO */
+/* VALIDAÇÃO + ENVIO VISUAL */
 function enviar(){
 
-  let nome = document.getElementById("nome").value;
-  let email = document.getElementById("email").value;
-  let msg = document.getElementById("mensagem").value;
-  let alerta = document.getElementById("alerta");
+  let nome=document.getElementById("nome").value.trim();
+  let email=document.getElementById("email").value.trim();
+  let msg=document.getElementById("msg").value.trim();
 
-  alerta.style.display="block";
-
-  if(!validarNome(nome)){
-    alerta.className="alerta erro";
-    alerta.innerText="Digite nome e sobrenome corretamente.";
+  if(nome.length<3){
+    alert("Digite um nome válido");
     return;
   }
 
-  if(!validarEmail(email)){
-    alerta.className="alerta erro";
-    alerta.innerText="Use um email válido do Gmail (@gmail.com).";
+  if(!email.endsWith("@gmail.com")){
+    alert("Use um email Gmail válido");
     return;
   }
 
-  if(msg.length < 5){
-    alerta.className="alerta erro";
-    alerta.innerText="Explique melhor como deseja contribuir.";
+  if(msg.length<10){
+    alert("Descreva melhor sua contribuição");
     return;
   }
 
-  /* SIMULA ENVIO */
-  alerta.className="alerta sucesso";
-  alerta.innerText="Email enviado, por favor aguarde...";
+  document.getElementById("sucesso").style.display="block";
 
   setTimeout(()=>{
-    alerta.innerText="Mensagem enviada com sucesso!";
-  },2000);
+    document.getElementById("nome").value="";
+    document.getElementById("email").value="";
+    document.getElementById("msg").value="";
+  },800);
 }
 
 </script>
