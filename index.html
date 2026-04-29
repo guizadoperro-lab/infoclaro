@@ -13,6 +13,7 @@
 body{
   background:#0b0f1a;
   color:white;
+  overflow-x:hidden;
 }
 
 /* TOPO */
@@ -23,7 +24,8 @@ body{
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
-  background:rgba(10,15,30,.6);
+  align-items:center;
+  background:rgba(10,15,30,.7);
   backdrop-filter:blur(12px);
   z-index:1000;
 }
@@ -35,37 +37,55 @@ body{
   cursor:pointer;
 }
 
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:998;
+}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
 /* MENU */
 .menu{
   position:fixed;
-  right:-260px;
   top:0;
-  width:260px;
+  right:-280px;
+  width:280px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:.3s;
+  transition:.35s ease;
+  z-index:9999;
 }
 
 .menu.active{right:0;}
 
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  display:none;
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#cfd8ff;
+  text-decoration:none;
 }
 
-.overlay.active{display:block;}
+.menu a:hover{
+  color:#00bfff;
+}
 
-/* CONTEÚDO */
+/* CONTAINER */
 .container{
   margin-top:120px;
-  padding:20px;
   max-width:900px;
   margin-left:auto;
   margin-right:auto;
+  padding:20px;
 }
 
 /* HERO */
@@ -76,6 +96,7 @@ body{
 
 .hero h1{
   font-size:2rem;
+  line-height:1.4;
 }
 
 /* CARD */
@@ -84,13 +105,13 @@ body{
   padding:25px;
   border-radius:18px;
   margin-bottom:20px;
-  border:1px solid rgba(0,191,255,.2);
+  border:1px solid rgba(0,191,255,0.2);
   transition:.3s;
 }
 
 .card:hover{
   transform:translateY(-5px);
-  box-shadow:0 0 25px rgba(0,191,255,.2);
+  box-shadow:0 0 25px rgba(0,191,255,0.2);
 }
 
 .card h2{
@@ -100,7 +121,7 @@ body{
 
 .card p{
   color:#cfd8ff;
-  line-height:1.7;
+  line-height:1.8;
   margin-bottom:10px;
 }
 
@@ -109,18 +130,13 @@ body{
   width:100%;
   border-radius:12px;
   margin-top:15px;
-  transition:.3s;
-}
-
-.card img:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 20px rgba(0,191,255,.3);
 }
 </style>
 </head>
 
 <body>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
 <!-- TOPO -->
@@ -133,11 +149,13 @@ body{
 
 <!-- MENU -->
 <div class="menu" id="menu">
+
   <a href="index.html">🏠 Quem somos</a>
   <a href="produto.html">📦 Nosso produto</a>
   <a href="proposito.html">🎯 Nosso propósito</a>
   <a href="faq.html">❓ Dúvidas</a>
   <a href="parceiro.html">🤝 Seja parceiro</a>
+
 </div>
 
 <!-- CONTEÚDO -->
@@ -149,37 +167,51 @@ body{
   </h1>
 </div>
 
-<!-- O QUE É -->
+<!-- O QUE É A INFO CLARO -->
 <div class="card">
   <h2>🔹 O que é a Info Claro</h2>
+
   <p>
     A Info Claro é uma iniciativa que une tecnologia e acessibilidade com o objetivo de simplificar a forma como as pessoas entendem as informações do dia a dia.
   </p>
+
   <p>
-    Transformamos conteúdos complexos em algo mais claro, direto e fácil de interpretar.
+    Em vez de apresentar conteúdos complicados, buscamos transformar tudo em algo mais claro, direto e fácil de interpretar.
   </p>
 
-  <!-- IMAGEM LOGO -->
-  <img src="logo.jpg" alt="Logo Info Claro">
+  <p>
+    Nossa proposta é humanizar o acesso à informação, tornando a tecnologia uma aliada e não uma barreira.
+  </p>
+
+  <!-- LOGO -->
+  <img src="logo.jpg" alt="Info Claro Logo">
 </div>
 
 <!-- DISPOSITIVO -->
 <div class="card">
   <h2>🔹 O que é o dispositivo</h2>
+
   <p>
-    O dispositivo da Info Claro é uma ferramenta inteligente desenvolvida para traduzir conteúdos complexos em uma linguagem simples e acessível.
-  </p>
-  <p>
-    Ele permite que o usuário compreenda informações com mais facilidade e autonomia.
+    O dispositivo da Info Claro é uma ferramenta inteligente desenvolvida para atuar como intermediário entre a informação e o usuário.
   </p>
 
-  <!-- IMAGEM PRODUTO -->
+  <p>
+    Ele é capaz de traduzir conteúdos complexos, como textos digitais, notificações e instruções, para uma linguagem mais simples e compreensível.
+  </p>
+
+  <p>
+    Além disso, organiza as informações de forma mais limpa, ajudando o usuário a focar no que realmente importa.
+  </p>
+
+  <!-- PRODUTO -->
   <img src="produto.jpg" alt="Dispositivo Info Claro">
 </div>
 
 </div>
 
 <script>
+
+/* MENU */
 function toggleMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
@@ -189,6 +221,7 @@ function fecharMenu(){
   document.getElementById("menu").classList.remove("active");
   document.getElementById("overlay").classList.remove("active");
 }
+
 </script>
 
 </body>
