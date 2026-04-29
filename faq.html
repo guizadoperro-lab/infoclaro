@@ -36,9 +36,7 @@ body{
   font-weight:bold;
 }
 
-.icons{
-  display:flex;
-  gap:18px;
+.icons span{
   font-size:22px;
   cursor:pointer;
 }
@@ -46,51 +44,57 @@ body{
 /* OVERLAY */
 .overlay{
   position:fixed;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(6px);
-  display:none;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
   z-index:998;
 }
 
-/* MENU */
-.menu-box{
-  position:fixed;
-  top:60px;
-  right:20px;
-  background:#111;
-  border-radius:12px;
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
-  z-index:999;
-  min-width:200px;
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
 }
+
+/* MENU PADRÃO INDEX */
+.menu{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:280px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:.35s ease;
+  z-index:9999;
+}
+
+.menu.active{right:0;}
 
 .menu-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:12px 18px;
-  background:#00bfff;
-  font-weight:bold;
+  margin-bottom:20px;
+  color:#fff;
 }
 
 .fechar{
   cursor:pointer;
-  font-size:18px;
+  font-size:22px;
+  color:#00bfff;
 }
 
-.menu-box a{
-  padding:14px 20px;
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#cfd8ff;
   text-decoration:none;
-  color:white;
-  border-bottom:1px solid #222;
 }
 
-.menu-box a:hover{
-  background:#00bfff;
+.menu a:hover{
+  color:#00bfff;
 }
 
 /* CONTEÚDO */
@@ -107,17 +111,6 @@ h1{
   font-size:32px;
 }
 
-/* BUSCA */
-.search{
-  width:100%;
-  padding:16px;
-  border-radius:12px;
-  border:none;
-  margin-bottom:25px;
-  font-size:18px;
-  display:none;
-}
-
 /* FAQ */
 .faq{
   background:rgba(255,255,255,0.05);
@@ -125,19 +118,17 @@ h1{
   padding:22px;
   border-radius:16px;
   cursor:pointer;
-  transition:all 0.35s ease;
+  transition:.3s;
 }
 
 .faq:hover{
   transform:translateY(-2px);
-  box-shadow:0 8px 25px rgba(0,191,255,0.25);
 }
 
 .pergunta{
   font-weight:600;
-  position:relative;
   font-size:20px;
-  line-height:1.5;
+  position:relative;
   padding-right:25px;
 }
 
@@ -151,17 +142,16 @@ h1{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transform:translateY(-10px);
-  transition:all 0.4s ease;
+  transition:.4s ease;
   color:#cbd5f5;
+  margin-top:0;
   font-size:18px;
-  line-height:1.7;
+  line-height:1.6;
 }
 
 .faq.active .resposta{
   max-height:500px;
   opacity:1;
-  transform:translateY(0);
   margin-top:15px;
 }
 
@@ -174,14 +164,15 @@ h1{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#00bfff;
   width:65px;
   height:65px;
+  background:#00bfff;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
   cursor:pointer;
+  font-size:22px;
 }
 
 .chatbox{
@@ -198,6 +189,7 @@ h1{
 .chat-header{
   background:#00bfff;
   padding:12px;
+  font-weight:bold;
 }
 
 .chat-messages{
@@ -222,24 +214,25 @@ h1{
 <!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
-
   <div class="icons">
-    <span onclick="toggleBusca()">🔍</span>
-    <span onclick="toggleMenu()">☰</span>
+    <span onclick="abrirMenu()">☰</span>
   </div>
 </div>
 
-<!-- MENU -->
-<div class="menu-box" id="menu">
+<!-- MENU PADRÃO -->
+<div class="menu" id="menu">
+
   <div class="menu-header">
     <span>Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
-  <a href="index.html">Quem somos</a>
-  <a href="produto.html">Nosso produto</a>
-  <a href="faq.html">Dúvidas</a>
-  <a href="parceiro.html">Seja parceiro</a>
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">📦 Nosso produto</a>
+  <a href="proposito.html">🎯 Nosso propósito</a>
+  <a href="faq.html">❓ Dúvidas</a>
+  <a href="parceiro.html">🤝 Seja parceiro</a>
+
 </div>
 
 <!-- CONTEÚDO -->
@@ -247,9 +240,6 @@ h1{
 
 <h1>❓ Dúvidas Frequentes – Info Claro</h1>
 
-<input class="search" id="search" placeholder="Pesquisar dúvida...">
-
-<!-- FAQ -->
 <div class="faq">
 <div class="pergunta">Quando o dispositivo estará disponível?</div>
 <div class="resposta">O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.</div>
@@ -292,11 +282,11 @@ h1{
 
 </div>
 
-<!-- CHAT -->
+<!-- CHAT BOT -->
 <div class="chat-btn" onclick="toggleChat()">💬</div>
 
 <div class="chatbox" id="chatbox">
-  <div class="chat-header">Assistente</div>
+  <div class="chat-header">Assistente Info Claro</div>
   <div class="chat-messages" id="chatMessages"></div>
   <input class="chat-input" id="chatInput" placeholder="Digite...">
 </div>
@@ -304,29 +294,15 @@ h1{
 <script>
 
 /* MENU */
-function toggleMenu(){
-  document.getElementById("menu").style.display="flex";
-  document.getElementById("overlay").style.display="block";
+function abrirMenu(){
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").style.display="none";
-  document.getElementById("overlay").style.display="none";
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
 }
-
-/* BUSCA */
-function toggleBusca(){
-  let s=document.getElementById("search");
-  s.style.display = s.style.display==="block"?"none":"block";
-  s.focus();
-}
-
-document.getElementById("search").addEventListener("input",function(){
-  let termo=this.value.toLowerCase();
-  document.querySelectorAll(".faq").forEach(f=>{
-    f.style.display=f.innerText.toLowerCase().includes(termo)?"block":"none";
-  });
-});
 
 /* FAQ */
 document.querySelectorAll(".faq").forEach(f=>{
@@ -358,19 +334,48 @@ input.addEventListener("keypress",function(e){
 
     setTimeout(()=>{
       chat.lastChild.remove();
-      chat.innerHTML+=`<p><strong>Assistente:</strong> ${responder(msg.toLowerCase())}</p>`;
+      chat.innerHTML+=`<p><strong>Bot:</strong> ${responder(msg.toLowerCase())}</p>`;
       chat.scrollTop=chat.scrollHeight;
     },700);
   }
 });
 
 function responder(t){
-  if(t.includes("preço")||t.includes("valor")) return "O valor será R$ 355,99.";
-  if(t.includes("internet")) return "Não precisa de internet.";
-  if(t.includes("funciona")) return "Ele transforma texto em áudio.";
-  if(t.includes("quando")) return "Está em desenvolvimento.";
-  return "Pode reformular sua pergunta? 😊";
-}
+
+  if(t.includes("quando") || t.includes("disponível") || t.includes("lançamento")){
+    return "O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.";
+  }
+
+  if(t.includes("preço") || t.includes("valor") || t.includes("quanto")){
+    return "O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais.";
+  }
+
+  if(t.includes("internet")){
+    return "Não. O dispositivo funciona de forma independente, sem necessidade de internet.";
+  }
+
+  if(t.includes("como funciona") || t.includes("funciona")){
+    return "Ele utiliza uma câmera para escanear o documento e converte o conteúdo em áudio ao apertar um botão.";
+  }
+
+  if(t.includes("fácil") || t.includes("usar")){
+    return "Sim. Ele foi pensado para ser simples e intuitivo para qualquer pessoa.";
+  }
+
+  if(t.includes("quem pode")){
+    return "Qualquer pessoa pode usar, especialmente quem tem dificuldade com leitura ou compreensão de textos.";
+  }
+
+  if(t.includes("apoiar") || t.includes("parceiro")){
+    return "Você pode se tornar um parceiro acessando a aba “Seja um parceiro”.";
+  }
+
+  if(t.includes("testar")){
+    return "Em breve abriremos oportunidades para testes com usuários interessados.";
+  }
+
+  return "Essa informação ainda não está no nosso FAQ oficial do site.";
+  }
 
 </script>
 
