@@ -27,6 +27,7 @@ body{
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   z-index:1000;
 }
 
@@ -43,7 +44,8 @@ body{
   height:100%;
   background:#111;
   padding:20px;
-  transition:0.3s;
+  transition:0.3s ease;
+  z-index:9999;
 }
 
 .menu.active{right:0;}
@@ -61,21 +63,29 @@ body{
   height:100%;
   background:rgba(0,0,0,0.6);
   display:none;
+  z-index:9000;
 }
 
 .overlay.active{display:block;}
 
 /* CONTEÚDO */
 .container{
-  margin-top:110px;
+  margin-top:160px; /* FIX: não fica escondido */
   padding:25px;
   max-width:600px;
-  margin:auto;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-h1{margin-bottom:15px;}
+h1{
+  margin-bottom:15px;
+}
 
-p{color:#cbd5f5;margin-bottom:20px;}
+p{
+  color:#cbd5f5;
+  margin-bottom:20px;
+  line-height:1.6;
+}
 
 /* FORM */
 .form{
@@ -90,6 +100,7 @@ input, textarea{
   margin-bottom:10px;
   border:none;
   border-radius:8px;
+  outline:none;
 }
 
 button{
@@ -100,6 +111,7 @@ button{
   color:white;
   border-radius:8px;
   cursor:pointer;
+  font-weight:bold;
 }
 
 /* ALERTA */
@@ -119,8 +131,10 @@ button{
 
 <body>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
+<!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
@@ -128,6 +142,7 @@ button{
   </div>
 </div>
 
+<!-- MENU -->
 <div class="menu" id="menu">
   <a href="index.html">Quem somos</a>
   <a href="produto.html">Nosso produto</a>
@@ -135,6 +150,7 @@ button{
   <a href="parceiro.html">Seja parceiro</a>
 </div>
 
+<!-- CONTEÚDO -->
 <div class="container">
 
 <h1>🤝 Seja um parceiro</h1>
@@ -144,12 +160,12 @@ Preencha os dados abaixo para colaborar com o projeto Info Claro.
 </p>
 
 <div class="form">
-<input id="nome" placeholder="Nome e Sobrenome">
-<input id="email" placeholder="Email (@gmail.com)">
-<textarea id="mensagem" rows="4" placeholder="Como deseja contribuir?"></textarea>
-<button onclick="enviar()">Enviar</button>
+  <input id="nome" placeholder="Nome e Sobrenome">
+  <input id="email" placeholder="Email (@gmail.com)">
+  <textarea id="mensagem" rows="4" placeholder="Como deseja contribuir?"></textarea>
+  <button onclick="enviar()">Enviar</button>
 
-<div id="alerta" class="alerta"></div>
+  <div id="alerta" class="alerta"></div>
 </div>
 
 </div>
@@ -167,39 +183,40 @@ function closeMenu(){
   document.getElementById("overlay").classList.remove("active");
 }
 
-/* VALIDAÇÃO */
+/* VALIDAÇÕES CORRIGIDAS */
 function validarNome(nome){
-  return /^[A-Za-zÀ-ÿ]+\\s+[A-Za-zÀ-ÿ]+/.test(nome);
+  return /^[A-Za-zÀ-ÿ]{2,}(?:\s[A-Za-zÀ-ÿ]{2,})+$/.test(nome.trim());
 }
 
 function validarEmail(email){
-  return /^[a-zA-Z0-9._%+-]+@gmail\\.com$/.test(email);
+  return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.trim());
 }
 
+/* ENVIO */
 function enviar(){
 
-  let nome = document.getElementById("nome").value.trim();
-  let email = document.getElementById("email").value.trim();
-  let msg = document.getElementById("mensagem").value.trim();
+  let nome = document.getElementById("nome").value;
+  let email = document.getElementById("email").value;
+  let msg = document.getElementById("mensagem").value;
   let alerta = document.getElementById("alerta");
 
   alerta.style.display="block";
 
   if(!validarNome(nome)){
     alerta.className="alerta erro";
-    alerta.innerText="Digite nome e sobrenome válidos.";
+    alerta.innerText="Digite nome e sobrenome corretamente.";
     return;
   }
 
   if(!validarEmail(email)){
     alerta.className="alerta erro";
-    alerta.innerText="Use um email válido (@gmail.com).";
+    alerta.innerText="Use um email válido do Gmail (@gmail.com).";
     return;
   }
 
   if(msg.length < 5){
     alerta.className="alerta erro";
-    alerta.innerText="Descreva melhor sua contribuição.";
+    alerta.innerText="Explique melhor como deseja contribuir.";
     return;
   }
 
@@ -210,8 +227,8 @@ function enviar(){
   setTimeout(()=>{
     alerta.innerText="Mensagem enviada com sucesso!";
   },2000);
-
 }
+
 </script>
 
 </body>
