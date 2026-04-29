@@ -195,65 +195,63 @@ h1{
   <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchFAQ()">
 </div>
 
-<h1>❓ Dúvidas Frequentes</h1>
-
-<div class="faq-container">
+<h2 class="faq-title">❓ Dúvidas Frequentes – Info Claro</h2>
 
 <div class="faq">
   <div class="pergunta">Quando o dispositivo estará disponível?</div>
   <div class="resposta">
-    O dispositivo ainda está em desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento oficial.
+    O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">Qual será o valor do dispositivo?</div>
   <div class="resposta">
-    O valor estimado é de R$ 355,99, podendo variar conforme parcerias.
+    O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">Precisa de internet para funcionar?</div>
   <div class="resposta">
-    Não. O dispositivo funciona completamente offline, garantindo mais praticidade.
+    Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">Como funciona o dispositivo?</div>
   <div class="resposta">
-    Ele utiliza uma câmera para escanear textos e transformar o conteúdo em áudio de forma clara.
+    Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">O dispositivo é fácil de usar?</div>
   <div class="resposta">
-    Sim. Foi desenvolvido para ser simples e intuitivo, mesmo para quem não tem experiência com tecnologia.
+    Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">Quem pode usar o dispositivo?</div>
   <div class="resposta">
-    Qualquer pessoa pode usar, principalmente idosos ou quem tem dificuldade com leitura.
-  </div>
-</div>
-
-<div class="faq">
-  <div class="pergunta">Posso testar antes do lançamento?</div>
-  <div class="resposta">
-    Em breve abriremos testes para usuários interessados.
+    Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
   </div>
 </div>
 
 <div class="faq">
   <div class="pergunta">Como posso apoiar o projeto?</div>
   <div class="resposta">
-    Você pode apoiar divulgando ou se tornando parceiro da iniciativa.
+    Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
   </div>
-</div>>
+</div>
+
+<div class="faq">
+  <div class="pergunta">Posso testar o produto antes do lançamento?</div>
+  <div class="resposta">
+    Em breve abriremos oportunidades para testes com usuários interessados.
+  </div>
+</div>
 
 </div>
 
@@ -305,34 +303,101 @@ function searchFAQ(){
 }
 
 /* CHATBOT */
-function toggleChat(){
-  let box = document.getElementById("chatbox");
-  box.style.display = box.style.display==="flex"?"none":"flex";
-}
+<script>
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
 
-document.getElementById("chatInput").addEventListener("keypress",function(e){
-  if(e.key==="Enter"){
-    let msg = this.value;
-    let chat = document.getElementById("chatMessages");
+chatInput.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
 
-    chat.innerHTML += `<p><strong>Você:</strong> ${msg}</p>`;
+    let msg = this.value.trim();
+    if(msg === "") return;
 
-    let texto = msg.toLowerCase();
-    let resposta = "Ótima pergunta! Em breve teremos mais informações.";
+    addMessage("Você", msg);
 
-    if(texto.includes("preço")||texto.includes("valor")) resposta="O valor é R$ 355,99.";
-    else if(texto.includes("internet")) resposta="Não precisa de internet.";
-    else if(texto.includes("funciona")) resposta="Transforma texto em áudio.";
-    else if(texto.includes("quando")) resposta="Em breve lançamento.";
+    this.value = "";
 
-    chat.innerHTML += `<p><strong>Assistente:</strong> ${resposta}</p>`;
+    // mostra "digitando..."
+    mostrarDigitando();
 
-    this.value="";
-    chat.scrollTop = chat.scrollHeight;
+    setTimeout(()=>{
+      removerDigitando();
+      let resposta = gerarResposta(msg.toLowerCase());
+      digitarResposta("Assistente", resposta);
+    }, 1200);
   }
 });
 
-</script>
+/* MOSTRAR MENSAGEM */
+function addMessage(remetente, texto){
+  chatMessages.innerHTML += `<p><strong>${remetente}:</strong> ${texto}</p>`;
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+/* DIGITANDO... */
+function mostrarDigitando(){
+  chatMessages.innerHTML += `<p id="digitando"><em>Assistente está digitando...</em></p>`;
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function removerDigitando(){
+  let d = document.getElementById("digitando");
+  if(d) d.remove();
+}
+
+/* EFEITO DIGITANDO */
+function digitarResposta(remetente, texto){
+  let p = document.createElement("p");
+  p.innerHTML = `<strong>${remetente}:</strong> `;
+  chatMessages.appendChild(p);
+
+  let i = 0;
+  let intervalo = setInterval(()=>{
+    p.innerHTML += texto.charAt(i);
+    i++;
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    if(i >= texto.length){
+      clearInterval(intervalo);
+    }
+  }, 20);
+}
+
+/* RESPOSTAS INTELIGENTES */
+function gerarResposta(texto){
+
+  if(texto.includes("preço") || texto.includes("valor")){
+    return "O dispositivo terá o valor estimado de R$ 355,99.";
+  }
+
+  if(texto.includes("internet")){
+    return "Não 😊 Ele funciona totalmente offline, sem precisar de internet.";
+  }
+
+  if(texto.includes("funciona") || texto.includes("como")){
+    return "Ele utiliza uma câmera para escanear textos e transformar tudo em áudio de forma simples.";
+  }
+
+  if(texto.includes("quando") || texto.includes("lançamento")){
+    return "Estamos em desenvolvimento 🚀 Em breve teremos novidades sobre o lançamento.";
+  }
+
+  if(texto.includes("quem pode usar")){
+    return "Qualquer pessoa pode usar, principalmente quem tem dificuldade com leitura.";
+  }
+
+  if(texto.includes("oi") || texto.includes("olá")){
+    return "Oi! 😊 Como posso te ajudar hoje?";
+  }
+
+  if(texto.includes("obrigado")){
+    return "De nada! 😊 Fico feliz em ajudar.";
+  }
+
+  // fallback inteligente
+  return "Ótima pergunta! 😊 Ainda estamos desenvolvendo essa parte, mas nosso objetivo é tornar tudo mais simples e acessível.";
+}
+  </script>
 
 </body>
 </html>
