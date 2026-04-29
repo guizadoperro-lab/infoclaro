@@ -25,15 +25,32 @@ header{
   padding:15px 20px;
   background:rgba(15,20,40,0.7);
   backdrop-filter:blur(10px);
-  z-index:1000;
+  z-index:500;
 }
 
-.logo{font-weight:600;}
-
-.icons span{
-  margin-left:15px;
-  cursor:pointer;
+/* MENU */
+.menu{
+  position:fixed;
+  right:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:0.3s;
+  z-index:9999;
 }
+.menu.active{right:0;}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  z-index:9000;
+}
+.overlay.active{display:block;}
 
 /* BUSCA */
 .search-box{
@@ -48,47 +65,6 @@ header{
   z-index:2000;
 }
 
-/* MENU */
-.menu{
-  position:fixed;
-  right:-260px;
-  top:0;
-  width:260px;
-  height:100%;
-  background:#111;
-  padding:20px;
-  transition:0.3s ease;
-  z-index:9999;
-}
-
-.menu.active{
-  right:0;
-}
-
-.menu a{
-  display:block;
-  margin:15px 0;
-  color:#ccc;
-  text-decoration:none;
-}
-
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none;
-  z-index:9000;
-}
-
-.overlay.active{
-  display:block;
-}
-
-/* TÍTULO */
 h1{
   margin-top:150px;
   text-align:center;
@@ -98,7 +74,7 @@ h1{
 .faq-container{
   max-width:800px;
   margin:auto;
-  padding:10px;
+  padding:20px;
 }
 
 .faq{
@@ -107,40 +83,84 @@ h1{
   padding:18px;
   border-radius:15px;
   cursor:pointer;
-}
-
-.pergunta{
-  display:flex;
-  justify-content:space-between;
-  font-weight:600;
-}
-
-.seta{
   transition:0.3s;
+}
+
+.faq:hover{
+  box-shadow:0 0 20px rgba(0,140,255,0.3);
 }
 
 .resposta{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transition:max-height 0.4s ease, opacity 0.3s ease;
+  transition:0.4s;
   color:#cfd8ff;
 }
 
 .faq.active .resposta{
-  max-height:200px;
+  max-height:300px;
   opacity:1;
   margin-top:10px;
 }
 
-.faq.active .seta{
-  transform:rotate(180deg);
+/* CHATBOT */
+.chat-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#00bfff;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  font-size:22px;
 }
 
-/* BUSCA HIGHLIGHT */
-.highlight{
-  background:yellow;
-  color:black;
+.chatbox{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:280px;
+  background:#111;
+  border-radius:15px;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.chat-header{
+  background:#00bfff;
+  padding:10px;
+  font-weight:600;
+}
+
+.chat-messages{
+  padding:10px;
+  height:200px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.chat-input{
+  border:none;
+  padding:10px;
+  outline:none;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#25D366;
+  padding:12px 20px;
+  border-radius:30px;
+  color:white;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -148,104 +168,175 @@ h1{
 <body>
 
 <header>
-  <div class="logo">Info Claro</div>
-  <div class="icons">
+  <div>Info Claro</div>
+  <div>
     <span onclick="toggleSearch()">🔍</span>
     <span onclick="toggleMenu()">☰</span>
   </div>
 </header>
 
-<!-- BUSCA -->
+<div class="menu" id="menu">
+  <a href="index.html">Quem somos</a>
+  <a href="produto.html">Nosso produto</a>
+  <a href="faq.html">Perguntas</a>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
 <div class="search-box" id="searchBox">
   <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchFAQ()">
 </div>
 
-<!-- MENU -->
-<div class="menu" id="menu">
-  <a href="index.html">🏠 Quem somos</a>
-  <a href="#">Nosso produto</a>
-  <a href="faq.html">Perguntas</a>
-</div>
-
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
 <h1>❓ Dúvidas Frequentes</h1>
 
 <div class="faq-container">
+<div class="faq">
 
   <div class="faq">
-    <div class="pergunta">Quando o dispositivo estará disponível? <span class="seta">⌄</span></div>
-    <div class="resposta">O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.</div>
+    <div class="pergunta">Quando o dispositivo estará disponível?</div>
+    <div class="resposta">
+      O dispositivo ainda está em fase de desenvolvimento e aprimoramento. Nossa equipe está trabalhando para garantir a melhor experiência possível, com foco em acessibilidade e simplicidade. Em breve divulgaremos informações sobre testes e previsão de lançamento oficial.
+    </div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">Qual será o valor do dispositivo? <span class="seta">⌄</span></div>
-    <div class="resposta">O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais.</div>
+    <div class="pergunta">Qual será o valor do dispositivo?</div>
+    <div class="resposta">
+      O valor estimado do dispositivo é de <strong>R$ 355,99</strong>. Para empresas, instituições e parceiros, poderão ser oferecidas condições especiais, de acordo com a quantidade e o modelo de parceria estabelecido.
+    </div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">Precisa de internet para funcionar? <span class="seta">⌄</span></div>
-    <div class="resposta">Não. O dispositivo funciona sem internet.</div>
+    <div class="pergunta">Precisa de internet para funcionar?</div>
+    <div class="resposta">
+      Não. O dispositivo foi desenvolvido para funcionar de forma totalmente independente, sem necessidade de conexão com a internet. Isso garante mais praticidade e acessibilidade, especialmente para usuários que não têm familiaridade com tecnologia.
+    </div>
   </div>
 
   <div class="faq">
-    <div class="pergunta">Como funciona o dispositivo? <span class="seta">⌄</span></div>
-    <div class="resposta">Ele escaneia o documento e transforma em áudio ao apertar um botão.</div>
+    <div class="pergunta">Como funciona o dispositivo?</div>
+    <div class="resposta">
+      O dispositivo utiliza uma câmera para escanear documentos físicos ou digitais. Ao pressionar um botão, o conteúdo é convertido em áudio de forma clara e objetiva, facilitando a compreensão das informações e tornando o processo mais acessível.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">O dispositivo é fácil de usar?</div>
+    <div class="resposta">
+      Sim. Ele foi projetado especialmente para pessoas com pouca familiaridade com tecnologia. Seu funcionamento é simples, intuitivo e pensado para oferecer autonomia ao usuário no dia a dia.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">Quem pode utilizar o dispositivo?</div>
+    <div class="resposta">
+      Embora o foco principal seja o público idoso, qualquer pessoa que tenha dificuldade com leitura, interpretação de textos ou uso de tecnologia pode se beneficiar do dispositivo.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">Como posso apoiar o projeto?</div>
+    <div class="resposta">
+      Você pode apoiar o projeto se tornando um parceiro, divulgando a ideia ou contribuindo com sugestões. Em breve teremos uma área específica para parcerias e colaboração.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">Posso testar o produto antes do lançamento?</div>
+    <div class="resposta">
+      Sim. Em breve abriremos oportunidades para testes com usuários interessados. Isso permitirá coletar feedbacks importantes e melhorar ainda mais a experiência antes do lançamento oficial.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">Qual é o principal objetivo da Info Claro?</div>
+    <div class="resposta">
+      O principal objetivo da Info Claro é tornar a informação mais acessível e compreensível para todos, promovendo inclusão digital, autonomia e qualidade de vida, especialmente para pessoas que enfrentam dificuldades com leitura ou tecnologia.
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="pergunta">O dispositivo substitui a leitura tradicional?</div>
+    <div class="resposta">
+      Não necessariamente. Ele funciona como um apoio, oferecendo uma alternativa mais acessível para compreender conteúdos. A ideia é complementar a leitura tradicional, facilitando o entendimento quando necessário.
+    </div>
   </div>
 
 </div>
 
+<!-- CHATBOT -->
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<div class="chatbox" id="chatbox">
+  <div class="chat-header">Assistente</div>
+  <div class="chat-messages" id="chatMessages">
+    <p>Olá! Como posso ajudar?</p>
+  </div>
+  <input class="chat-input" id="chatInput" placeholder="Digite aqui...">
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="#">WhatsApp</a>
+
 <script>
-function toggleSearch(){
-  const box = document.getElementById("searchBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-}
-
-function toggleMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
-}
-
-function closeMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
-}
-
-/* SOM */
-const clickSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7c7f.mp3");
-clickSound.volume = 0.2;
+const faqs = document.querySelectorAll(".faq");
 
 /* FAQ */
-document.querySelectorAll(".faq").forEach(faq=>{
-  faq.addEventListener("click", ()=>{
-    clickSound.currentTime = 0;
-    clickSound.play();
-    faq.classList.toggle("active");
-  });
+faqs.forEach(f=>{
+  f.onclick=()=>{
+    faqs.forEach(x=>x.classList.remove("active"));
+    f.classList.add("active");
+  }
 });
 
 /* BUSCA */
 function searchFAQ(){
   let input = document.getElementById("searchInput").value.toLowerCase();
-  let faqs = document.querySelectorAll(".faq");
-
-  faqs.forEach(faq=>{
-    let text = faq.innerText.toLowerCase();
-
-    faq.innerHTML = faq.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
-
-    if(text.includes(input) && input.length > 1){
-      let regex = new RegExp(`(${input})`, "gi");
-      faq.innerHTML = faq.innerHTML.replace(regex, `<span class="highlight">$1</span>`);
-      faq.style.display = "block";
-    } else if(input.length > 1){
-      faq.style.display = "none";
-    } else {
-      faq.style.display = "block";
-    }
+  faqs.forEach(f=>{
+    f.style.display = f.innerText.toLowerCase().includes(input) ? "block":"none";
   });
 }
+
+/* MENU */
+function toggleMenu(){
+  menu.classList.add("active");
+  overlay.classList.add("active");
+}
+function closeMenu(){
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+/* BUSCA */
+function toggleSearch(){
+  let box = document.getElementById("searchBox");
+  box.style.display = box.style.display==="block"?"none":"block";
+}
+
+/* CHATBOT */
+function toggleChat(){
+  let box = document.getElementById("chatbox");
+  box.style.display = box.style.display==="flex"?"none":"flex";
+}
+
+document.getElementById("chatInput").addEventListener("keypress",function(e){
+  if(e.key==="Enter"){
+    let msg = this.value;
+    let chat = document.getElementById("chatMessages");
+
+    chat.innerHTML += "<p><strong>Você:</strong> "+msg+"</p>";
+
+    let resposta = "Em breve teremos mais informações!";
+    if(msg.includes("preço")) resposta="O valor é R$ 355,99";
+    if(msg.includes("internet")) resposta="Não precisa de internet";
+    if(msg.includes("quando")) resposta="Em breve lançamento";
+
+    chat.innerHTML += "<p><strong>Assistente:</strong> "+resposta+"</p>";
+
+    this.value="";
+    chat.scrollTop = chat.scrollHeight;
+  }
+});
 </script>
 
 </body>
