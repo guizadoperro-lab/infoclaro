@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosso Propósito - Info Claro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:#0b0f1a;
+  color:white;
+}
+
+/* TOPO */
+.topo{
+  position:fixed;
+  width:100%;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  background:rgba(10,15,30,.6);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+
+.logo{font-weight:700;}
+
+.icons span{
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* MENU */
+.menu{
+  position:fixed;
+  right:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:.3s;
+}
+
+.menu.active{right:0;}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+}
+
+.overlay.active{display:block;}
+
+/* CONTAINER */
+.container{
+  margin-top:120px;
+  padding:20px;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* TÍTULO */
+h1{
+  text-align:center;
+  margin-bottom:25px;
+  color:#00bfff;
+}
+
+/* CARDS */
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:20px;
+  transition:.4s;
+  border:1px solid rgba(0,191,255,.2);
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(0,191,255,.3);
+}
+
+.card p{
+  color:#cfd8ff;
+  line-height:1.7;
+}
+
+/* PARTICIPANTES */
+.participantes{
+  margin-top:30px;
+}
+
+.participante{
+  background:rgba(0,191,255,.1);
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:10px;
+  text-align:center;
+  transition:.3s;
+}
+
+.participante:hover{
+  background:#00bfff;
+  color:black;
+  transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+
+<div class="topo">
+  <div class="logo">Info Claro</div>
+  <div class="icons">
+    <span onclick="toggleMenu()">☰</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">📦 Nosso produto</a>
+  <a href="proposito.html">🎯 Nosso propósito</a>
+  <a href="faq.html">❓ Dúvidas</a>
+  <a href="parceiro.html">🤝 Seja parceiro</a>
+</div>
+
+<div class="container">
+
+<h1>🎯 Nosso propósito</h1>
+
+<div class="card">
+<p>
+Acreditamos que todas as pessoas têm o direito de entender o mundo ao seu redor, independentemente da idade ou do nível de familiaridade com a tecnologia.
+</p>
+<p>
+Nosso objetivo é tornar a informação mais acessível, humana e inclusiva, eliminando barreiras que dificultam a compreensão no dia a dia.
+</p>
+</div>
+
+<div class="card">
+<p>
+Diferente de outras soluções, a Info Claro não apenas apresenta informações, ela traduz, simplifica e adapta o conteúdo para o usuário.
+</p>
+<p>
+Isso proporciona uma experiência mais intuitiva e eficiente, especialmente para pessoas que possuem dificuldade com leitura ou tecnologia.
+</p>
+</div>
+
+<!-- PARTICIPANTES -->
+<div class="participantes">
+<h1>👥 Participantes</h1>
+
+<div class="participante">Anna Lavinia</div>
+<div class="participante">Cristyan</div>
+<div class="participante">Guilherme Barbosa</div>
+<div class="participante">Guilherme Barreto</div>
+<div class="participante">Miguel Barbosa</div>
+
+</div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function fecharMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+</body>
+  </html>
