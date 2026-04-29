@@ -43,7 +43,7 @@ body{
   cursor:pointer;
 }
 
-/* MENU + OVERLAY */
+/* OVERLAY */
 .overlay{
   position:fixed;
   width:100%;
@@ -54,6 +54,7 @@ body{
   z-index:998;
 }
 
+/* MENU */
 .menu-box{
   position:fixed;
   top:60px;
@@ -62,13 +63,30 @@ body{
   border-radius:12px;
   display:none;
   flex-direction:column;
+  overflow:hidden;
   z-index:999;
+  min-width:200px;
+}
+
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 18px;
+  background:#00bfff;
+  font-weight:bold;
+}
+
+.fechar{
+  cursor:pointer;
+  font-size:18px;
 }
 
 .menu-box a{
-  padding:14px 25px;
-  color:white;
+  padding:14px 20px;
   text-decoration:none;
+  color:white;
+  border-bottom:1px solid #222;
 }
 
 .menu-box a:hover{
@@ -127,7 +145,6 @@ h1{
   content:"+";
   position:absolute;
   right:0;
-  transition:0.3s;
 }
 
 .resposta{
@@ -205,6 +222,7 @@ h1{
 <!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
+
   <div class="icons">
     <span onclick="toggleBusca()">🔍</span>
     <span onclick="toggleMenu()">☰</span>
@@ -213,15 +231,21 @@ h1{
 
 <!-- MENU -->
 <div class="menu-box" id="menu">
+  <div class="menu-header">
+    <span>Menu</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
+  </div>
+
   <a href="index.html">Quem somos</a>
   <a href="produto.html">Nosso produto</a>
   <a href="faq.html">Dúvidas</a>
+  <a href="parceiro.html">Seja parceiro</a>
 </div>
 
 <!-- CONTEÚDO -->
 <div class="container">
 
-<h1>❓ Dúvidas Frequentes </h1>
+<h1>❓ Dúvidas Frequentes – Info Claro</h1>
 
 <input class="search" id="search" placeholder="Pesquisar dúvida...">
 
