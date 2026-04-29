@@ -23,8 +23,7 @@ body{
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(10,15,30,.7);
-  backdrop-filter:blur(12px);
+  background:#020617;
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
@@ -42,69 +41,69 @@ body{
   cursor:pointer;
 }
 
-/* MENU */
+/* OVERLAY (IGUAL FAQ) */
 .overlay{
   position:fixed;
-  inset:0;
+  width:100%;
+  height:100%;
   background:rgba(0,0,0,0.6);
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
+  backdrop-filter:blur(6px);
+  display:none;
   z-index:998;
 }
 
 .overlay.active{
-  opacity:1;
-  pointer-events:auto;
+  display:block;
 }
 
-.menu{
+/* MENU IGUAL FAQ */
+.menu-box{
   position:fixed;
-  top:0;
-  right:-280px;
-  width:280px;
-  height:100%;
+  top:60px;
+  right:20px;
   background:#111;
-  padding:20px;
-  transition:.35s ease;
-  z-index:9999;
+  border-radius:12px;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:999;
+  min-width:200px;
 }
-
-.menu.active{right:0;}
 
 .menu-header{
   display:flex;
   justify-content:space-between;
-  margin-bottom:20px;
+  align-items:center;
+  padding:12px 18px;
+  background:#00bfff;
+  font-weight:bold;
 }
 
 .fechar{
   cursor:pointer;
-  color:#00bfff;
-  font-size:22px;
+  font-size:18px;
 }
 
-.menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+.menu-box a{
+  padding:14px 20px;
   text-decoration:none;
+  color:white;
+  border-bottom:1px solid #222;
 }
 
-.menu a:hover{
-  color:#00bfff;
+.menu-box a:hover{
+  background:#00bfff;
 }
 
 /* CONTAINER */
 .container{
-  margin-top:120px;
+  margin-top:110px;
   max-width:900px;
   margin-left:auto;
   margin-right:auto;
   padding:20px;
 }
 
-/* TÍTULO */
 .titulo{
   text-align:center;
   font-size:32px;
@@ -140,7 +139,7 @@ body{
   margin-top:15px;
 }
 
-/* VIDEO PLAY */
+/* VIDEO */
 .video-card{
   position:relative;
   border-radius:14px;
@@ -153,12 +152,6 @@ body{
   width:100%;
   display:block;
   filter:brightness(0.7);
-  transition:.3s;
-}
-
-.video-card:hover .video-thumb{
-  transform:scale(1.03);
-  filter:brightness(0.5);
 }
 
 .play-btn{
@@ -174,11 +167,9 @@ body{
   justify-content:center;
   align-items:center;
   font-size:26px;
-  color:white;
-  box-shadow:0 0 25px rgba(0,191,255,0.5);
 }
 
-/* MODAL */
+/* MODAL VIDEO */
 .video-modal{
   position:fixed;
   inset:0;
@@ -224,8 +215,8 @@ body{
   </div>
 </div>
 
-<!-- MENU -->
-<div class="menu" id="menu">
+<!-- MENU (IGUAL FAQ) -->
+<div class="menu-box" id="menu">
 
   <div class="menu-header">
     <span>Menu</span>
@@ -243,29 +234,28 @@ body{
 <!-- CONTEÚDO -->
 <div class="container">
 
-<div class="titulo">Nosso Produto</div>
+<div class="titulo">Nosso <span class="azul">Produto</span></div>
 
-<!-- VISÃO REAL -->
 <div class="card">
   <h2>Visão real do produto</h2>
   <p>Imagem do dispositivo desenvolvido pela Info Claro.</p>
   <img src="produto1.jpg" class="img">
 </div>
 
-<!-- COMO FUNCIONA (COM IMAGEM) -->
 <div class="card">
   <h2>Como funciona o dispositivo</h2>
-
   <p>
     O dispositivo captura o texto, interpreta automaticamente e transforma em áudio claro para o usuário ouvir.
   </p>
-
   <img src="produto.jpg" class="img">
 </div>
 
-<!-- DEMONSTRAÇÃO (VÍDEO NOVO) -->
 <div class="card">
   <h2>Demonstração do produto</h2>
+
+  <p>
+    Veja como o dispositivo funciona na prática. O sistema reconhece o texto automaticamente, processa as informações e transforma em áudio acessível para o usuário.
+  </p>
 
   <div class="video-card" onclick="abrirVideo()">
     <img src="produto.jpg" class="video-thumb">
@@ -276,7 +266,7 @@ body{
 
 </div>
 
-<!-- MODAL VÍDEO -->
+<!-- VIDEO MODAL -->
 <div class="video-modal" id="videoModal">
   <div class="video-box">
 
@@ -291,29 +281,29 @@ body{
 
 <script>
 
-/* MENU */
+/* MENU IGUAL FAQ */
 function abrirMenu(){
-  document.getElementById("menu").classList.add("active");
+  document.getElementById("menu").style.display="flex";
   document.getElementById("overlay").classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").classList.remove("active");
+  document.getElementById("menu").style.display="none";
   document.getElementById("overlay").classList.remove("active");
 }
 
 /* VIDEO */
 function abrirVideo(){
   document.getElementById("videoModal").style.display="flex";
-  let video = document.getElementById("video");
-  video.currentTime = 0;
-  video.play();
+  let v = document.getElementById("video");
+  v.currentTime = 0;
+  v.play();
 }
 
 function fecharVideo(){
   document.getElementById("videoModal").style.display="none";
-  let video = document.getElementById("video");
-  video.pause();
+  let v = document.getElementById("video");
+  v.pause();
 }
 
 </script>
