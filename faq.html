@@ -3,126 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perguntas - Info Claro</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Dúvidas - Info Claro</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
 body{
-  background:#0b0f1a;
+  background:#020617;
   color:white;
 }
 
-/* HEADER */
-header{
+/* TOPO */
+.topo{
   position:fixed;
   top:0;
   width:100%;
+  background:#020617;
+  padding:15px 20px;
   display:flex;
   justify-content:space-between;
-  padding:15px 20px;
-  background:rgba(15,20,40,0.7);
-  backdrop-filter:blur(10px);
-  z-index:1000;
+  align-items:center;
+  z-index:999;
 }
 
-/* MENU */
+.logo{font-size:20px;font-weight:bold;}
+
 .menu{
-  position:fixed;
-  right:-260px;
-  top:0;
-  width:260px;
-  height:100%;
-  background:#111;
-  padding:20px;
-  transition:0.3s;
-  z-index:9999;
+  display:flex;
+  gap:20px;
 }
-.menu.active{right:0;}
-
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-  display:none;
-  z-index:9000;
-}
-.overlay.active{display:block;}
 
 .menu a{
-  display:block;
   color:white;
-  margin:15px 0;
   text-decoration:none;
+  font-size:14px;
 }
 
-/* BUSCA */
-.search-box{
-  position:fixed;
-  top:100px;
-  left:50%;
-  transform:translateX(-50%);
-  background:white;
-  padding:10px 20px;
-  border-radius:25px;
-  display:none;
-  z-index:2000;
-}
-.search-box input{
-  border:none;
-  outline:none;
+.menu a:hover{
+  color:#00bfff;
 }
 
-/* TITULO */
+/* CONTEÚDO */
+.container{
+  margin-top:100px;
+  padding:20px;
+}
+
 h1{
-  margin-top:140px;
   text-align:center;
+  margin-bottom:20px;
 }
 
 /* FAQ */
-.faq-container{
-  max-width:800px;
-  margin:auto;
-  padding:20px;
-}
-
 .faq{
   background:rgba(255,255,255,0.05);
   margin-bottom:12px;
-  padding:18px;
-  border-radius:15px;
+  padding:15px;
+  border-radius:12px;
   cursor:pointer;
   transition:0.3s;
 }
 
 .faq:hover{
-  box-shadow:0 0 20px rgba(0,140,255,0.3);
+  box-shadow:0 0 10px rgba(0,191,255,0.3);
 }
 
 .pergunta{
   font-weight:600;
+  position:relative;
+}
+
+.pergunta::after{
+  content:"+";
+  position:absolute;
+  right:0;
 }
 
 .resposta{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transform:translateY(-10px);
-  transition:all 0.4s ease;
-  color:#cfd8ff;
+  transition:0.4s;
+  color:#cbd5f5;
 }
 
 .faq.active .resposta{
-  max-height:400px;
+  max-height:300px;
   opacity:1;
-  transform:translateY(0);
   margin-top:10px;
 }
 
-/* CHATBOT */
+.faq.active .pergunta::after{
+  content:"−";
+}
+
+/* CHAT */
 .chat-btn{
   position:fixed;
   bottom:20px;
@@ -135,31 +110,28 @@ h1{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  font-size:22px;
 }
 
 .chatbox{
   position:fixed;
   bottom:90px;
   right:20px;
-  width:280px;
+  width:260px;
   background:#111;
-  border-radius:15px;
+  border-radius:10px;
   display:none;
   flex-direction:column;
-  overflow:hidden;
 }
 
 .chat-header{
   background:#00bfff;
   padding:10px;
-  font-weight:600;
 }
 
 .chat-messages{
-  padding:10px;
   height:200px;
-  overflow-y:auto;
+  overflow:auto;
+  padding:10px;
   font-size:14px;
 }
 
@@ -173,102 +145,90 @@ h1{
 
 <body>
 
-<header>
-  <div>Info Claro</div>
-  <div>
-    <span onclick="toggleSearch()">🔍</span>
-    <span onclick="toggleMenu()">☰</span>
+<!-- TOPO -->
+<div class="topo">
+  <div class="logo">Info Claro</div>
+  <div class="menu">
+    <a href="index.html">Quem somos</a>
+    <a href="produto.html">Nosso produto</a>
+    <a href="faq.html">Dúvidas</a>
   </div>
-</header>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-  <a href="index.html">🏠 Quem somos</a>
-  <a href="produto.html">Nosso produto</a>
-  <a href="faq.html">Perguntas</a>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<!-- BUSCA -->
-<div class="search-box" id="searchBox">
-  <input type="text" id="searchInput" placeholder="Pesquisar..." onkeyup="searchFAQ()">
-</div>
-
-<h2 class="faq-title">❓ Dúvidas Frequentes – Info Claro</h2>
+<!-- CONTEÚDO -->
+<div class="container">
+<h1>❓ Dúvidas Frequentes – Info Claro</h1>
 
 <div class="faq">
-  <div class="pergunta">Quando o dispositivo estará disponível?</div>
-  <div class="resposta">
-    O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
-  </div>
+<div class="pergunta">Quando o dispositivo estará disponível?</div>
+<div class="resposta">
+O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Qual será o valor do dispositivo?</div>
-  <div class="resposta">
-    O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
-  </div>
+<div class="pergunta">Qual será o valor do dispositivo?</div>
+<div class="resposta">
+O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Precisa de internet para funcionar?</div>
-  <div class="resposta">
-    Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
-  </div>
+<div class="pergunta">Precisa de internet para funcionar?</div>
+<div class="resposta">
+Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Como funciona o dispositivo?</div>
-  <div class="resposta">
-    Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
-  </div>
+<div class="pergunta">Como funciona o dispositivo?</div>
+<div class="resposta">
+Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">O dispositivo é fácil de usar?</div>
-  <div class="resposta">
-    Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
-  </div>
+<div class="pergunta">O dispositivo é fácil de usar?</div>
+<div class="resposta">
+Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Quem pode usar o dispositivo?</div>
-  <div class="resposta">
-    Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
-  </div>
+<div class="pergunta">Quem pode usar o dispositivo?</div>
+<div class="resposta">
+Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Como posso apoiar o projeto?</div>
-  <div class="resposta">
-    Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
-  </div>
+<div class="pergunta">Como posso apoiar o projeto?</div>
+<div class="resposta">
+Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
+</div>
 </div>
 
 <div class="faq">
-  <div class="pergunta">Posso testar o produto antes do lançamento?</div>
-  <div class="resposta">
-    Em breve abriremos oportunidades para testes com usuários interessados.
-  </div>
+<div class="pergunta">Posso testar o produto antes do lançamento?</div>
+<div class="resposta">
+Em breve abriremos oportunidades para testes com usuários interessados.
+</div>
 </div>
 
 </div>
 
-<!-- CHATBOT -->
+<!-- CHAT -->
 <div class="chat-btn" onclick="toggleChat()">💬</div>
 
 <div class="chatbox" id="chatbox">
   <div class="chat-header">Assistente</div>
-  <div class="chat-messages" id="chatMessages">
-    <p>Olá! Pergunte algo 😊</p>
-  </div>
+  <div class="chat-messages" id="chatMessages"></div>
   <input class="chat-input" id="chatInput" placeholder="Digite sua dúvida...">
 </div>
 
 <script>
 
-/* FAQ */
+/* FAQ ANIMAÇÃO */
 const faqs = document.querySelectorAll(".faq");
 
 faqs.forEach(faq=>{
@@ -279,125 +239,46 @@ faqs.forEach(faq=>{
   });
 });
 
-/* MENU */
-function toggleMenu(){
-  menu.classList.add("active");
-  overlay.classList.add("active");
-}
-function closeMenu(){
-  menu.classList.remove("active");
-  overlay.classList.remove("active");
+/* CHAT */
+function toggleChat(){
+  let c = document.getElementById("chatbox");
+  c.style.display = c.style.display==="flex"?"none":"flex";
 }
 
-/* BUSCA */
-function toggleSearch(){
-  let box = document.getElementById("searchBox");
-  box.style.display = box.style.display==="block"?"none":"block";
-}
+const input = document.getElementById("chatInput");
+const chat = document.getElementById("chatMessages");
 
-function searchFAQ(){
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  faqs.forEach(f=>{
-    f.style.display = f.innerText.toLowerCase().includes(input) ? "block":"none";
-  });
-}
+input.addEventListener("keypress", function(e){
+  if(e.key==="Enter"){
+    let msg = this.value.toLowerCase();
+    if(!msg) return;
 
-/* CHATBOT */
-<script>
-const chatInput = document.getElementById("chatInput");
-const chatMessages = document.getElementById("chatMessages");
+    chat.innerHTML += `<p><strong>Você:</strong> ${msg}</p>`;
+    this.value="";
 
-chatInput.addEventListener("keypress", function(e){
-  if(e.key === "Enter"){
+    let resposta = gerarResposta(msg);
+    chat.innerHTML += `<p><strong>Assistente:</strong> ${resposta}</p>`;
 
-    let msg = this.value.trim();
-    if(msg === "") return;
-
-    addMessage("Você", msg);
-
-    this.value = "";
-
-    // mostra "digitando..."
-    mostrarDigitando();
-
-    setTimeout(()=>{
-      removerDigitando();
-      let resposta = gerarResposta(msg.toLowerCase());
-      digitarResposta("Assistente", resposta);
-    }, 1200);
+    chat.scrollTop = chat.scrollHeight;
   }
 });
 
-/* MOSTRAR MENSAGEM */
-function addMessage(remetente, texto){
-  chatMessages.innerHTML += `<p><strong>${remetente}:</strong> ${texto}</p>`;
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+/* RESPOSTAS BASEADAS NO SITE */
+function gerarResposta(t){
+
+  if(t.includes("quando")) return "O dispositivo está em desenvolvimento e será lançado em breve.";
+  if(t.includes("valor") || t.includes("preço")) return "O valor será R$ 355,99.";
+  if(t.includes("internet")) return "Não precisa de internet para funcionar.";
+  if(t.includes("como funciona")) return "Ele escaneia textos e transforma em áudio.";
+  if(t.includes("facil") || t.includes("usar")) return "Sim, foi feito para ser simples e intuitivo.";
+  if(t.includes("quem pode")) return "Qualquer pessoa pode usar, principalmente idosos.";
+  if(t.includes("apoiar")) return "Você pode apoiar sendo parceiro do projeto.";
+  if(t.includes("testar")) return "Em breve haverá testes disponíveis.";
+
+  return "Não entendi muito bem 🤔, pode perguntar de outra forma?";
 }
 
-/* DIGITANDO... */
-function mostrarDigitando(){
-  chatMessages.innerHTML += `<p id="digitando"><em>Assistente está digitando...</em></p>`;
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function removerDigitando(){
-  let d = document.getElementById("digitando");
-  if(d) d.remove();
-}
-
-/* EFEITO DIGITANDO */
-function digitarResposta(remetente, texto){
-  let p = document.createElement("p");
-  p.innerHTML = `<strong>${remetente}:</strong> `;
-  chatMessages.appendChild(p);
-
-  let i = 0;
-  let intervalo = setInterval(()=>{
-    p.innerHTML += texto.charAt(i);
-    i++;
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    if(i >= texto.length){
-      clearInterval(intervalo);
-    }
-  }, 20);
-}
-
-/* RESPOSTAS INTELIGENTES */
-function gerarResposta(texto){
-
-  if(texto.includes("preço") || texto.includes("valor")){
-    return "O dispositivo terá o valor estimado de R$ 355,99.";
-  }
-
-  if(texto.includes("internet")){
-    return "Não 😊 Ele funciona totalmente offline, sem precisar de internet.";
-  }
-
-  if(texto.includes("funciona") || texto.includes("como")){
-    return "Ele utiliza uma câmera para escanear textos e transformar tudo em áudio de forma simples.";
-  }
-
-  if(texto.includes("quando") || texto.includes("lançamento")){
-    return "Estamos em desenvolvimento 🚀 Em breve teremos novidades sobre o lançamento.";
-  }
-
-  if(texto.includes("quem pode usar")){
-    return "Qualquer pessoa pode usar, principalmente quem tem dificuldade com leitura.";
-  }
-
-  if(texto.includes("oi") || texto.includes("olá")){
-    return "Oi! 😊 Como posso te ajudar hoje?";
-  }
-
-  if(texto.includes("obrigado")){
-    return "De nada! 😊 Fico feliz em ajudar.";
-  }
-
-  // fallback inteligente
-  return "Ótima pergunta! 😊 Ainda estamos desenvolvendo essa parte, mas nosso objetivo é tornar tudo mais simples e acessível.";
-}
-  </script>
+</script>
 
 </body>
 </html>
