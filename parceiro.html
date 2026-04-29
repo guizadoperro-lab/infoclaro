@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seja Parceiro - Info Claro</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  background:#020617;
+  color:white;
+}
+
+/* TOPO */
+.topo{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#020617;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+}
+
+.logo{font-size:22px;font-weight:bold;}
+
+.icons{
+  display:flex;
+  gap:18px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* MENU */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(6px);
+  display:none;
+  z-index:998;
+}
+
+.menu-box{
+  position:fixed;
+  top:60px;
+  right:20px;
+  background:#111;
+  border-radius:12px;
+  display:none;
+  flex-direction:column;
+  z-index:999;
+}
+
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  padding:12px;
+  background:#00bfff;
+}
+
+.fechar{cursor:pointer;}
+
+.menu-box a{
+  padding:14px;
+  text-decoration:none;
+  color:white;
+}
+
+/* CONTEÚDO */
+.container{
+  margin-top:110px;
+  padding:25px;
+  max-width:800px;
+  margin:auto;
+}
+
+h1{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+p{
+  color:#cbd5f5;
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+/* FORM */
+.form{
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:14px;
+}
+
+input, textarea{
+  width:100%;
+  margin-bottom:12px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#00bfff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+
+<div class="topo">
+  <div class="logo">Info Claro</div>
+  <div class="icons">
+    <span onclick="toggleMenu()">☰</span>
+  </div>
+</div>
+
+<div class="menu-box" id="menu">
+  <div class="menu-header">
+    <span>Menu</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
+  </div>
+
+  <a href="index.html">Quem somos</a>
+  <a href="produto.html">Nosso produto</a>
+  <a href="faq.html">Dúvidas</a>
+  <a href="parceiro.html">Seja parceiro</a>
+</div>
+
+<div class="container">
+
+<h1>🤝 Seja um parceiro</h1>
+
+<p>
+A Info Claro está em desenvolvimento e buscamos parceiros para transformar o acesso à informação em algo mais simples, humano e acessível.
+</p>
+
+<p>
+Se você representa uma empresa, instituição ou deseja contribuir com o projeto, preencha o formulário abaixo.
+</p>
+
+<div class="form">
+<input placeholder="Seu nome">
+<input placeholder="Empresa (opcional)">
+<input placeholder="Email">
+<textarea rows="4" placeholder="Como deseja contribuir?"></textarea>
+<button onclick="enviar()">Enviar</button>
+</div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").style.display="flex";
+  document.getElementById("overlay").style.display="block";
+}
+
+function fecharMenu(){
+  document.getElementById("menu").style.display="none";
+  document.getElementById("overlay").style.display="none";
+}
+
+function enviar(){
+  alert("Mensagem enviada! Entraremos em contato em breve.");
+}
+</script>
+
+</body>
+</html>
