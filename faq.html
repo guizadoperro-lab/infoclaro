@@ -94,46 +94,68 @@ h1{
 
 /* FAQ */
 .faq{
+/* FAQ MELHORADO */
+.faq{
   background:rgba(255,255,255,0.05);
-  margin-bottom:12px;
-  padding:18px;
-  border-radius:14px;
+  margin-bottom:18px;
+  padding:22px;
+  border-radius:16px;
   cursor:pointer;
-  transition:0.3s;
+  transition:all 0.35s ease;
 }
 
 .faq:hover{
-  box-shadow:0 0 15px rgba(0,191,255,0.3);
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(0,191,255,0.25);
 }
 
+/* PERGUNTA */
 .pergunta{
   font-weight:600;
   position:relative;
-  font-size:18px;
+  font-size:20px;
+  line-height:1.5;
+  padding-right:25px;
 }
 
 .pergunta::after{
   content:"+";
   position:absolute;
   right:0;
+  top:0;
+  font-size:22px;
+  transition:transform 0.3s ease;
 }
 
+/* RESPOSTA (ANIMAÇÃO SUAVE REAL) */
 .resposta{
   max-height:0;
   overflow:hidden;
   opacity:0;
-  transition:0.4s;
+  transform:translateY(-10px);
+  transition:
+    max-height 0.5s ease,
+    opacity 0.4s ease,
+    transform 0.4s ease;
+    
   color:#cbd5f5;
+  font-size:18px;
+  line-height:1.7;
+  padding-right:5px;
 }
 
+/* ATIVO */
 .faq.active .resposta{
-  max-height:400px;
+  max-height:600px;
   opacity:1;
-  margin-top:10px;
+  transform:translateY(0);
+  margin-top:16px;
 }
 
+/* ÍCONE GIRANDO */
 .faq.active .pergunta::after{
   content:"−";
+  transform:rotate(180deg);
 }
 
 /* CHAT */
@@ -205,64 +227,63 @@ h1{
 
 <!-- CONTEÚDO -->
 <div class="container">
-<h1>❓ Dúvidas Frequentes – Info Claro</h1>
-
-<input class="search" id="search" placeholder="Pesquisar dúvida...">
+<<h1>❓ Dúvidas Frequentes – Info Claro</h1>
 
 <div class="faq">
-<div class="pergunta">Quando o dispositivo estará disponível?</div>
-<div class="resposta">
-O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
-</div>
+  <div class="pergunta">Quando o dispositivo estará disponível?</div>
+  <div class="resposta">
+    O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.
+  </div>
 </div>
 
 <div class="faq">
-<div class="pergunta">Qual será o valor do dispositivo?</div>
-<div class="resposta">
-O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
-</div>
-</div>
-
-<div class="faq">
-<div class="pergunta">Precisa de internet para funcionar?</div>
-<div class="resposta">
-Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
-</div>
+  <div class="pergunta">Qual será o valor do dispositivo?</div>
+  <div class="resposta">
+    O dispositivo terá o valor de R$ 355,99.<br><br>
+    Para empresas e parceiros, oferecemos condições especiais de acordo com a quantidade e o modelo de parceria.
+  </div>
 </div>
 
 <div class="faq">
-<div class="pergunta">Como funciona o dispositivo?</div>
-<div class="resposta">
-Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
-</div>
-</div>
-
-<div class="faq">
-<div class="pergunta">O dispositivo é fácil de usar?</div>
-<div class="resposta">
-Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
-</div>
+  <div class="pergunta">Precisa de internet para funcionar?</div>
+  <div class="resposta">
+    Não. O dispositivo foi desenvolvido para funcionar de forma independente, sem necessidade de conexão com a internet.
+  </div>
 </div>
 
 <div class="faq">
-<div class="pergunta">Quem pode usar o dispositivo?</div>
-<div class="resposta">
-Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
-</div>
-</div>
-
-<div class="faq">
-<div class="pergunta">Como posso apoiar o projeto?</div>
-<div class="resposta">
-Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
-</div>
+  <div class="pergunta">Como funciona o dispositivo?</div>
+  <div class="resposta">
+    Ele utiliza uma câmera para escanear o documento e, ao apertar um botão, o conteúdo é convertido em áudio, facilitando o entendimento.
+  </div>
 </div>
 
 <div class="faq">
-<div class="pergunta">Posso testar o produto antes do lançamento?</div>
-<div class="resposta">
-Em breve abriremos oportunidades para testes com usuários interessados.
+  <div class="pergunta">O dispositivo é fácil de usar?</div>
+  <div class="resposta">
+    Sim. Ele foi pensado especialmente para pessoas com pouca familiaridade com tecnologia, com um funcionamento simples e intuitivo.
+  </div>
 </div>
+
+<div class="faq">
+  <div class="pergunta">Quem pode usar o dispositivo?</div>
+  <div class="resposta">
+    Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="pergunta">Como posso apoiar o projeto?</div>
+  <div class="resposta">
+    Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.
+  </div>
+</div>
+
+<div class="faq">
+  <div class="pergunta">Posso testar o produto antes do lançamento?</div>
+  <div class="resposta">
+    Em breve abriremos oportunidades para testes com usuários interessados.
+  </div>
 </div>
 
 </div>
