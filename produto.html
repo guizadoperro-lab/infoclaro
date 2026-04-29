@@ -18,7 +18,7 @@ body{
   color:white;
 }
 
-/* ===== TOPO ===== */
+/* TOPO */
 .topo{
   position:fixed;
   top:0;
@@ -41,7 +41,7 @@ body{
   cursor:pointer;
 }
 
-/* ===== OVERLAY (PADRÃO FAQ) ===== */
+/* OVERLAY */
 .overlay{
   position:fixed;
   inset:0;
@@ -55,50 +55,48 @@ body{
   display:block;
 }
 
-/* ===== MENU IGUAL FAQ ===== */
-.menu-box{
+/* MENU PADRÃO */
+.menu{
   position:fixed;
-  top:60px;
-  right:20px;
+  top:0;
+  right:-280px;
+  width:280px;
+  height:100%;
   background:#111;
-  border-radius:12px;
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
-  z-index:999;
-  min-width:220px;
+  padding:20px;
+  transition:.3s ease;
+  z-index:9999;
 }
 
-.menu-box.active{
-  display:flex;
+.menu.active{
+  right:0;
 }
 
 .menu-header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:12px 18px;
-  background:#00bfff;
+  margin-bottom:20px;
+  color:#00bfff;
   font-weight:bold;
 }
 
 .fechar{
   cursor:pointer;
-  font-size:18px;
+  font-size:20px;
 }
 
-.menu-box a{
-  padding:14px 20px;
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#cfd8ff;
   text-decoration:none;
-  color:white;
-  border-bottom:1px solid #222;
 }
 
-.menu-box a:hover{
-  background:#00bfff;
+.menu a:hover{
+  color:#00bfff;
 }
 
-/* ===== CONTEÚDO ===== */
+/* CONTEÚDO */
 .container{
   margin-top:110px;
   max-width:900px;
@@ -106,11 +104,12 @@ body{
   padding:20px;
 }
 
+/* TÍTULO */
 .titulo{
   text-align:center;
-  font-size:32px;
-  margin-bottom:25px;
+  font-size:34px;
   font-weight:bold;
+  margin-bottom:25px;
 }
 
 .azul{
@@ -220,19 +219,19 @@ body{
   </div>
 </div>
 
-<!-- MENU PADRÃO (IGUAL OUTROS) -->
-<div class="menu-box" id="menu">
+<!-- MENU PADRÃO -->
+<div class="menu" id="menu">
 
   <div class="menu-header">
     <span>Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
-  <a href="index.html">Quem somos</a>
-  <a href="produto.html">Nosso produto</a>
-  <a href="proposito.html">Nosso propósito</a>
-  <a href="faq.html">Dúvidas</a>
-  <a href="parceiro.html">Seja parceiro</a>
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">📦 Nosso produto</a>
+  <a href="proposito.html">🎯 Nosso propósito</a>
+  <a href="faq.html">❓ Dúvidas</a>
+  <a href="parceiro.html">🤝 Seja parceiro</a>
 
 </div>
 
@@ -257,6 +256,9 @@ body{
 
 <div class="card">
   <h2>Demonstração do produto</h2>
+  <p>
+    Veja o funcionamento real do dispositivo em ação. Ele reconhece o texto automaticamente e converte tudo em áudio acessível.
+  </p>
 
   <div class="video-card" onclick="abrirVideo()">
     <img src="produto.jpg" class="video-thumb">
@@ -267,7 +269,7 @@ body{
 
 </div>
 
-<!-- MODAL VIDEO -->
+<!-- VIDEO MODAL -->
 <div class="video-modal" id="videoModal">
   <div class="video-box">
 
@@ -282,7 +284,7 @@ body{
 
 <script>
 
-/* MENU PADRÃO */
+/* MENU */
 function abrirMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
