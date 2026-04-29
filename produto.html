@@ -14,11 +14,11 @@
 }
 
 body{
-  background:radial-gradient(circle at top,#0b1020,#020617);
+  background:#020617;
   color:white;
 }
 
-/* TOPO */
+/* ===== TOPO ===== */
 .topo{
   position:fixed;
   top:0;
@@ -41,11 +41,10 @@ body{
   cursor:pointer;
 }
 
-/* OVERLAY (IGUAL FAQ) */
+/* ===== OVERLAY (PADRÃO FAQ) ===== */
 .overlay{
   position:fixed;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.6);
   backdrop-filter:blur(6px);
   display:none;
@@ -56,7 +55,7 @@ body{
   display:block;
 }
 
-/* MENU IGUAL FAQ */
+/* ===== MENU IGUAL FAQ ===== */
 .menu-box{
   position:fixed;
   top:60px;
@@ -67,7 +66,11 @@ body{
   flex-direction:column;
   overflow:hidden;
   z-index:999;
-  min-width:200px;
+  min-width:220px;
+}
+
+.menu-box.active{
+  display:flex;
 }
 
 .menu-header{
@@ -95,12 +98,11 @@ body{
   background:#00bfff;
 }
 
-/* CONTAINER */
+/* ===== CONTEÚDO ===== */
 .container{
   margin-top:110px;
   max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
+  margin:auto;
   padding:20px;
 }
 
@@ -109,6 +111,10 @@ body{
   font-size:32px;
   margin-bottom:25px;
   font-weight:bold;
+}
+
+.azul{
+  color:#00bfff;
 }
 
 /* CARD */
@@ -145,7 +151,6 @@ body{
   border-radius:14px;
   overflow:hidden;
   cursor:pointer;
-  margin-top:10px;
 }
 
 .video-thumb{
@@ -161,7 +166,7 @@ body{
   transform:translate(-50%,-50%);
   width:70px;
   height:70px;
-  background:rgba(0,191,255,0.9);
+  background:#00bfff;
   border-radius:50%;
   display:flex;
   justify-content:center;
@@ -169,7 +174,7 @@ body{
   font-size:26px;
 }
 
-/* MODAL VIDEO */
+/* MODAL */
 .video-modal{
   position:fixed;
   inset:0;
@@ -215,7 +220,7 @@ body{
   </div>
 </div>
 
-<!-- MENU (IGUAL FAQ) -->
+<!-- MENU PADRÃO (IGUAL OUTROS) -->
 <div class="menu-box" id="menu">
 
   <div class="menu-header">
@@ -253,10 +258,6 @@ body{
 <div class="card">
   <h2>Demonstração do produto</h2>
 
-  <p>
-    Veja como o dispositivo funciona na prática. O sistema reconhece o texto automaticamente, processa as informações e transforma em áudio acessível para o usuário.
-  </p>
-
   <div class="video-card" onclick="abrirVideo()">
     <img src="produto.jpg" class="video-thumb">
     <div class="play-btn">▶</div>
@@ -266,7 +267,7 @@ body{
 
 </div>
 
-<!-- VIDEO MODAL -->
+<!-- MODAL VIDEO -->
 <div class="video-modal" id="videoModal">
   <div class="video-box">
 
@@ -281,28 +282,28 @@ body{
 
 <script>
 
-/* MENU IGUAL FAQ */
+/* MENU PADRÃO */
 function abrirMenu(){
-  document.getElementById("menu").style.display="flex";
+  document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").style.display="none";
+  document.getElementById("menu").classList.remove("active");
   document.getElementById("overlay").classList.remove("active");
 }
 
 /* VIDEO */
 function abrirVideo(){
   document.getElementById("videoModal").style.display="flex";
-  let v = document.getElementById("video");
-  v.currentTime = 0;
+  let v=document.getElementById("video");
+  v.currentTime=0;
   v.play();
 }
 
 function fecharVideo(){
   document.getElementById("videoModal").style.display="none";
-  let v = document.getElementById("video");
+  let v=document.getElementById("video");
   v.pause();
 }
 
