@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosso Produto - Info Claro</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#0b1020,#020617);
+  color:white;
+}
+
+/* TOPO */
+.topo{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(10,15,30,.7);
+  backdrop-filter:blur(12px);
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.icons span{
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* MENU */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:998;
+}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.menu{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:280px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:.35s ease;
+  z-index:9999;
+}
+
+.menu.active{right:0;}
+
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+  color:white;
+}
+
+.fechar{
+  cursor:pointer;
+  color:#00bfff;
+  font-size:22px;
+}
+
+.menu a{
+  display:block;
+  margin:15px 0;
+  color:#cfd8ff;
+  text-decoration:none;
+}
+
+.menu a:hover{
+  color:#00bfff;
+}
+
+/* CONTAINER */
+.container{
+  margin-top:120px;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:20px;
+}
+
+/* INTRO */
+.intro{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.intro h1{
+  font-size:28px;
+  color:#00bfff;
+}
+
+.intro p{
+  color:#cfd8ff;
+  font-size:18px;
+  margin-top:8px;
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(0,191,255,0.2);
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
+  backdrop-filter:blur(10px);
+}
+
+.card h2{
+  color:#00bfff;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#cfd8ff;
+  font-size:18px;
+  line-height:1.7;
+}
+
+/* STEPS */
+.step{
+  display:flex;
+  gap:15px;
+  margin:15px 0;
+  align-items:flex-start;
+}
+
+.num{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#00bfff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+}
+
+/* IMAGENS */
+.img{
+  width:100%;
+  border-radius:14px;
+  margin-top:15px;
+}
+
+/* 3D */
+.model-3d{
+  width:220px;
+  height:220px;
+  margin:20px auto;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:rotate 8s linear infinite;
+}
+
+.face{
+  position:absolute;
+  width:220px;
+  height:220px;
+  background:rgba(0,191,255,0.15);
+  border:1px solid rgba(0,191,255,0.4);
+}
+
+.front{transform:translateZ(110px);}
+.back{transform:rotateY(180deg) translateZ(110px);}
+.left{transform:rotateY(-90deg) translateZ(110px);}
+.right{transform:rotateY(90deg) translateZ(110px);}
+.top{transform:rotateX(90deg) translateZ(110px);}
+.bottom{transform:rotateX(-90deg) translateZ(110px);}
+
+@keyframes rotate{
+  0%{transform:rotateX(0) rotateY(0);}
+  100%{transform:rotateX(360deg) rotateY(360deg);}
+}
+
+/* BOTÃO */
+.btn-demo{
+  display:block;
+  margin:25px auto;
+  padding:14px 22px;
+  background:#00bfff;
+  border:none;
+  border-radius:12px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn-demo:hover{
+  transform:scale(1.05);
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.modal-content{
+  width:90%;
+  max-width:600px;
+  background:#111;
+  padding:20px;
+  border-radius:14px;
+}
+
+.close{
+  float:right;
+  cursor:pointer;
+  color:#00bfff;
+  font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+
+<!-- TOPO -->
+<div class="topo">
+  <div class="logo">Info Claro</div>
+  <div class="icons">
+    <span onclick="abrirMenu()">☰</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+
+  <div class="menu-header">
+    <span>Menu</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
+  </div>
+
+  <a href="index.html">🏠 Quem somos</a>
+  <a href="produto.html">📦 Nosso produto</a>
+  <a href="proposito.html">🎯 Nosso propósito</a>
+  <a href="faq.html">❓ Dúvidas</a>
+  <a href="parceiro.html">🤝 Seja parceiro</a>
+
+</div>
+
+<!-- CONTEÚDO -->
+<div class="container">
+
+<div class="intro">
+  <h1>📦 Nosso Produto</h1>
+  <p>Simples, intuitivo e feito para facilitar sua vida</p>
+</div>
+
+<div class="card">
+  <h2>Como funciona o dispositivo</h2>
+
+  <div class="step"><div class="num">1</div><p>Posicione o documento em frente ao dispositivo.</p></div>
+  <div class="step"><div class="num">2</div><p>Ajuste a visualização da câmera.</p></div>
+  <div class="step"><div class="num">3</div><p>Pressione o botão para leitura.</p></div>
+  <div class="step"><div class="num">4</div><p>Ouça o áudio com clareza.</p></div>
+</div>
+
+<div class="card">
+  <h2>Modelo 3D do dispositivo</h2>
+
+  <div class="model-3d">
+    <div class="face front"></div>
+    <div class="face back"></div>
+    <div class="face left"></div>
+    <div class="face right"></div>
+    <div class="face top"></div>
+    <div class="face bottom"></div>
+  </div>
+
+  <button class="btn-demo" onclick="abrirDemo()">▶ Ver demonstração</button>
+</div>
+
+<div class="card">
+  <h2>Visão real do produto</h2>
+  <img src="produto1.jpg" class="img">
+</div>
+
+<div class="card">
+  <h2>Interface final</h2>
+  <img src="produto.jpg" class="img">
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharDemo()">✕</span>
+    <h2 style="color:#00bfff;">Demonstração</h2>
+    <p style="color:#cfd8ff;">Veja o funcionamento do dispositivo:</p>
+    <img src="produto.jpg" style="width:100%;border-radius:12px;margin-top:10px;">
+  </div>
+</div>
+
+<script>
+
+function abrirMenu(){
+  document.getElementById("menu").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+
+function fecharMenu(){
+  document.getElementById("menu").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+function abrirDemo(){
+  document.getElementById("modal").style.display="flex";
+}
+
+function fecharDemo(){
+  document.getElementById("modal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
