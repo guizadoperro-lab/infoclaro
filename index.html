@@ -53,30 +53,55 @@ body{
   pointer-events:auto;
 }
 
-/* MENU */
+/* MENU PREMIUM */
 .menu{
   position:fixed;
   top:0;
-  right:-280px;
+  right:-300px;
   width:280px;
   height:100%;
-  background:#111;
-  padding:20px;
+  background:rgba(15,20,40,0.96);
+  backdrop-filter:blur(15px);
+  padding:25px 20px;
   transition:.35s ease;
   z-index:9999;
 }
 
 .menu.active{right:0;}
 
+.menu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.menu-title{
+  color:#00bfff;
+  font-weight:600;
+}
+
+.fechar{
+  font-size:22px;
+  cursor:pointer;
+  color:#00bfff;
+}
+
 .menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+  display:flex;
+  gap:10px;
+  padding:12px;
+  border-radius:10px;
   text-decoration:none;
+  color:#cfd8ff;
+  margin-bottom:8px;
+  transition:.3s;
 }
 
 .menu a:hover{
+  background:rgba(0,191,255,0.15);
   color:#00bfff;
+  transform:translateX(5px);
 }
 
 /* CONTAINER */
@@ -143,12 +168,17 @@ body{
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
-    <span onclick="toggleMenu()">☰</span>
+    <span onclick="abrirMenu()">☰</span>
   </div>
 </div>
 
-<!-- MENU -->
+<!-- MENU PREMIUM -->
 <div class="menu" id="menu">
+
+  <div class="menu-header">
+    <span class="menu-title">Menu</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
+  </div>
 
   <a href="index.html">🏠 Quem somos</a>
   <a href="produto.html">📦 Nosso produto</a>
@@ -183,7 +213,6 @@ body{
     Nossa proposta é humanizar o acesso à informação, tornando a tecnologia uma aliada e não uma barreira.
   </p>
 
-  <!-- LOGO -->
   <img src="logo.jpg" alt="Info Claro Logo">
 </div>
 
@@ -203,7 +232,6 @@ body{
     Além disso, organiza as informações de forma mais limpa, ajudando o usuário a focar no que realmente importa.
   </p>
 
-  <!-- PRODUTO -->
   <img src="produto.jpg" alt="Dispositivo Info Claro">
 </div>
 
@@ -212,7 +240,7 @@ body{
 <script>
 
 /* MENU */
-function toggleMenu(){
+function abrirMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
 }
