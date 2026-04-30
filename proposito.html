@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nosso Propósito - Info Claro</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -25,17 +27,17 @@ body{
   top:0;
   width:100%;
   background:rgba(2,6,23,0.7);
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
   z-index:1000;
 }
 
-.logo{font-size:22px;font-weight:bold;}
+.logo{font-size:20px;font-weight:600;}
 
 .icons span{
-  font-size:22px;
+  font-size:24px;
   cursor:pointer;
 }
 
@@ -47,6 +49,7 @@ body{
   opacity:0;
   pointer-events:none;
   transition:.3s;
+  z-index:998;
 }
 
 .overlay.active{
@@ -54,16 +57,17 @@ body{
   pointer-events:auto;
 }
 
-/* MENU */
+/* MENU PREMIUM */
 .menu{
   position:fixed;
   top:0;
-  right:-280px;
+  right:-300px;
   width:280px;
   height:100%;
-  background:#0b0f1a;
-  padding:20px;
-  transition:.35s;
+  background:rgba(15,20,40,0.96);
+  backdrop-filter:blur(15px);
+  padding:25px 20px;
+  transition:.35s ease;
   z-index:9999;
 }
 
@@ -72,7 +76,13 @@ body{
 .menu-header{
   display:flex;
   justify-content:space-between;
-  margin-bottom:20px;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.menu-title{
+  color:#00bfff;
+  font-weight:600;
 }
 
 .fechar{
@@ -82,15 +92,20 @@ body{
 }
 
 .menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+  display:flex;
+  gap:10px;
+  padding:12px;
+  border-radius:10px;
   text-decoration:none;
+  color:#cfd8ff;
+  margin-bottom:8px;
   transition:.3s;
 }
 
 .menu a:hover{
+  background:rgba(0,191,255,0.15);
   color:#00bfff;
+  transform:translateX(5px);
 }
 
 /* CONTAINER */
@@ -152,7 +167,7 @@ body{
   line-height:1.8;
 }
 
-/* IMAGEM COM OVERLAY */
+/* IMAGEM */
 .img-box{
   margin-top:15px;
   border-radius:16px;
@@ -212,9 +227,10 @@ body{
   </div>
 </div>
 
+<!-- MENU PREMIUM -->
 <div class="menu" id="menu">
   <div class="menu-header">
-    <span>Menu</span>
+    <span class="menu-title">Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
@@ -231,15 +247,9 @@ body{
 
 <div class="card reveal">
   <h2>Nosso propósito</h2>
-  <p>
-    A Info Claro nasceu com o objetivo de transformar a forma como as pessoas entendem a informação no dia a dia.
-  </p>
-  <p>
-    Nosso propósito é tornar a tecnologia mais humana, acessível e fácil de compreender para todos.
-  </p>
-  <p>
-    Acreditamos que ninguém deve ter dificuldade para entender informações importantes por causa da complexidade dos sistemas atuais.
-  </p>
+  <p>A Info Claro nasceu com o objetivo de transformar a forma como as pessoas entendem a informação no dia a dia.</p>
+  <p>Nosso propósito é tornar a tecnologia mais humana, acessível e fácil de compreender para todos.</p>
+  <p>Acreditamos que ninguém deve ter dificuldade para entender informações importantes por causa da complexidade dos sistemas atuais.</p>
 
   <div class="img-box">
     <img src="idoso.jpg">
@@ -248,16 +258,12 @@ body{
 
 <div class="card reveal">
   <h2>📌 Missão</h2>
-  <p>
-    Facilitar o acesso à informação, eliminando barreiras de leitura e compreensão.
-  </p>
+  <p>Facilitar o acesso à informação, eliminando barreiras de leitura e compreensão.</p>
 </div>
 
 <div class="card reveal">
   <h2>🌍 Visão</h2>
-  <p>
-    Criar um mundo onde qualquer pessoa consiga entender e usar a tecnologia com facilidade.
-  </p>
+  <p>Criar um mundo onde qualquer pessoa consiga entender e usar a tecnologia com facilidade.</p>
 
   <div class="img-box">
     <img src="1.jpeg">
@@ -266,9 +272,7 @@ body{
 
 <div class="card reveal">
   <h2>💡 Impacto</h2>
-  <p>
-    Promover inclusão digital, autonomia e qualidade de vida através da informação simplificada.
-  </p>
+  <p>Promover inclusão digital, autonomia e qualidade de vida através da informação simplificada.</p>
 </div>
 
 <div class="card reveal">
@@ -285,7 +289,6 @@ body{
 </div>
 
 <script>
-
 function abrirMenu(){
   menu.classList.add("active");
   overlay.classList.add("active");
@@ -316,7 +319,6 @@ setTimeout(()=>{
     setTimeout(()=>el.classList.add("show"),i*120);
   });
 },600);
-
 </script>
 
 </body>
