@@ -6,12 +6,7 @@
 <title>Nosso Produto - Info Claro</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
 body{
   background:#020617;
@@ -27,62 +22,40 @@ body{
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   z-index:1000;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:bold;
-}
+.logo{font-weight:bold;font-size:22px;}
 
-.icons span{
-  font-size:22px;
-  cursor:pointer;
-}
+.icons span{font-size:22px;cursor:pointer;}
 
-/* OVERLAY */
+/* MENU */
 .overlay{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(6px);
   display:none;
-  z-index:998;
 }
 
-.overlay.active{
-  display:block;
-}
+.overlay.active{display:block;}
 
-/* MENU */
 .menu{
   position:fixed;
-  top:0;
   right:-280px;
+  top:0;
   width:280px;
   height:100%;
   background:#111;
   padding:20px;
-  transition:.3s ease;
-  z-index:9999;
+  transition:.3s;
 }
 
-.menu.active{
-  right:0;
-}
+.menu.active{right:0;}
 
 .menu-header{
   display:flex;
   justify-content:space-between;
   margin-bottom:20px;
-  color:#00bfff;
-  font-weight:bold;
-}
-
-.fechar{
-  cursor:pointer;
-  font-size:20px;
 }
 
 .menu a{
@@ -92,49 +65,31 @@ body{
   text-decoration:none;
 }
 
-.menu a:hover{
-  color:#00bfff;
-}
-
-/* CONTEÚDO */
+/* CONTAINER */
 .container{
-  margin-top:110px;
+  margin:140px auto 0;
   max-width:900px;
-  margin:auto;
   padding:20px;
 }
 
-/* TÍTULO */
+/* TITULO */
 .titulo{
   text-align:center;
-  font-size:34px;
-  font-weight:bold;
-  margin-bottom:25px;
+  font-size:32px;
+  margin-bottom:30px;
 }
 
-.azul{
-  color:#00bfff !important;
+.titulo span{
+  color:#00bfff;
 }
 
 /* CARD */
 .card{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(0,191,255,0.2);
-  border-radius:18px;
+  background:rgba(255,255,255,0.05);
   padding:25px;
-  margin-bottom:20px;
-  backdrop-filter:blur(10px);
-}
-
-.card h2{
-  color:#00bfff;
-  margin-bottom:10px;
-}
-
-.card p{
-  color:#cfd8ff;
-  font-size:18px;
-  line-height:1.7;
+  border-radius:18px;
+  margin-bottom:25px;
+  border:1px solid rgba(0,191,255,0.2);
 }
 
 /* IMAGEM */
@@ -144,63 +99,105 @@ body{
   margin-top:15px;
 }
 
-/* VIDEO */
-.video-card{
-  position:relative;
-  border-radius:14px;
-  overflow:hidden;
+/* STEPS */
+.steps{
+  margin-top:20px;
+}
+
+.step{
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
   cursor:pointer;
+  padding:10px;
+  border-radius:12px;
+  transition:.3s;
 }
 
-.video-thumb{
-  width:100%;
-  display:block;
-  filter:brightness(0.7);
+.step:hover{background:rgba(0,191,255,0.1);}
+
+.step.active{
+  background:rgba(0,191,255,0.2);
 }
 
-.play-btn{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:70px;
-  height:70px;
+.step span{
+  width:35px;height:35px;
   background:#00bfff;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:26px;
+  color:#000;
+  font-weight:bold;
+}
+
+.step h3{color:#00bfff;}
+.step p{color:#cfd8ff;}
+
+/* PROGRESSO */
+.progress{
+  display:flex;
+  justify-content:space-between;
+  margin:20px 0;
+}
+
+.dot{
+  width:12px;height:12px;
+  background:#444;
+  border-radius:50%;
+}
+
+.dot.active{
+  background:#00bfff;
+}
+
+/* VIDEO */
+.video-card{
+  position:relative;
+  cursor:pointer;
+}
+
+.video-card img{
+  width:100%;
+  border-radius:14px;
+  filter:brightness(0.7);
+}
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:70px;height:70px;
+  background:#00bfff;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
 }
 
 /* MODAL */
-.video-modal{
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,0.9);
   display:none;
   justify-content:center;
   align-items:center;
-  z-index:9999;
 }
 
-.video-box{
+.modal video{
   width:90%;
   max-width:700px;
-  position:relative;
 }
 
-.video-box video{
-  width:100%;
-  border-radius:14px;
-}
-
-.close-video{
+.close{
   position:absolute;
-  top:-40px;
-  right:0;
+  top:20px;
+  right:20px;
+  font-size:30px;
   color:#00bfff;
-  font-size:26px;
   cursor:pointer;
 }
 </style>
@@ -208,10 +205,8 @@ body{
 
 <body>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
-<!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
@@ -219,93 +214,137 @@ body{
   </div>
 </div>
 
-<!-- MENU -->
 <div class="menu" id="menu">
-
   <div class="menu-header">
     <span>Menu</span>
-    <span class="fechar" onclick="fecharMenu()">✕</span>
+    <span onclick="fecharMenu()">✕</span>
   </div>
-
   <a href="index.html">🏠 Quem somos</a>
   <a href="produto.html">📦 Nosso produto</a>
   <a href="proposito.html">🎯 Nosso propósito</a>
   <a href="faq.html">❓ Dúvidas</a>
   <a href="parceiro.html">🤝 Seja parceiro</a>
-
 </div>
 
-<!-- CONTEÚDO -->
 <div class="container">
 
-<h1 class="titulo">
-  Nosso <span style="color:#00bfff;">Produto</span>
-</h1>
+<div class="titulo">Nosso <span>Produto</span></div>
 
-<!-- ✔ TEXTO 1 RESTAURADO -->
+<!-- VISÃO -->
 <div class="card">
   <h2>Visão real do produto</h2>
-  <p>
-    Aqui você vê o dispositivo físico desenvolvido pela Info Claro. Ele foi pensado para facilitar a leitura e tornar a informação mais acessível para todos.
-  </p>
+  <p>Dispositivo físico desenvolvido para facilitar a leitura.</p>
   <img src="produto1.jpg" class="img">
 </div>
 
-<!-- ✔ TEXTO 2 RESTAURADO -->
+<!-- COMO FUNCIONA -->
 <div class="card">
   <h2>Como funciona o dispositivo</h2>
-  <p>
-    O dispositivo captura o texto automaticamente, interpreta as informações e transforma tudo em áudio simples e fácil de entender.
-  </p>
+  <p>Ele captura o texto e transforma em áudio.</p>
   <img src="produto.jpg" class="img">
 </div>
 
-<!-- DEMONSTRAÇÃO -->
+<!-- PASSOS INTERATIVOS -->
 <div class="card">
-  <h2>Demonstração do produto</h2>
+  <h2>Como usar</h2>
 
-  <div class="video-card" onclick="abrirVideo()">
-    <img src="produto.jpg" class="video-thumb">
-    <div class="play-btn">▶</div>
+  <div class="progress">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
 
-</div>
+  <div class="steps">
 
+    <div class="step active" onclick="setStep(0)">
+      <span>1</span>
+      <div>
+        <h3>Posicione o documento</h3>
+        <p>Coloque o documento em frente ao dispositivo.</p>
+      </div>
+    </div>
+
+    <div class="step" onclick="setStep(1)">
+      <span>2</span>
+      <div>
+        <h3>Ajuste a visualização</h3>
+        <p>Garanta que o texto esteja visível.</p>
+      </div>
+    </div>
+
+    <div class="step" onclick="setStep(2)">
+      <span>3</span>
+      <div>
+        <h3>Pressione o botão</h3>
+        <p>O dispositivo fará a leitura automaticamente.</p>
+      </div>
+    </div>
+
+    <div class="step" onclick="setStep(3)">
+      <span>4</span>
+      <div>
+        <h3>Ouça a informação</h3>
+        <p>O texto será convertido em áudio claro.</p>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- VIDEO -->
-<div class="video-modal" id="videoModal">
-  <div class="video-box">
+<div class="card">
+  <h2>Demonstração</h2>
 
-    <span class="close-video" onclick="fecharVideo()">✕</span>
-
-    <video id="video" controls>
-      <source src="produto3.mp4" type="video/mp4">
-    </video>
-
+  <div class="video-card" onclick="abrirVideo()">
+    <img src="produto.jpg">
+    <div class="play">▶</div>
   </div>
+
+</div>
+
+</div>
+
+<!-- MODAL VIDEO -->
+<div class="modal" id="modal">
+  <span class="close" onclick="fecharVideo()">✕</span>
+  <video id="video" controls>
+    <source src="produto3.mp4">
+  </video>
 </div>
 
 <script>
 
 function abrirMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
+  menu.classList.add("active");
+  overlay.classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
 }
 
+/* STEPS */
+function setStep(index){
+  document.querySelectorAll(".step").forEach((s,i)=>{
+    s.classList.toggle("active",i===index);
+  });
+
+  document.querySelectorAll(".dot").forEach((d,i)=>{
+    d.classList.toggle("active",i<=index);
+  });
+}
+
+/* VIDEO */
 function abrirVideo(){
-  document.getElementById("videoModal").style.display="flex";
-  document.getElementById("video").play();
+  modal.style.display="flex";
+  video.play();
 }
 
 function fecharVideo(){
-  document.getElementById("videoModal").style.display="none";
-  document.getElementById("video").pause();
+  modal.style.display="none";
+  video.pause();
 }
 
 </script>
