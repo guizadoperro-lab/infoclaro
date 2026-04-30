@@ -16,6 +16,7 @@
 body{
   background:#020617;
   color:white;
+  overflow-x:hidden;
 }
 
 /* TOPO */
@@ -31,10 +32,7 @@ body{
   z-index:1000;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:bold;
-}
+.logo{font-size:22px;font-weight:bold;}
 
 .icons span{
   font-size:22px;
@@ -57,7 +55,7 @@ body{
   pointer-events:auto;
 }
 
-/* MENU PADRÃO */
+/* MENU */
 .menu{
   position:fixed;
   top:0;
@@ -75,9 +73,7 @@ body{
 .menu-header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin-bottom:20px;
-  color:#fff;
 }
 
 .fechar{
@@ -97,13 +93,24 @@ body{
   color:#00bfff;
 }
 
-/* CONTEÚDO */
+/* CONTAINER */
 .container{
-  margin-top:110px;
+  margin-top:120px;
+  max-width:900px;
+  margin:auto;
   padding:20px;
-  max-width:850px;
-  margin-left:auto;
-  margin-right:auto;
+}
+
+/* TÍTULO */
+.titulo{
+  text-align:center;
+  font-size:36px;
+  margin-bottom:30px;
+}
+
+.titulo span{
+  color:#00bfff;
+  text-shadow:0 0 15px #00bfff;
 }
 
 /* CARD */
@@ -112,15 +119,18 @@ body{
   padding:25px;
   border-radius:18px;
   border:1px solid rgba(0,191,255,0.2);
-  margin-bottom:20px;
-  transition:.3s;
+  margin-bottom:25px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.6s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.card.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.card h1, .card h2{
+.card h2{
   color:#00bfff;
   margin-bottom:10px;
 }
@@ -129,6 +139,18 @@ body{
   color:#cfd8ff;
   line-height:1.8;
   font-size:18px;
+}
+
+/* IMAGENS */
+.img{
+  width:100%;
+  border-radius:16px;
+  margin-top:15px;
+  transition:0.4s;
+}
+
+.img:hover{
+  transform:scale(1.02);
 }
 
 /* PARTICIPANTES */
@@ -140,25 +162,25 @@ body{
 
 .participante{
   background:rgba(0,191,255,0.08);
-  padding:12px 15px;
+  padding:12px;
   border-radius:12px;
   border-left:3px solid #00bfff;
-  transition:.3s;
+  opacity:0;
+  transform:translateX(-20px);
+  transition:0.4s;
 }
 
-.participante:hover{
-  transform:translateX(5px);
-  background:rgba(0,191,255,0.15);
+.participante.show{
+  opacity:1;
+  transform:translateX(0);
 }
 </style>
 </head>
 
 <body>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
-<!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
@@ -166,64 +188,58 @@ body{
   </div>
 </div>
 
-<!-- MENU -->
 <div class="menu" id="menu">
-
   <div class="menu-header">
     <span>Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
-  <a href="index.html">🏠 Quem somos</a>
-  <a href="produto.html">📦 Nosso produto</a>
-  <a href="proposito.html">🎯 Nosso propósito</a>
-  <a href="faq.html">❓ Dúvidas</a>
-  <a href="parceiro.html">🤝 Seja parceiro</a>
-
+  <a href="index.html">Quem somos</a>
+  <a href="produto.html">Nosso produto</a>
+  <a href="proposito.html">Nosso propósito</a>
+  <a href="faq.html">Dúvidas</a>
+  <a href="parceiro.html">Seja parceiro</a>
 </div>
 
-<!-- CONTEÚDO -->
 <div class="container">
 
-<div class="card">
-  <h1>🎯 Nosso Propósito</h1>
+<h1 class="titulo">Nosso <span>Propósito</span></h1>
 
+<div class="card reveal">
+  <h2>Nosso propósito</h2>
   <p>
-    A Info Claro nasceu com o objetivo de transformar a forma como as pessoas entendem a informação no dia a dia.
+    A Info Claro nasceu para transformar a forma como as pessoas entendem a informação no dia a dia.
   </p>
-
   <p>
-    Nosso propósito é tornar a tecnologia mais humana, acessível e fácil de compreender para todos.
+    Nosso objetivo é tornar a tecnologia mais humana, acessível e simples para todos.
   </p>
-
-  <p>
-    Acreditamos que ninguém deve ter dificuldade para entender informações importantes por causa da complexidade dos sistemas atuais.
-  </p>
+  <img src="idoso.jpg" class="img">
 </div>
 
-<div class="card">
-  <h2>📌 Missão</h2>
+<div class="card reveal">
+  <h2>Missão</h2>
   <p>
     Facilitar o acesso à informação, eliminando barreiras de leitura e compreensão.
   </p>
 </div>
 
-<div class="card">
-  <h2>🌍 Visão</h2>
+<div class="card reveal">
+  <h2>Visão</h2>
   <p>
     Criar um mundo onde qualquer pessoa consiga entender e usar a tecnologia com facilidade.
   </p>
+  <img src="1.jpg" class="img">
 </div>
 
-<div class="card">
-  <h2>💡 Impacto</h2>
+<div class="card reveal">
+  <h2>Impacto</h2>
   <p>
     Promover inclusão digital, autonomia e qualidade de vida através da informação simplificada.
   </p>
 </div>
 
-<div class="card">
-  <h2>👥 Participantes do Projeto</h2>
+<div class="card reveal">
+  <h2>Participantes</h2>
 
   <div class="participantes">
     <div class="participante">Anna Lavinia</div>
@@ -241,14 +257,36 @@ body{
 
 /* MENU */
 function abrirMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
+  menu.classList.add("active");
+  overlay.classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
 }
+
+/* ANIMAÇÃO SCROLL */
+const reveals = document.querySelectorAll(".reveal");
+
+function animar(){
+  reveals.forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 80){
+      el.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", animar);
+window.addEventListener("load", animar);
+
+/* PARTICIPANTES ANIMAÇÃO */
+setTimeout(()=>{
+  document.querySelectorAll(".participante").forEach((el,i)=>{
+    setTimeout(()=> el.classList.add("show"), i*150);
+  });
+},800);
 
 </script>
 
