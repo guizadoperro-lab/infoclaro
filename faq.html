@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dúvidas - Info Claro</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -23,7 +25,8 @@ body{
   position:fixed;
   top:0;
   width:100%;
-  background:#020617;
+  background:rgba(2,6,23,0.7);
+  backdrop-filter:blur(12px);
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
@@ -32,12 +35,12 @@ body{
 }
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
+  font-size:20px;
+  font-weight:600;
 }
 
 .icons span{
-  font-size:22px;
+  font-size:24px;
   cursor:pointer;
 }
 
@@ -57,15 +60,16 @@ body{
   pointer-events:auto;
 }
 
-/* MENU PADRÃO INDEX */
+/* MENU PREMIUM */
 .menu{
   position:fixed;
   top:0;
-  right:-280px;
+  right:-300px;
   width:280px;
   height:100%;
-  background:#111;
-  padding:20px;
+  background:rgba(15,20,40,0.96);
+  backdrop-filter:blur(15px);
+  padding:25px 20px;
   transition:.35s ease;
   z-index:9999;
 }
@@ -76,8 +80,12 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
-  color:#fff;
+  margin-bottom:25px;
+}
+
+.menu-title{
+  color:#00bfff;
+  font-weight:600;
 }
 
 .fechar{
@@ -87,19 +95,30 @@ body{
 }
 
 .menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+  display:flex;
+  gap:10px;
+  padding:12px;
+  border-radius:10px;
   text-decoration:none;
+  color:#cfd8ff;
+  margin-bottom:8px;
+  transition:.3s;
 }
 
 .menu a:hover{
+  background:rgba(0,191,255,0.15);
+  color:#00bfff;
+  transform:translateX(5px);
+}
+
+.menu a.active{
+  background:rgba(0,191,255,0.2);
   color:#00bfff;
 }
 
 /* CONTEÚDO */
 .container{
-  margin-top:110px;
+  margin-top:120px;
   padding:20px;
   max-width:700px;
   margin:auto;
@@ -108,7 +127,7 @@ body{
 h1{
   text-align:center;
   margin-bottom:25px;
-  font-size:32px;
+  font-size:30px;
 }
 
 /* FAQ */
@@ -122,12 +141,13 @@ h1{
 }
 
 .faq:hover{
-  transform:translateY(-2px);
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(0,191,255,0.2);
 }
 
 .pergunta{
   font-weight:600;
-  font-size:20px;
+  font-size:19px;
   position:relative;
   padding-right:25px;
 }
@@ -145,7 +165,7 @@ h1{
   transition:.4s ease;
   color:#cbd5f5;
   margin-top:0;
-  font-size:18px;
+  font-size:17px;
   line-height:1.6;
 }
 
@@ -173,6 +193,7 @@ h1{
   align-items:center;
   cursor:pointer;
   font-size:22px;
+  box-shadow:0 0 25px rgba(0,191,255,0.6);
 }
 
 .chatbox{
@@ -184,12 +205,13 @@ h1{
   border-radius:12px;
   display:none;
   flex-direction:column;
+  overflow:hidden;
 }
 
 .chat-header{
   background:#00bfff;
   padding:12px;
-  font-weight:bold;
+  font-weight:600;
 }
 
 .chat-messages{
@@ -208,10 +230,8 @@ h1{
 
 <body>
 
-<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
-<!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
   <div class="icons">
@@ -219,23 +239,20 @@ h1{
   </div>
 </div>
 
-<!-- MENU PADRÃO -->
+<!-- MENU PREMIUM -->
 <div class="menu" id="menu">
-
   <div class="menu-header">
-    <span>Menu</span>
+    <span class="menu-title">Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
   <a href="index.html">🏠 Quem somos</a>
   <a href="produto.html">📦 Nosso produto</a>
   <a href="proposito.html">🎯 Nosso propósito</a>
-  <a href="faq.html">❓ Dúvidas</a>
+  <a href="faq.html" class="active">❓ Dúvidas</a>
   <a href="parceiro.html">🤝 Seja parceiro</a>
-
 </div>
 
-<!-- CONTEÚDO -->
 <div class="container">
 
 <h1>❓ Dúvidas Frequentes – Info Claro</h1>
@@ -267,12 +284,12 @@ h1{
 
 <div class="faq">
 <div class="pergunta">Quem pode usar o dispositivo?</div>
-<div class="resposta">Apesar do foco ser o público idoso, qualquer pessoa que tenha dificuldade com leitura ou compreensão de textos pode se beneficiar.</div>
+<div class="resposta">Qualquer pessoa pode usar, especialmente quem tem dificuldade com leitura ou compreensão de textos.</div>
 </div>
 
 <div class="faq">
 <div class="pergunta">Como posso apoiar o projeto?</div>
-<div class="resposta">Você pode se tornar um parceiro e ajudar no desenvolvimento da solução acessando a aba “Seja um parceiro”.</div>
+<div class="resposta">Você pode se tornar um parceiro acessando a aba “Seja um parceiro”.</div>
 </div>
 
 <div class="faq">
@@ -282,7 +299,7 @@ h1{
 
 </div>
 
-<!-- CHAT BOT -->
+<!-- CHAT -->
 <div class="chat-btn" onclick="toggleChat()">💬</div>
 
 <div class="chatbox" id="chatbox">
@@ -293,15 +310,14 @@ h1{
 
 <script>
 
-/* MENU */
 function abrirMenu(){
-  document.getElementById("menu").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
+  menu.classList.add("active");
+  overlay.classList.add("active");
 }
 
 function fecharMenu(){
-  document.getElementById("menu").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
 }
 
 /* FAQ */
@@ -341,41 +357,12 @@ input.addEventListener("keypress",function(e){
 });
 
 function responder(t){
-
-  if(t.includes("quando") || t.includes("disponível") || t.includes("lançamento")){
-    return "O dispositivo está em fase de desenvolvimento. Em breve divulgaremos informações sobre testes e lançamento.";
-  }
-
-  if(t.includes("preço") || t.includes("valor") || t.includes("quanto")){
-    return "O dispositivo terá o valor de R$ 355,99. Para empresas e parceiros, oferecemos condições especiais.";
-  }
-
-  if(t.includes("internet")){
-    return "Não. O dispositivo funciona de forma independente, sem necessidade de internet.";
-  }
-
-  if(t.includes("como funciona") || t.includes("funciona")){
-    return "Ele utiliza uma câmera para escanear o documento e converte o conteúdo em áudio ao apertar um botão.";
-  }
-
-  if(t.includes("fácil") || t.includes("usar")){
-    return "Sim. Ele foi pensado para ser simples e intuitivo para qualquer pessoa.";
-  }
-
-  if(t.includes("quem pode")){
-    return "Qualquer pessoa pode usar, especialmente quem tem dificuldade com leitura ou compreensão de textos.";
-  }
-
-  if(t.includes("apoiar") || t.includes("parceiro")){
-    return "Você pode se tornar um parceiro acessando a aba “Seja um parceiro”.";
-  }
-
-  if(t.includes("testar")){
-    return "Em breve abriremos oportunidades para testes com usuários interessados.";
-  }
-
-  return "Essa informação ainda não está no nosso FAQ oficial do site.";
-  }
+  if(t.includes("quando")) return "Está em desenvolvimento.";
+  if(t.includes("preço")) return "R$ 355,99.";
+  if(t.includes("internet")) return "Não precisa de internet.";
+  if(t.includes("funciona")) return "Ele transforma texto em áudio.";
+  return "Pode reformular sua pergunta?";
+}
 
 </script>
 
