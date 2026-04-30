@@ -13,7 +13,7 @@ body{
   color:white;
 }
 
-/* HEADER */
+/* TOPO */
 .topo{
   position:fixed;
   top:0;
@@ -21,17 +21,22 @@ body{
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   background:rgba(10,15,30,0.7);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(0,191,255,0.2);
+  backdrop-filter:blur(10px);
   z-index:1000;
 }
 
-.logo{font-weight:bold;font-size:22px;}
+.logo{font-size:22px;font-weight:bold;}
 
-.icons span{font-size:22px;cursor:pointer;}
+.icons{
+  display:flex;
+  gap:18px;
+  font-size:22px;
+  cursor:pointer;
+}
 
-/* MENU */
+/* OVERLAY */
 .overlay{
   position:fixed;
   inset:0;
@@ -40,36 +45,46 @@ body{
   z-index:998;
 }
 
-.overlay.active{display:block;}
-
-.menu{
+/* MENU IGUAL FAQ */
+.menu-box{
   position:fixed;
-  right:-280px;
-  top:0;
-  width:280px;
-  height:100%;
+  top:70px;
+  right:20px;
   background:#111;
-  padding:20px;
-  transition:.3s;
-  z-index:9999;
+  border-radius:12px;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  z-index:999;
+  min-width:220px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
-
-.menu.active{right:0;}
 
 .menu-header{
   display:flex;
   justify-content:space-between;
-  margin-bottom:20px;
+  align-items:center;
+  padding:12px 18px;
+  background:#00bfff;
+  font-weight:bold;
 }
 
-.menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+.fechar{
+  cursor:pointer;
+  font-size:18px;
+}
+
+.menu-box a{
+  padding:14px 20px;
   text-decoration:none;
+  color:white;
+  border-bottom:1px solid #222;
+  transition:.3s;
 }
 
-.menu a:hover{color:#00bfff;}
+.menu-box a:hover{
+  background:#00bfff;
+}
 
 /* CONTAINER */
 .container{
@@ -124,7 +139,6 @@ body{
   background:#fff;
   padding:10px;
   border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .img img{
@@ -156,7 +170,6 @@ body{
   padding:14px;
   border-radius:14px;
   margin-bottom:12px;
-  transition:.3s;
   cursor:pointer;
 }
 
@@ -186,19 +199,13 @@ body{
 /* VIDEO */
 .video-card{
   position:relative;
-  overflow:hidden;
   border-radius:16px;
+  overflow:hidden;
   cursor:pointer;
 }
 
 .video-card img{
   width:100%;
-  transition:.4s;
-}
-
-.video-card:hover img{
-  transform:scale(1.05);
-  filter:brightness(0.6);
 }
 
 .play{
@@ -206,15 +213,14 @@ body{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:75px;
-  height:75px;
-  background:rgba(0,191,255,0.9);
+  width:70px;
+  height:70px;
+  background:#00bfff;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:30px;
-  box-shadow:0 0 25px rgba(0,191,255,0.7);
+  font-size:26px;
 }
 
 /* MODAL */
@@ -231,14 +237,13 @@ body{
 .modal video{
   width:90%;
   max-width:700px;
-  border-radius:12px;
 }
 
 .close{
   position:absolute;
   top:20px;
   right:20px;
-  font-size:30px;
+  font-size:28px;
   color:#00bfff;
   cursor:pointer;
 }
@@ -247,20 +252,25 @@ body{
 
 <body>
 
+<!-- OVERLAY -->
 <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
 
+<!-- TOPO -->
 <div class="topo">
   <div class="logo">Info Claro</div>
+
   <div class="icons">
-    <span onclick="abrirMenu()">☰</span>
+    <span onclick="toggleMenu()">☰</span>
   </div>
 </div>
 
-<div class="menu" id="menu">
+<!-- MENU IGUAL FAQ -->
+<div class="menu-box" id="menu">
   <div class="menu-header">
     <span>Menu</span>
-    <span onclick="fecharMenu()">✕</span>
+    <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
+
   <a href="index.html">Quem somos</a>
   <a href="produto.html">Nosso produto</a>
   <a href="proposito.html">Nosso propósito</a>
@@ -268,29 +278,27 @@ body{
   <a href="parceiro.html">Seja parceiro</a>
 </div>
 
+<!-- CONTEÚDO -->
 <div class="container">
 
 <div class="titulo">Nosso <span>Produto</span></div>
 
-<!-- VISÃO -->
 <div class="card">
   <h2>Visão real do produto</h2>
-  <p>Dispositivo físico desenvolvido para facilitar a leitura e tornar a informação acessível.</p>
+  <p>Dispositivo físico desenvolvido para facilitar a leitura.</p>
   <div class="img">
     <img src="produto1.jpg">
   </div>
 </div>
 
-<!-- FUNCIONAMENTO -->
 <div class="card">
   <h2>Como funciona o dispositivo</h2>
-  <p>Ele captura o texto automaticamente e transforma em áudio simples e claro.</p>
+  <p>Ele captura o texto e transforma em áudio simples.</p>
   <div class="img">
     <img src="produto.jpg">
   </div>
 </div>
 
-<!-- PASSOS -->
 <div class="card">
   <h2>Como usar</h2>
 
@@ -321,7 +329,7 @@ body{
     <span>3</span>
     <div>
       <h3>Pressione o botão</h3>
-      <p>Com um toque, o dispositivo inicia a leitura.</p>
+      <p>O dispositivo inicia a leitura.</p>
     </div>
   </div>
 
@@ -329,13 +337,12 @@ body{
     <span>4</span>
     <div>
       <h3>Ouça a informação</h3>
-      <p>O conteúdo é convertido em áudio claro e fácil.</p>
+      <p>O conteúdo vira áudio claro.</p>
     </div>
   </div>
 
 </div>
 
-<!-- VIDEO -->
 <div class="card">
   <h2>Demonstração do produto</h2>
 
@@ -348,25 +355,28 @@ body{
 
 </div>
 
-<!-- VIDEO MODAL -->
+<!-- VIDEO -->
 <div class="modal" id="modal">
   <span class="close" onclick="fecharVideo()">✕</span>
   <video id="video" controls>
-    <source src="produto3.mp4" type="video/mp4">
+    <source src="produto3.mp4">
   </video>
 </div>
 
 <script>
-function abrirMenu(){
-  menu.classList.add("active");
-  overlay.classList.add("active");
+
+/* MENU */
+function toggleMenu(){
+  document.getElementById("menu").style.display="flex";
+  document.getElementById("overlay").style.display="block";
 }
 
 function fecharMenu(){
-  menu.classList.remove("active");
-  overlay.classList.remove("active");
+  document.getElementById("menu").style.display="none";
+  document.getElementById("overlay").style.display="none";
 }
 
+/* STEPS */
 function setStep(index){
   document.querySelectorAll(".step").forEach((s,i)=>{
     s.classList.toggle("active",i===index);
@@ -377,6 +387,7 @@ function setStep(index){
   });
 }
 
+/* VIDEO */
 function abrirVideo(){
   modal.style.display="flex";
   video.play();
@@ -386,6 +397,7 @@ function fecharVideo(){
   modal.style.display="none";
   video.pause();
 }
+
 </script>
 
 </body>
