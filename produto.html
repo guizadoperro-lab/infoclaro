@@ -243,28 +243,79 @@ body{
 <div class="container">
 
 <div class="titulo">Nosso <span>Produto</span></div>
+<div class="subtitulo">Tecnologia feita para simplificar o seu dia a dia</div>
 
+<!-- VISÃO REAL -->
 <div class="card">
   <h2>Visão real do produto</h2>
-  <p>Dispositivo físico desenvolvido para facilitar a leitura.</p>
+  <p>
+    Este é o dispositivo físico da Info Claro, desenvolvido para tornar a leitura mais acessível,
+    simples e prática para qualquer pessoa.
+  </p>
+
   <div class="img">
     <img src="produto1.jpg">
   </div>
 </div>
 
+<!-- COMO FUNCIONA -->
 <div class="card">
-  <h2>Como funciona o dispositivo</h2>
-  <p>Ele captura o texto e transforma em áudio simples.</p>
+  <h2>Como usar o dispositivo</h2>
+
+  <p style="margin-bottom:20px;">
+    Usar o dispositivo da <strong>Info Claro</strong> é simples, rápido e intuitivo.
+    Em poucos passos, você transforma qualquer texto em áudio claro e fácil de entender.
+  </p>
+
   <div class="img">
     <img src="produto.jpg">
   </div>
+
+  <!-- PASSOS -->
+  <div class="step active" onclick="setStep(0)">
+    <span>1</span>
+    <div>
+      <h3>Posicione o documento</h3>
+      <p>Coloque o documento que deseja ler em frente ao dispositivo.</p>
+    </div>
+  </div>
+
+  <div class="step" onclick="setStep(1)">
+    <span>2</span>
+    <div>
+      <h3>Ajuste a visualização</h3>
+      <p>Certifique-se de que o texto está bem visível para a câmera.</p>
+    </div>
+  </div>
+
+  <div class="step" onclick="setStep(2)">
+    <span>3</span>
+    <div>
+      <h3>Pressione o botão</h3>
+      <p>Com apenas um toque, o dispositivo inicia a leitura automaticamente.</p>
+    </div>
+  </div>
+
+  <div class="step" onclick="setStep(3)">
+    <span>4</span>
+    <div>
+      <h3>Ouça a informação</h3>
+      <p>O texto é convertido em áudio de forma clara, facilitando o entendimento.</p>
+    </div>
+  </div>
+
 </div>
 
+<!-- DEMONSTRAÇÃO -->
 <div class="card">
   <h2>Demonstração do produto</h2>
 
+  <p style="margin-bottom:15px;">
+    Veja na prática como o dispositivo funciona e como ele transforma a leitura em uma experiência simples e acessível.
+  </p>
+
   <div class="video-card" onclick="abrirVideo()">
-    <img src="produto.jpg">
+    <img src="produto1.jpg">
     <div class="play">▶</div>
   </div>
 
@@ -272,11 +323,11 @@ body{
 
 </div>
 
-<!-- VIDEO -->
+<!-- VIDEO MODAL -->
 <div class="modal" id="modal">
   <span class="close" onclick="fecharVideo()">✕</span>
   <video id="video" controls>
-    <source src="produto3.mp4">
+    <source src="produto3.mp4" type="video/mp4">
   </video>
 </div>
 
