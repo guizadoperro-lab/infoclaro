@@ -55,7 +55,7 @@ body{
   display:block;
 }
 
-/* MENU PADRÃO */
+/* MENU */
 .menu{
   position:fixed;
   top:0;
@@ -113,7 +113,7 @@ body{
 }
 
 .azul{
-  color:#00bfff;
+  color:#00bfff !important;
 }
 
 /* CARD */
@@ -219,7 +219,7 @@ body{
   </div>
 </div>
 
-<!-- MENU PADRÃO -->
+<!-- MENU -->
 <div class="menu" id="menu">
 
   <div class="menu-header">
@@ -240,25 +240,27 @@ body{
 
 <div class="titulo">Nosso <span class="azul">Produto</span></div>
 
+<!-- ✔ TEXTO 1 RESTAURADO -->
 <div class="card">
   <h2>Visão real do produto</h2>
-  <p>Imagem do dispositivo desenvolvido pela Info Claro.</p>
+  <p>
+    Aqui você vê o dispositivo físico desenvolvido pela Info Claro. Ele foi pensado para facilitar a leitura e tornar a informação mais acessível para todos.
+  </p>
   <img src="produto1.jpg" class="img">
 </div>
 
+<!-- ✔ TEXTO 2 RESTAURADO -->
 <div class="card">
   <h2>Como funciona o dispositivo</h2>
   <p>
-    O dispositivo captura o texto, interpreta automaticamente e transforma em áudio claro para o usuário ouvir.
+    O dispositivo captura o texto automaticamente, interpreta as informações e transforma tudo em áudio simples e fácil de entender.
   </p>
   <img src="produto.jpg" class="img">
 </div>
 
+<!-- DEMONSTRAÇÃO -->
 <div class="card">
   <h2>Demonstração do produto</h2>
-  <p>
-    Veja o funcionamento real do dispositivo em ação. Ele reconhece o texto automaticamente e converte tudo em áudio acessível.
-  </p>
 
   <div class="video-card" onclick="abrirVideo()">
     <img src="produto.jpg" class="video-thumb">
@@ -269,7 +271,7 @@ body{
 
 </div>
 
-<!-- VIDEO MODAL -->
+<!-- VIDEO -->
 <div class="video-modal" id="videoModal">
   <div class="video-box">
 
@@ -284,7 +286,6 @@ body{
 
 <script>
 
-/* MENU */
 function abrirMenu(){
   document.getElementById("menu").classList.add("active");
   document.getElementById("overlay").classList.add("active");
@@ -295,18 +296,14 @@ function fecharMenu(){
   document.getElementById("overlay").classList.remove("active");
 }
 
-/* VIDEO */
 function abrirVideo(){
   document.getElementById("videoModal").style.display="flex";
-  let v=document.getElementById("video");
-  v.currentTime=0;
-  v.play();
+  document.getElementById("video").play();
 }
 
 function fecharVideo(){
   document.getElementById("videoModal").style.display="none";
-  let v=document.getElementById("video");
-  v.pause();
+  document.getElementById("video").pause();
 }
 
 </script>
