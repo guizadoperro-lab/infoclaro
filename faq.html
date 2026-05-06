@@ -357,11 +357,56 @@ input.addEventListener("keypress",function(e){
 });
 
 function responder(t){
-  if(t.includes("quando")) return "Está em desenvolvimento.";
-  if(t.includes("preço")) return "R$ 355,99.";
-  if(t.includes("internet")) return "Não precisa de internet.";
-  if(t.includes("funciona")) return "Ele transforma texto em áudio.";
-  return "Pode reformular sua pergunta?";
+
+  t = t.toLowerCase();
+
+  // disponibilidade
+  if(t.includes("quando") || t.includes("lançamento") || t.includes("disponivel") || t.includes("disponível")){
+    return "O dispositivo ainda está em desenvolvimento, mas já estamos avançando. Em breve vamos divulgar testes e data de lançamento.";
+  }
+
+  // preço
+  if(t.includes("preço") || t.includes("valor") || t.includes("quanto") || t.includes("custa")){
+    return "O valor previsto é de R$ 355,99. Para empresas e parceiros, existem condições especiais dependendo da quantidade.";
+  }
+
+  // internet
+  if(t.includes("internet") || t.includes("wifi") || t.includes("online")){
+    return "Não precisa de internet. O dispositivo foi feito para funcionar totalmente offline, garantindo mais praticidade.";
+  }
+
+  // funcionamento
+  if(t.includes("como funciona") || t.includes("funciona") || t.includes("uso") || t.includes("usar")){
+    return "É bem simples: você posiciona o documento, aperta um botão e o dispositivo transforma o texto em áudio automaticamente.";
+  }
+
+  // facilidade
+  if(t.includes("facil") || t.includes("difícil") || t.includes("complicado")){
+    return "Ele foi criado justamente para ser fácil. Mesmo quem não tem experiência com tecnologia consegue usar sem dificuldade.";
+  }
+
+  // público
+  if(t.includes("quem pode") || t.includes("para quem") || t.includes("idoso")){
+    return "Qualquer pessoa pode usar. Ele é ideal principalmente para idosos ou pessoas com dificuldade de leitura.";
+  }
+
+  // parceria
+  if(t.includes("parceiro") || t.includes("parceria") || t.includes("apoiar")){
+    return "Você pode apoiar o projeto acessando a aba 'Seja um parceiro'. Estamos abertos a colaborações.";
+  }
+
+  // testes
+  if(t.includes("testar") || t.includes("teste")){
+    return "Em breve vamos abrir testes para usuários interessados. Fique atento às atualizações.";
+  }
+
+  // o que é
+  if(t.includes("o que é") || t.includes("info claro")){
+    return "A Info Claro é uma solução que transforma informações complexas em algo simples, principalmente através de áudio.";
+  }
+
+  // fallback inteligente
+  return "Ainda não tenho essa informação específica, mas posso te ajudar com dúvidas sobre o produto, preço, funcionamento ou parceria 😊";
 }
 
 </script>
