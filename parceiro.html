@@ -58,43 +58,67 @@ body{
   pointer-events:auto;
 }
 
+/* MENU PREMIUM */
 .menu{
   position:fixed;
   top:0;
-  right:-280px;
+  right:-300px;
   width:280px;
   height:100%;
-  background:#111;
-  padding:20px;
+  background:rgba(15,20,40,0.96);
+  backdrop-filter:blur(15px);
+  padding:25px 20px;
   transition:.35s ease;
   z-index:9999;
+  border-left:1px solid rgba(0,191,255,0.12);
 }
 
-.menu.active{right:0;}
+.menu.active{
+  right:0;
+}
 
 .menu-header{
   display:flex;
   justify-content:space-between;
-  margin-bottom:20px;
-  color:white;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.menu-title{
+  color:#00bfff;
+  font-weight:600;
+  font-size:18px;
 }
 
 .fechar{
   cursor:pointer;
-  color:#00bfff;
   font-size:22px;
+  color:#00bfff;
 }
 
 .menu a{
-  display:block;
-  margin:15px 0;
-  color:#cfd8ff;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  border-radius:12px;
   text-decoration:none;
+  color:#cfd8ff;
+  margin-bottom:10px;
+  transition:.3s;
+  font-size:15px;
 }
 
 .menu a:hover{
+  background:rgba(0,191,255,0.15);
   color:#00bfff;
+  transform:translateX(5px);
 }
+
+.menu a.active{
+  background:rgba(0,191,255,0.2);
+  color:#00bfff;
+  }
 
 /* CONTAINER */
 .container{
@@ -182,18 +206,33 @@ button:hover{
 </div>
 
 <!-- MENU -->
+<!-- MENU PREMIUM -->
 <div class="menu" id="menu">
 
   <div class="menu-header">
-    <span>Menu</span>
+    <span class="menu-title">Menu</span>
     <span class="fechar" onclick="fecharMenu()">✕</span>
   </div>
 
-  <a href="index.html">🏠 Quem somos</a>
-  <a href="produto.html">📦 Nosso produto</a>
-  <a href="proposito.html">🎯 Nosso propósito</a>
-  <a href="faq.html">❓ Dúvidas</a>
-  <a href="parceiro.html">🤝 Seja parceiro</a>
+  <a href="index.html">
+    🏠 <span>Quem somos</span>
+  </a>
+
+  <a href="produto.html">
+    📦 <span>Nosso produto</span>
+  </a>
+
+  <a href="proposito.html">
+    🎯 <span>Nosso propósito</span>
+  </a>
+
+  <a href="faq.html">
+    ❓ <span>Dúvidas</span>
+  </a>
+
+  <a href="parceiro.html" class="active">
+    🤝 <span>Seja parceiro</span>
+  </a>
 
 </div>
 
